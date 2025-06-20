@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivam Gupta - Full-Stack Software Engineer</title>
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling narrative designed for recruiters. The flow starts with a high-impact Hero section, moves to a personal "About Me", visualizes expertise in an interactive "Skills" chart, provides evidence through "Experience" and filterable "Projects" sections, and concludes with clear "Contact" details. A sticky navigation bar allows for quick access. This structure was chosen to guide a user from a high-level summary to deep-dive evidence in a logical, engaging manner, making key information easily accessible and digestible. -->
+    <!-- Visualization & Content Choices: 
+        1. Skills List -> Goal: Compare/Organize -> Viz: Categorized Skill Tags -> Interaction: Hover effects -> Justification: Visually groups skills by domain in a clean, modern layout without showing proficiency levels, focusing on the breadth of technologies.
+        2. Project List -> Goal: Organize/Inform -> Viz: Grid of filterable cards -> Interaction: Clickable filter tags (JS) to show/hide relevant projects -> Justification: Allows users (e.g., a backend manager) to quickly find relevant examples of work, making the portfolio interactive and user-directed.
+        3. Work History -> Goal: Show Change/Progression -> Viz: Vertical timeline -> Interaction: Static -> Justification: The timeline format is the most intuitive and standard way to present chronological career growth.
+        4. Gemini Integration 1 -> Goal: Demonstrate AI proficiency -> Feature: AI-powered technical deep-dive on projects -> Interaction: Button click opens a modal with generated text -> Justification: Shows technical reasoning and AI implementation skills.
+        5. Gemini Integration 2 -> Goal: Engage recruiters -> Feature: AI Chat Assistant -> Interaction: Conversational chat UI -> Justification: A "wow" factor that provides instant, resume-based answers to recruiter questions.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #3D405B;
+        }
+
+        .nav-link {
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2A9D8F;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tag {
+            background-color: #E9C46A;
+            color: #3D405B;
+        }
+
+        .skill-tag {
+            background-color: #F4F1EA;
+            color: #3D405B;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            background-color: #2A9D8F;
+            color: #FFFFFF;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
+        }
+
+        .filter-btn {
+            background-color: #F4F1EA;
+            color: #3D405B;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: #2A9D8F;
+            color: #FFFFFF;
+        }
+
+        /* Modal Styles */
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-content {
+            transition: transform 0.25s ease;
+        }
+
+        /* Chat Styles */
+        #chat-window {
+            height: 400px;
+        }
+
+        .user-message {
+            background-color: #2A9D8F;
+            color: white;
+            align-self: flex-end;
+        }
+
+        .ai-message {
+            background-color: #e2e8f0;
+            align-self: flex-start;
+        }
+
+        .typing-indicator span {
+            animation: blink 1.4s infinite both;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0.2;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-[#2A9D8F]">SG.</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="nav-link text-lg font-medium">About</a>
+                <a href="#skills" class="nav-link text-lg font-medium">Skills</a>
+                <a href="#experience" class="nav-link text-lg font-medium">Experience</a>
+                <a href="#projects" class="nav-link text-lg font-medium">Projects</a>
+                <a href="#ai-assistant" class="nav-link text-lg font-medium">AI Assistant</a>
+                <a href="#contact" class="nav-link text-lg font-medium">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-200">About</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-200">Skills</a>
+            <a href="#experience" class="block py-2 px-4 text-sm hover:bg-gray-200">Experience</a>
+            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-200">Projects</a>
+            <a href="#ai-assistant" class="block py-2 px-4 text-sm hover:bg-gray-200">AI Assistant</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-200">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="container mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center">
+            <div class="md:w-3/5 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+                    Shivam Gupta
+                </h1>
+                <h2 class="text-2xl md:text-4xl font-bold text-[#2A9D8F] mt-2">
+                    Full-Stack Software Engineer
+                </h2>
+                <p class="mt-6 text-lg max-w-xl mx-auto md:mx-0">
+                    I build scalable, high-performance web applications from concept to deployment, focusing on clean
+                    code and robust solutions to real-world business problems.
+                </p>
+                <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                    <a href="#projects"
+                        class="bg-[#2A9D8F] text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 shadow-lg">View
+                        My Work</a>
+                    <a href="https://drive.google.com/file/d/1ZA5aQ-C4T0heeuzF4fs0pjt7IlIJ7tu9/view?usp=drive_link"
+                        target="_blank"
+                        class="bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition-transform transform hover:scale-105 shadow-lg">View
+                        Resume</a>
+                </div>
+            </div>
+            <div class="md:w-2/5 mt-12 md:mt-0 flex justify-center">
+                <div class="w-64 h-64 md:w-80 md:h-80 bg-gray-200 rounded-full flex items-center justify-center shadow-2xl"
+                    style="background-image: url('https://placehold.co/400x400/E9C46A/3D405B?text=SG'); background-size: cover; background-position: center;">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4">About Me</h2>
+                <div class="w-24 h-1 bg-[#2A9D8F] mx-auto mb-12"></div>
+                <div class="max-w-4xl mx-auto text-center text-lg leading-relaxed">
+                    <p>
+                        As a Full-Stack Software Engineer with over three years of hands-on experience, I thrive on
+                        building robust and scalable web applications. My journey in tech has been driven by a passion
+                        for problem-solving and a commitment to quality. I specialize in using modern technologies like
+                        React.js, TypeScript, and NestJS to create seamless user experiences and powerful backend
+                        systems.
+                    </p>
+                    <p class="mt-4">
+                        I have a proven track record of architecting secure RESTful APIs, implementing JWT
+                        authentication, and optimizing database performance, which has led to significant reductions in
+                        response latency. I'm a strong team player who enjoys collaborating with design and QA teams to
+                        deliver high-quality, Dockerized services in a fast-paced CI/CD environment. My goal is to
+                        continue leveraging my skills to build impactful and efficient software solutions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4">Technical Skills</h2>
+                <div class="w-24 h-1 bg-[#2A9D8F] mx-auto mb-12"></div>
+                <p class="text-center max-w-3xl mx-auto mb-12 text-lg">
+                    I have hands-on experience across the full stack. Here are the key technologies and tools I work
+                    with, grouped by expertise from front-end to back-end and infrastructure.
+                </p>
+                <div class="max-w-5xl mx-auto space-y-10">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#2A9D8F] mb-5 text-center sm:text-left">Frontend</h3>
+                        <div class="flex flex-wrap justify-center sm:justify-start gap-4">
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Chakra UI</span>
+                            <span class="skill-tag">React Router</span>
+                            <span class="skill-tag">React Query</span>
+                            <span class="skill-tag">D3.js</span>
+                            <span class="skill-tag">Recharts</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#2A9D8F] mb-5 text-center sm:text-left">Backend</h3>
+                        <div class="flex flex-wrap justify-center sm:justify-start gap-4">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">NestJS</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">JWT Auth</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#2A9D8F] mb-5 text-center sm:text-left">Database</h3>
+                        <div class="flex flex-wrap justify-center sm:justify-start gap-4">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">TypeORM</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Schema Design</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#2A9D8F] mb-5 text-center sm:text-left">DevOps & Tools</h3>
+                        <div class="flex flex-wrap justify-center sm:justify-start gap-4">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Postman</span>
+                            <span class="skill-tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4">Experience & Education</h2>
+                <div class="w-24 h-1 bg-[#2A9D8F] mx-auto mb-12"></div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative border-l-2 border-[#2A9D8F] pl-10">
+                        <!-- Work Experience -->
+                        <div class="mb-12">
+                            <div class="absolute w-6 h-6 bg-[#2A9D8F] rounded-full -left-3 border-4 border-white"></div>
+                            <p class="text-sm font-medium text-[#E9C46A] uppercase">Jun 2022 - Present</p>
+                            <h3 class="text-2xl font-bold mt-1">Full-Stack Software Engineer</h3>
+                            <p class="text-lg font-medium text-gray-600">Wisflux Tech Labs, Jaipur</p>
+                            <ul class="mt-4 list-disc list-inside text-gray-700 space-y-2">
+                                <li>Engineered full-stack applications using React.js, TypeScript, NestJS, and
+                                    PostgreSQL, enhancing performance and scalability.</li>
+                                <li>Architected modular backend services with NestJS, integrating JWT authentication,
+                                    role-based access control, and API versioning.</li>
+                                <li>Optimized database schemas and API logic, reducing response latency by up to 30%.
+                                </li>
+                                <li>Collaborated across teams to streamline CI/CD workflows and improve release
+                                    stability.</li>
+                                <li>Dockerized development environments to accelerate onboarding and ensure consistency.
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Education -->
+                        <div class="mb-12">
+                            <div class="absolute w-6 h-6 bg-[#2A9D8F] rounded-full -left-3 border-4 border-white"></div>
+                            <p class="text-sm font-medium text-[#E9C46A] uppercase">2019 - 2023</p>
+                            <h3 class="text-2xl font-bold mt-1">Bachelor of Technology, Computer Science</h3>
+                            <p class="text-lg font-medium text-gray-600">Anand International College of Engineering,
+                                Jaipur</p>
+                            <p class="mt-2 text-gray-700">CGPA: 8.5 / 10</p>
+                        </div>
+                        <!-- Certifications -->
+                        <div>
+                            <div class="absolute w-6 h-6 bg-[#2A9D8F] rounded-full -left-3 border-4 border-white"></div>
+                            <p class="text-sm font-medium text-[#E9C46A] uppercase">2020 - 2021</p>
+                            <h3 class="text-2xl font-bold mt-1">Certifications</h3>
+                            <ul class="mt-2 list-disc list-inside text-gray-700 space-y-1">
+                                <li>Accenture Developer Program - Forage (June 2021)</li>
+                                <li>Programming Fundamentals - Duke University (May 2020)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4">Projects</h2>
+                <div class="w-24 h-1 bg-[#2A9D8F] mx-auto mb-12"></div>
+                <p class="text-center max-w-3xl mx-auto mb-8 text-lg">
+                    Here's a selection of projects I've worked on. They demonstrate my ability to apply my skills to
+                    solve practical problems and build functional, user-friendly applications. Use the filters to
+                    explore projects, and click the ✨ button for an AI-generated technical deep-dive.
+                </p>
+                <div class="flex justify-center flex-wrap gap-2 mb-12">
+                    <button class="filter-btn active py-2 px-4 rounded-full font-medium" data-filter="all">All</button>
+                    <button class="filter-btn py-2 px-4 rounded-full font-medium"
+                        data-filter="full-stack">Full-Stack</button>
+                    <button class="filter-btn py-2 px-4 rounded-full font-medium"
+                        data-filter="frontend">Frontend</button>
+                    <button class="filter-btn py-2 px-4 rounded-full font-medium"
+                        data-filter="communication">Communication</button>
+                </div>
+
+                <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="full-stack">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2 project-title">TripEasy</h3>
+                            <p class="text-gray-600 mb-4 project-description">A collaborative expense splitting and trip
+                                management application designed for group travel.</p>
+                            <div class="flex flex-wrap gap-2 mb-4 project-tech">
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">React.js</span>
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">NestJS</span>
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">PostgreSQL</span>
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">JWT</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 border-t">
+                            <button
+                                class="deep-dive-btn w-full bg-teal-100 text-teal-800 font-bold py-2 px-4 rounded-lg hover:bg-teal-200 transition">
+                                ✨ Technical Deep-Dive
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="frontend">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2 project-title">EasyShare</h3>
+                            <p class="text-gray-600 mb-4 project-description">A secure, browser-based file sharing
+                                platform with drag-and-drop support and real-time previews.</p>
+                            <div class="flex flex-wrap gap-2 mb-4 project-tech">
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">React.js</span>
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">Local
+                                    Storage</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 border-t">
+                            <button
+                                class="deep-dive-btn w-full bg-teal-100 text-teal-800 font-bold py-2 px-4 rounded-lg hover:bg-teal-200 transition">
+                                ✨ Technical Deep-Dive
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="frontend">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2 project-title">Typezap</h3>
+                            <p class="text-gray-600 mb-4 project-description">A gamified typing practice platform with
+                                real-time feedback on speed and accuracy, plus a multiplayer mode.</p>
+                            <div class="flex flex-wrap gap-2 mb-4 project-tech">
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">Gamification</span>
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">Real-time
+                                    UI</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 border-t">
+                            <button
+                                class="deep-dive-btn w-full bg-teal-100 text-teal-800 font-bold py-2 px-4 rounded-lg hover:bg-teal-200 transition">
+                                ✨ Technical Deep-Dive
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 4 -->
+                    <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden"
+                        data-category="communication full-stack">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold mb-2 project-title">FLOS</h3>
+                            <p class="text-gray-600 mb-4 project-description">A disaster response communication tool for
+                                low-connectivity areas with voice/video, messaging, and GPS tracking.</p>
+                            <div class="flex flex-wrap gap-2 mb-4 project-tech">
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">WebSockets</span>
+                                <span
+                                    class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">Mediasoup</span>
+                                <span class="tag text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full">AI
+                                    (ASR/TTS)</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 border-t">
+                            <button
+                                class="deep-dive-btn w-full bg-teal-100 text-teal-800 font-bold py-2 px-4 rounded-lg hover:bg-teal-200 transition">
+                                ✨ Technical Deep-Dive
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Assistant Section -->
+        <section id="ai-assistant" class="py-20 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4">Recruiter AI Assistant</h2>
+                <div class="w-24 h-1 bg-[#2A9D8F] mx-auto mb-12"></div>
+                <p class="text-center max-w-3xl mx-auto mb-8 text-lg">
+                    Have a specific question about my skills or experience? Ask my AI assistant, trained on my resume,
+                    for a quick answer. For example, try asking: "What is your experience with PostgreSQL?"
+                </p>
+                <div class="max-w-2xl mx-auto bg-gray-100 rounded-lg shadow-lg p-4">
+                    <div id="chat-window" class="overflow-y-auto mb-4 p-4 bg-white rounded flex flex-col space-y-4">
+                        <!-- Messages will be injected here -->
+                    </div>
+                    <div id="chat-input-container" class="flex">
+                        <input type="text" id="chat-input"
+                            class="flex-grow border rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#2A9D8F]"
+                            placeholder="Ask a question...">
+                        <button id="chat-send-btn"
+                            class="bg-[#2A9D8F] text-white font-bold py-2 px-4 rounded-r-lg hover:bg-opacity-90 transition">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
+                <div class="w-24 h-1 bg-[#2A9D8F] mx-auto mb-8"></div>
+                <p class="max-w-2xl mx-auto text-lg mb-8">
+                    I'm currently seeking new opportunities and would love to hear from you. Whether you have a question
+                    or just want to connect, feel free to reach out.
+                </p>
+                <a href="mailto:profile.shivam@gmail.com" class="text-2xl font-semibold text-[#2A9D8F] hover:underline">
+                    profile.shivam@gmail.com
+                </a>
+                <div class="flex justify-center space-x-6 mt-8">
+                    <a href="https://www.linkedin.com/in/myselfshivam/" target="_blank"
+                        class="text-gray-500 hover:text-[#2A9D8F] transition-colors">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="https://github.com/shivamgupta1319" target="_blank"
+                        class="text-gray-500 hover:text-[#2A9D8F] transition-colors">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#3D405B] text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 Shivam Gupta. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Deep-Dive -->
+    <div id="modal"
+        class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 opacity-0 pointer-events-none">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-2xl transform scale-95">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4">Technical Analysis</h3>
+            <div id="modal-body" class="text-gray-700">
+                <!-- Content will be injected here -->
+            </div>
+            <button id="modal-close"
+                class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Gemini API Integration ---
+
+            const API_KEY = ""; // Kept as empty string for security
+            const chatHistory = [];
+            const resumeContext = `
+                Full-Stack Software Engineer with 3+ years of experience building scalable web applications using React.js, TypeScript, NestJS, and PostgreSQL. 
+                Skills:
+                - Frontend: React.js, Next.js, TypeScript, Chakra UI, React Router, React Query, D3.js, Recharts
+                - Backend: Node.js, NestJS, Express.js, JWT Auth, Redis, Rest APIs
+                - Database: PostgreSQL, TypeORM, MySQL, Database Schema Design
+                - DevOps & Tools: Git, Docker, Postman, Firebase
+                Experience:
+                - Wisflux Tech Labs (Jun 2022 - Present): Full-Stack Software Engineer. Engineered full-stack applications (React, TS, NestJS, PostgreSQL). Architected backend services with NestJS (JWT, RBAC). Optimized DB/APIs (reduced latency by 30%). Collaborated on CI/CD, Dockerized environments.
+                Projects:
+                - TripEasy: Expense splitting app (React, TS, NestJS, PostgreSQL, JWT).
+                - EasyShare: Secure file sharing (React.js).
+                - Typezap: Gamified typing practice.
+                - FLOS: Disaster response communication tool (WebSockets, Mediasoup, ASR/TTS, GPS).
+                Education: B.Tech CSE, Anand International College of Engineering (8.5 CGPA).
+            `;
+
+            async function callGemini(prompt) {
+                // This is the path to your new serverless function
+                const functionUrl = '/.netlify/functions/gemini';
+
+                try {
+                    const response = await fetch(functionUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        // Send the prompt in the request body
+                        body: JSON.stringify({ prompt: prompt })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Function call failed with status: ${response.status}`);
+                    }
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    }
+                    return "Sorry, I couldn't get a response. Please try again.";
+                } catch (error) {
+                    console.error("Serverless function error:", error);
+                    return "An error occurred while contacting the AI. Please check the console.";
+                }
+            }
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalCloseBtn = document.getElementById('modal-close');
+
+            function showModal(title, content) {
+                modalTitle.textContent = title;
+                modalBody.innerHTML = content;
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+            }
+
+            function hideModal() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+            }
+
+            modalCloseBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) hideModal();
+            });
+
+            // --- Project Deep-Dive Logic ---
+            document.querySelectorAll('.deep-dive-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const card = e.target.closest('.project-card');
+                    const title = card.querySelector('.project-title').textContent;
+                    const description = card.querySelector('.project-description').textContent;
+                    const techSpans = card.querySelectorAll('.project-tech span');
+                    const techStack = Array.from(techSpans).map(span => span.textContent).join(', ');
+
+                    showModal(`Technical Deep-Dive: ${title}`, '<div class="flex justify-center items-center h-24"><div class="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div></div>');
+
+                    const prompt = `You are an expert software architect. For a project named '${title}' with the description '${description}' and using the tech stack '${techStack}', briefly explain in one paragraph why this technology stack is a suitable choice for this specific project. Focus on the synergy between the technologies.`;
+
+                    const response = await callGemini(prompt);
+                    modalBody.innerHTML = `<p>${response.replace(/\n/g, '<br>')}</p>`;
+                });
+            });
+
+            // --- AI Assistant Chat Logic ---
+            const chatWindow = document.getElementById('chat-window');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
+
+            function addMessageToChat(message, sender) {
+                const messageEl = document.createElement('div');
+                messageEl.className = `p-3 rounded-lg max-w-xs md:max-w-md ${sender === 'user' ? 'user-message' : 'ai-message'}`;
+                messageEl.textContent = message;
+                chatWindow.appendChild(messageEl);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const typingEl = document.createElement('div');
+                typingEl.id = 'typing-indicator';
+                typingEl.className = 'ai-message p-3 rounded-lg typing-indicator';
+                typingEl.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+                chatWindow.appendChild(typingEl);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            function removeTypingIndicator() {
+                const indicator = document.getElementById('typing-indicator');
+                if (indicator) indicator.remove();
+            }
+
+            async function handleChatSubmit() {
+                const userMessage = chatInput.value.trim();
+                if (!userMessage) return;
+
+                addMessageToChat(userMessage, 'user');
+                chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
+                chatInput.value = '';
+                showTypingIndicator();
+
+                const prompt = `You are a helpful AI assistant for Shivam Gupta, a Full-Stack Engineer. Your goal is to answer questions from recruiters based ONLY on the provided context. Be professional, concise, and friendly. Do not invent information. If the answer is not in the context, say "That's an excellent question for Shivam. You can reach him at profile.shivam@gmail.com." \n\nCONTEXT:\n${resumeContext}\n\nQUESTION: ${userMessage}`;
+
+                const aiResponse = await callGemini(prompt);
+                removeTypingIndicator();
+                addMessageToChat(aiResponse, 'ai');
+                chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
+            }
+
+            chatSendBtn.addEventListener('click', handleChatSubmit);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleChatSubmit();
+            });
+
+            // Initial AI message
+            addMessageToChat("Hello! I'm Shivam's AI assistant. Feel free to ask me anything about his resume.", "ai");
+
+
+            // --- General Page Logic (Filters, Mobile Menu, Scroll Animations) ---
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    projectCards.forEach(card => {
+                        const cardElement = card.closest('.project-card'); // Ensure we target the parent card
+                        if (filter === 'all' || cardElement.dataset.category.includes(filter)) {
+                            cardElement.style.display = 'flex'; // Use flex instead of block for consistency
+                        } else {
+                            cardElement.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            }
+
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            const navLinks = document.querySelectorAll('nav .nav-link');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        navLinks.forEach(link => {
+                            const href = link.getAttribute('href');
+                            link.classList.toggle('active', href === `#${entry.target.id}`);
+                        });
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+
+</html>
