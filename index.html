@@ -1,19 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shivam Gupta — Full-Stack Engineer & Systems Builder. Creator of algorithmic trading platforms, AI agents, real-time communication SDKs, and native desktop apps.">
-    <meta name="keywords" content="Shivam Gupta, Full-Stack Developer, Software Engineer, React, NestJS, TypeScript, AI, Trading, Portfolio">
-    <meta name="author" content="Shivam Gupta">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Shivam Gupta — Full-Stack Engineer & Systems Builder. Creator of algorithmic trading platforms, AI agents, real-time communication SDKs, and native desktop apps."
+    />
+    <meta
+      name="keywords"
+      content="Shivam Gupta, Full-Stack Developer, Software Engineer, React, NestJS, TypeScript, AI, Trading, Portfolio"
+    />
+    <meta name="author" content="Shivam Gupta" />
     <title>Shivam Gupta — Engineer · Builder · Creator</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="noise-overlay"></div>
     <div class="gradient-orb orb-1"></div>
     <div class="gradient-orb orb-2"></div>
@@ -24,434 +36,667 @@
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <span class="logo-bracket">&lt;</span>SG<span class="logo-bracket">/&gt;</span>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="https://drive.google.com/file/d/1-UVbLIn1cMr0F2oObG0-rgBb1-dWJWSz/view" target="_blank" class="btn btn-sm btn-outline"><i class="fas fa-file-alt"></i> Resume</a>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+      <div class="container nav-container">
+        <a href="#" class="logo">
+          <span class="logo-bracket">&lt;</span>SG<span class="logo-bracket"
+            >/&gt;</span
+          >
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a
+            href="https://drive.google.com/file/d/1_qEbFoXF_SQ0A_rPaZNro-x2XRw6NAQb/view?usp=drive_link"
+            target="_blank"
+            class="btn btn-sm btn-outline"
+            ><i class="fas fa-file-alt"></i> Resume</a
+          >
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
         </div>
+      </div>
     </nav>
 
     <!-- Mobile Menu -->
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content anim-reveal">
-                <div class="hero-badge">
-                    <span class="pulse-dot"></span> Available for opportunities
-                </div>
-                <h1>I build systems<br>that <span class="text-gradient">think, trade,</span><br>and <span class="text-gradient">communicate.</span></h1>
-                <p class="hero-subtitle">Full-Stack Engineer with 4+ years of experience crafting algorithmic trading platforms, autonomous AI agents, real-time communication SDKs, and native desktop applications. I don't just write code — I architect complete systems from concept to production.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number" data-count="55">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Repositories</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="4">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-count="28">0</span><span class="stat-suffix"></span>
-                        <span class="stat-label">Trading Strategies</span>
-                    </div>
-                </div>
-                <div class="hero-actions">
-                    <a href="#projects" class="btn btn-primary">Explore My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="https://github.com/shivamgupta1319" target="_blank" class="btn btn-ghost"><i class="fab fa-github"></i> GitHub</a>
-                </div>
+      <div class="container hero-grid">
+        <div class="hero-content anim-reveal">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span> Available for opportunities
+          </div>
+          <h1>
+            I build systems<br />that
+            <span class="text-gradient">think, trade,</span><br />and
+            <span class="text-gradient">communicate.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Full-Stack Engineer with 4+ years of experience crafting algorithmic
+            trading platforms, autonomous AI agents, real-time communication
+            SDKs, and native desktop applications. I don't just write code — I
+            architect complete systems from concept to production.
+          </p>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number" data-count="55">0</span
+              ><span class="stat-suffix">+</span>
+              <span class="stat-label">Repositories</span>
             </div>
-            <div class="hero-visual anim-reveal delay-2">
-                <div class="terminal-card">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">~/shivam</span>
-                    </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="prompt">$</span>
-                            <span class="command typing" id="typingText"></span>
-                            <span class="cursor-blink">|</span>
-                        </div>
-                        <div class="terminal-output" id="terminalOutput"></div>
-                    </div>
-                </div>
+            <div class="stat">
+              <span class="stat-number" data-count="4">0</span
+              ><span class="stat-suffix">+</span>
+              <span class="stat-label">Years Experience</span>
             </div>
+            <div class="stat">
+              <span class="stat-number" data-count="28">0</span
+              ><span class="stat-suffix"></span>
+              <span class="stat-label">Trading Strategies</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary"
+              >Explore My Work <i class="fas fa-arrow-right"></i
+            ></a>
+            <a
+              href="https://github.com/shivamgupta1319"
+              target="_blank"
+              class="btn btn-ghost"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
         </div>
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+        <div class="hero-visual anim-reveal delay-2">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-title">~/shivam</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command typing" id="typingText"></span>
+                <span class="cursor-blink">|</span>
+              </div>
+              <div class="terminal-output" id="terminalOutput"></div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
-        <div class="container">
-            <div class="section-label anim-reveal">About</div>
-            <h2 class="section-title anim-reveal">More than a developer.<br><span class="text-gradient">A systems thinker.</span></h2>
-            <div class="about-grid">
-                <div class="about-text anim-reveal">
-                    <p>I'm <strong>Shivam Gupta</strong>, a Full-Stack Software Engineer based in Jaipur, India. Over the past 4+ years, I've evolved from building traditional web apps to engineering complex, multi-service systems that solve real problems.</p>
-                    <p>My recent work sits at the intersection of <strong>finance, AI, and real-time systems</strong>. I've built an algorithmic trading platform that backtests 28 strategies across the Indian stock market, an autonomous AI agent with long-term vector memory, and a voice-first desktop AI assistant inspired by Jarvis — built with Tauri, Rust, and streaming LLMs.</p>
-                    <p>At <strong>Wisflux Tech Labs</strong>, I represented the company at <strong>ATR Open House 2025 in Kyoto, Japan</strong>, showcasing real-time offline communication solutions. I architect production systems using NestJS, React, PostgreSQL, Docker, and Python — always with a focus on performance, clean architecture, and developer experience.</p>
-                </div>
-                <div class="about-highlights anim-reveal delay-1">
-                    <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fas fa-microchip"></i></div>
-                        <h4>Systems Architecture</h4>
-                        <p>Nx/Turborepo monorepos, Docker orchestration, microservices with NestJS & FastAPI</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fas fa-brain"></i></div>
-                        <h4>AI & Automation</h4>
-                        <p>Autonomous agents, LLM integration, vector databases (Qdrant), streaming TTS/STT</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fas fa-chart-line"></i></div>
-                        <h4>FinTech & Trading</h4>
-                        <p>28 algorithmic strategies, live market scanners, backtesting engines, Telegram alerts</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon"><i class="fas fa-satellite-dish"></i></div>
-                        <h4>Real-Time Systems</h4>
-                        <p>WebRTC, Mediasoup SFU, Socket.io, WebSockets — battle-tested in production</p>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="section-label anim-reveal">About</div>
+        <h2 class="section-title anim-reveal">
+          More than a developer.<br /><span class="text-gradient"
+            >A systems thinker.</span
+          >
+        </h2>
+        <div class="about-grid">
+          <div class="about-text anim-reveal">
+            <p>
+              I'm <strong>Shivam Gupta</strong>, a Full-Stack Software Engineer
+              based in Jaipur, India. Over the past 4+ years, I've evolved from
+              building traditional web apps to engineering complex,
+              multi-service systems that solve real problems.
+            </p>
+            <p>
+              My recent work sits at the intersection of
+              <strong>finance, AI, and real-time systems</strong>. I've built an
+              algorithmic trading platform that backtests 28 strategies across
+              the Indian stock market, an autonomous AI agent with long-term
+              vector memory, and a voice-first desktop AI assistant inspired by
+              Jarvis — built with Tauri, Rust, and streaming LLMs.
+            </p>
+            <p>
+              At <strong>Wisflux Tech Labs</strong>, I represented the company
+              at <strong>ATR Open House 2025 in Kyoto, Japan</strong>,
+              showcasing real-time offline communication solutions. I architect
+              production systems using NestJS, React, PostgreSQL, Docker, and
+              Python — always with a focus on performance, clean architecture,
+              and developer experience.
+            </p>
+          </div>
+          <div class="about-highlights anim-reveal delay-1">
+            <div class="highlight-card">
+              <div class="highlight-icon"><i class="fas fa-microchip"></i></div>
+              <h4>Systems Architecture</h4>
+              <p>
+                Nx/Turborepo monorepos, Docker orchestration, microservices with
+                NestJS & FastAPI
+              </p>
             </div>
+            <div class="highlight-card">
+              <div class="highlight-icon"><i class="fas fa-brain"></i></div>
+              <h4>AI & Automation</h4>
+              <p>
+                Autonomous agents, LLM integration, vector databases (Qdrant),
+                streaming TTS/STT
+              </p>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h4>FinTech & Trading</h4>
+              <p>
+                28 algorithmic strategies, live market scanners, backtesting
+                engines, Telegram alerts
+              </p>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <i class="fas fa-satellite-dish"></i>
+              </div>
+              <h4>Real-Time Systems</h4>
+              <p>
+                WebRTC, Mediasoup SFU, Socket.io, WebSockets — battle-tested in
+                production
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section section-dark">
-        <div class="container">
-            <div class="section-label anim-reveal">Projects</div>
-            <h2 class="section-title anim-reveal">What I've been <span class="text-gradient">building.</span></h2>
-            <p class="section-desc anim-reveal">These aren't tutorial projects — they're production-grade systems I've designed, architected, and shipped.</p>
+      <div class="container">
+        <div class="section-label anim-reveal">Projects</div>
+        <h2 class="section-title anim-reveal">
+          What I've been <span class="text-gradient">building.</span>
+        </h2>
+        <p class="section-desc anim-reveal">
+          These aren't tutorial projects — they're production-grade systems I've
+          designed, architected, and shipped.
+        </p>
 
-            <div class="projects-grid">
-                <!-- Project 1: Smart Trading -->
-                <div class="project-card featured anim-reveal">
-                    <div class="project-badge">Featured</div>
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-chart-candlestick"></i></div>
-                        <h3>Smart Trading Platform</h3>
-                        <p>A full-stack algorithmic trading platform for the Indian stock market (NSE). Backtests <strong>28 strategies</strong> across intraday & swing timeframes. Features interactive candlestick charting, automatic portfolio tracking, live market scanning every 60s, and real-time WebSocket + Telegram alerts.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">React + Vite</span>
-                            <span class="arch-tag">NestJS + Prisma</span>
-                            <span class="arch-tag">Python FastAPI</span>
-                            <span class="arch-tag">PostgreSQL</span>
-                            <span class="arch-tag">Socket.io</span>
-                            <span class="arch-tag">Docker</span>
-                            <span class="arch-tag">Nx Monorepo</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/smart-trading" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: AI Agent -->
-                <div class="project-card anim-reveal">
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-robot"></i></div>
-                        <h3>AgentSystem — Autonomous AI Dev Agent</h3>
-                        <p>An autonomous developer agent platform with a Next.js dashboard streaming real-time logs via Socket.io. Powered by a Fastify API gateway, BullMQ task queues, and <strong>Qdrant vector memory</strong> for long-term context. Fully containerized with Docker.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">Next.js</span>
-                            <span class="arch-tag">Fastify</span>
-                            <span class="arch-tag">BullMQ + Redis</span>
-                            <span class="arch-tag">Qdrant</span>
-                            <span class="arch-tag">OpenRouter</span>
-                            <span class="arch-tag">Turborepo</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/ai-agent" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3: Jarvis -->
-                <div class="project-card anim-reveal">
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-waveform-lines"></i></div>
-                        <h3>Jarvis — Voice-First AI Desktop App</h3>
-                        <p>A native, voice-first AI assistant for Ubuntu inspired by Iron Man's Jarvis. Built with <strong>Tauri + Rust</strong> for native performance, Groq Whisper for sub-second STT, streaming LLM responses, and sentence-chunked TTS. Supports barge-in interruptions and background task execution.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">Tauri + Rust</span>
-                            <span class="arch-tag">React + TypeScript</span>
-                            <span class="arch-tag">Groq Whisper</span>
-                            <span class="arch-tag">Streaming LLM</span>
-                            <span class="arch-tag">TTS Pipeline</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/jarvis" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4: Streamverse -->
-                <div class="project-card anim-reveal">
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-podcast"></i></div>
-                        <h3>Streamverse — Open-Source Streaming SDK</h3>
-                        <p>A published NPM package enabling audio, video, and screen sharing with seamless WebRTC, Socket.io, and <strong>Mediasoup SFU</strong> integration. Developer-friendly API for rapid integration of real-time communication features into modern web apps.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">WebRTC</span>
-                            <span class="arch-tag">Mediasoup SFU</span>
-                            <span class="arch-tag">Socket.io</span>
-                            <span class="arch-tag">TypeScript</span>
-                            <span class="arch-tag">NPM Package</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/streamverse" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                            <a href="https://npmjs.com/package/streamverse" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> NPM</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: Copy Trading -->
-                <div class="project-card anim-reveal">
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-copy"></i></div>
-                        <h3>Copy Trading System</h3>
-                        <p>A signal-based copy trading platform built with an Nx monorepo. Mirrors trades from expert signals with automatic SL/TP management. Includes Prisma ORM, real-time position tracking, and automated risk management.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">NestJS</span>
-                            <span class="arch-tag">Prisma</span>
-                            <span class="arch-tag">Nx Monorepo</span>
-                            <span class="arch-tag">Docker</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/copy-trading" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6: Tailwind UI Kit -->
-                <div class="project-card anim-reveal">
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-palette"></i></div>
-                        <h3>Tailwind UI Kit — Component Library</h3>
-                        <p>A reusable component library built with a Turborepo monorepo architecture. Includes Storybook documentation, Changeset versioning, and a playground app. Designed for internal use across multiple projects.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">React</span>
-                            <span class="arch-tag">Tailwind CSS</span>
-                            <span class="arch-tag">Turborepo</span>
-                            <span class="arch-tag">Storybook</span>
-                            <span class="arch-tag">Changesets</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/tailwind-ui-kit" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 7: Glacier Dev (web-dev-workflow) -->
-                <div class="project-card anim-reveal">
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-snowflake"></i></div>
-                        <h3>Glacier Dev — AI Web Dev Platform</h3>
-                        <p>An autonomous AI-powered web development platform that turns prompts into fully deployed apps. Uses a <strong>multi-agent orchestration pipeline</strong> (Architect, Backend, UI agents) powered by Gemini 2.5 Flash. Features integrated Monaco editor, Sandpack live preview, and one-click Vercel deployment.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">Next.js 14</span>
-                            <span class="arch-tag">Google Gemini</span>
-                            <span class="arch-tag">OpenRouter</span>
-                            <span class="arch-tag">Supabase</span>
-                            <span class="arch-tag">NextAuth</span>
-                            <span class="arch-tag">Monaco Editor</span>
-                            <span class="arch-tag">Sandpack</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/web-dev-workflow" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 8: Card Selector -->
-                <div class="project-card anim-reveal">
-                    <div class="project-content">
-                        <div class="project-icon"><i class="fas fa-credit-card"></i></div>
-                        <h3>Card Selector — AI Cashback Optimizer</h3>
-                        <p>A local-first, AI-powered card recommendation assistant. Scan cards via <strong>OCR (PaddleOCR + OpenCV)</strong>, store details with AES-256 encryption, and let Gemini analyze which card maximizes cashback for every purchase. Fully containerized with Docker and installable as a PWA.</p>
-                        <div class="project-arch">
-                            <span class="arch-tag">Next.js</span>
-                            <span class="arch-tag">NestJS</span>
-                            <span class="arch-tag">FastAPI</span>
-                            <span class="arch-tag">PaddleOCR</span>
-                            <span class="arch-tag">Prisma</span>
-                            <span class="arch-tag">PostgreSQL</span>
-                            <span class="arch-tag">Gemini AI</span>
-                            <span class="arch-tag">Docker</span>
-                        </div>
-                        <div class="project-links-row">
-                            <a href="https://github.com/shivamgupta1319/card-selector" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
-                        </div>
-                    </div>
-                </div>
+        <div class="projects-grid">
+          <!-- Project 1: Smart Trading -->
+          <div class="project-card featured anim-reveal">
+            <div class="project-badge">Featured</div>
+            <div class="project-content">
+              <div class="project-icon">
+                <i class="fas fa-chart-candlestick"></i>
+              </div>
+              <h3>Smart Trading Platform</h3>
+              <p>
+                A full-stack algorithmic trading platform for the Indian stock
+                market (NSE). Backtests <strong>28 strategies</strong> across
+                intraday & swing timeframes. Features interactive candlestick
+                charting, automatic portfolio tracking, live market scanning
+                every 60s, and real-time WebSocket + Telegram alerts.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">React + Vite</span>
+                <span class="arch-tag">NestJS + Prisma</span>
+                <span class="arch-tag">Python FastAPI</span>
+                <span class="arch-tag">PostgreSQL</span>
+                <span class="arch-tag">Socket.io</span>
+                <span class="arch-tag">Docker</span>
+                <span class="arch-tag">Nx Monorepo</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/smart-trading"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+              </div>
             </div>
+          </div>
 
-            <div class="text-center mt-6 anim-reveal">
-                <a href="https://github.com/shivamgupta1319?tab=repositories" target="_blank" class="btn btn-outline">View All 55+ Repositories <i class="fas fa-arrow-right"></i></a>
+          <!-- Project 2: AI Agent -->
+          <div class="project-card anim-reveal">
+            <div class="project-content">
+              <div class="project-icon"><i class="fas fa-robot"></i></div>
+              <h3>AgentSystem — Autonomous AI Dev Agent</h3>
+              <p>
+                An autonomous developer agent platform with a Next.js dashboard
+                streaming real-time logs via Socket.io. Powered by a Fastify API
+                gateway, BullMQ task queues, and
+                <strong>Qdrant vector memory</strong> for long-term context.
+                Fully containerized with Docker.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">Next.js</span>
+                <span class="arch-tag">Fastify</span>
+                <span class="arch-tag">BullMQ + Redis</span>
+                <span class="arch-tag">Qdrant</span>
+                <span class="arch-tag">OpenRouter</span>
+                <span class="arch-tag">Turborepo</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/ai-agent"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+              </div>
             </div>
+          </div>
+
+          <!-- Project 3: Jarvis -->
+          <div class="project-card anim-reveal">
+            <div class="project-content">
+              <div class="project-icon">
+                <i class="fas fa-waveform-lines"></i>
+              </div>
+              <h3>Jarvis — Voice-First AI Desktop App</h3>
+              <p>
+                A native, voice-first AI assistant for Ubuntu inspired by Iron
+                Man's Jarvis. Built with <strong>Tauri + Rust</strong> for
+                native performance, Groq Whisper for sub-second STT, streaming
+                LLM responses, and sentence-chunked TTS. Supports barge-in
+                interruptions and background task execution.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">Tauri + Rust</span>
+                <span class="arch-tag">React + TypeScript</span>
+                <span class="arch-tag">Groq Whisper</span>
+                <span class="arch-tag">Streaming LLM</span>
+                <span class="arch-tag">TTS Pipeline</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/jarvis"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Streamverse -->
+          <div class="project-card anim-reveal">
+            <div class="project-content">
+              <div class="project-icon"><i class="fas fa-podcast"></i></div>
+              <h3>Streamverse — Open-Source Streaming SDK</h3>
+              <p>
+                A published NPM package enabling audio, video, and screen
+                sharing with seamless WebRTC, Socket.io, and
+                <strong>Mediasoup SFU</strong> integration. Developer-friendly
+                API for rapid integration of real-time communication features
+                into modern web apps.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">WebRTC</span>
+                <span class="arch-tag">Mediasoup SFU</span>
+                <span class="arch-tag">Socket.io</span>
+                <span class="arch-tag">TypeScript</span>
+                <span class="arch-tag">NPM Package</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/streamverse"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+                <a
+                  href="https://npmjs.com/package/streamverse"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fas fa-external-link-alt"></i> NPM</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Copy Trading -->
+          <div class="project-card anim-reveal">
+            <div class="project-content">
+              <div class="project-icon"><i class="fas fa-copy"></i></div>
+              <h3>Copy Trading System</h3>
+              <p>
+                A signal-based copy trading platform built with an Nx monorepo.
+                Mirrors trades from expert signals with automatic SL/TP
+                management. Includes Prisma ORM, real-time position tracking,
+                and automated risk management.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">NestJS</span>
+                <span class="arch-tag">Prisma</span>
+                <span class="arch-tag">Nx Monorepo</span>
+                <span class="arch-tag">Docker</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/copy-trading"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Tailwind UI Kit -->
+          <div class="project-card anim-reveal">
+            <div class="project-content">
+              <div class="project-icon"><i class="fas fa-palette"></i></div>
+              <h3>Tailwind UI Kit — Component Library</h3>
+              <p>
+                A reusable component library built with a Turborepo monorepo
+                architecture. Includes Storybook documentation, Changeset
+                versioning, and a playground app. Designed for internal use
+                across multiple projects.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">React</span>
+                <span class="arch-tag">Tailwind CSS</span>
+                <span class="arch-tag">Turborepo</span>
+                <span class="arch-tag">Storybook</span>
+                <span class="arch-tag">Changesets</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/tailwind-ui-kit"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 7: Glacier Dev (web-dev-workflow) -->
+          <div class="project-card anim-reveal">
+            <div class="project-content">
+              <div class="project-icon"><i class="fas fa-snowflake"></i></div>
+              <h3>Glacier Dev — AI Web Dev Platform</h3>
+              <p>
+                An autonomous AI-powered web development platform that turns
+                prompts into fully deployed apps. Uses a
+                <strong>multi-agent orchestration pipeline</strong> (Architect,
+                Backend, UI agents) powered by Gemini 2.5 Flash. Features
+                integrated Monaco editor, Sandpack live preview, and one-click
+                Vercel deployment.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">Next.js 14</span>
+                <span class="arch-tag">Google Gemini</span>
+                <span class="arch-tag">OpenRouter</span>
+                <span class="arch-tag">Supabase</span>
+                <span class="arch-tag">NextAuth</span>
+                <span class="arch-tag">Monaco Editor</span>
+                <span class="arch-tag">Sandpack</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/web-dev-workflow"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 8: Card Selector -->
+          <div class="project-card anim-reveal">
+            <div class="project-content">
+              <div class="project-icon"><i class="fas fa-credit-card"></i></div>
+              <h3>Card Selector — AI Cashback Optimizer</h3>
+              <p>
+                A local-first, AI-powered card recommendation assistant. Scan
+                cards via <strong>OCR (PaddleOCR + OpenCV)</strong>, store
+                details with AES-256 encryption, and let Gemini analyze which
+                card maximizes cashback for every purchase. Fully containerized
+                with Docker and installable as a PWA.
+              </p>
+              <div class="project-arch">
+                <span class="arch-tag">Next.js</span>
+                <span class="arch-tag">NestJS</span>
+                <span class="arch-tag">FastAPI</span>
+                <span class="arch-tag">PaddleOCR</span>
+                <span class="arch-tag">Prisma</span>
+                <span class="arch-tag">PostgreSQL</span>
+                <span class="arch-tag">Gemini AI</span>
+                <span class="arch-tag">Docker</span>
+              </div>
+              <div class="project-links-row">
+                <a
+                  href="https://github.com/shivamgupta1319/card-selector"
+                  target="_blank"
+                  class="project-link"
+                  ><i class="fab fa-github"></i> Source</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="text-center mt-6 anim-reveal">
+          <a
+            href="https://github.com/shivamgupta1319?tab=repositories"
+            target="_blank"
+            class="btn btn-outline"
+            >View All 55+ Repositories <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
     </section>
 
     <!-- Experience Section -->
     <section id="experience" class="section">
-        <div class="container">
-            <div class="section-label anim-reveal">Experience</div>
-            <h2 class="section-title anim-reveal">Where I've <span class="text-gradient">worked.</span></h2>
+      <div class="container">
+        <div class="section-label anim-reveal">Experience</div>
+        <h2 class="section-title anim-reveal">
+          Where I've <span class="text-gradient">worked.</span>
+        </h2>
 
-            <div class="experience-card anim-reveal">
-                <div class="exp-timeline-dot"></div>
-                <div class="exp-header">
-                    <div>
-                        <h3>Full-Stack Software Engineer</h3>
-                        <p class="exp-company">Wisflux Tech Labs · Jaipur, India</p>
-                    </div>
-                    <span class="exp-date">Jun 2022 — Present</span>
-                </div>
-                <ul class="exp-list">
-                    <li>Engineered multi-service applications using React.js, TypeScript, NestJS, and PostgreSQL — driving performance gains across multiple SaaS modules.</li>
-                    <li>Architected modular backend services with JWT auth, RBAC, and API versioning — reducing response latency by up to 30%.</li>
-                    <li>Represented Wisflux at <strong>ATR Open House 2025 (Kyoto, Japan)</strong> — demonstrated real-time offline communication solutions and engaged in technical collaborations.</li>
-                    <li>Built FLOS — a disaster response communication tool using Mediasoup, WebSockets, and ASR for hands-free emergency communication in low-connectivity environments.</li>
-                    <li>Dockerized development environments and streamlined CI/CD workflows, accelerating onboarding and improving release stability.</li>
-                </ul>
+        <div class="experience-card anim-reveal">
+          <div class="exp-timeline-dot"></div>
+          <div class="exp-header">
+            <div>
+              <h3>Full-Stack Software Engineer</h3>
+              <p class="exp-company">Wisflux Tech Labs · Jaipur, India</p>
             </div>
-
-            <div class="education-grid anim-reveal delay-1">
-                <div class="edu-card">
-                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h4>B.Tech, Computer Science Engineering</h4>
-                    <p>Anand International College of Engineering, Jaipur</p>
-                    <span class="edu-meta">2019 – 2023 · CGPA: 8.5</span>
-                </div>
-                <div class="edu-card">
-                    <div class="edu-icon"><i class="fas fa-globe-asia"></i></div>
-                    <h4>ATR Open House 2025</h4>
-                    <p>Kyoto, Japan — International tech showcase & collaboration event</p>
-                    <span class="edu-meta">2025 · Representing Wisflux Tech Labs</span>
-                </div>
-            </div>
+            <span class="exp-date">Jun 2022 — Present</span>
+          </div>
+          <ul class="exp-list">
+            <li>
+              Engineered multi-service applications using React.js, TypeScript,
+              NestJS, and PostgreSQL — driving performance gains across multiple
+              SaaS modules.
+            </li>
+            <li>
+              Architected modular backend services with JWT auth, RBAC, and API
+              versioning — reducing response latency by up to 30%.
+            </li>
+            <li>
+              Represented Wisflux at
+              <strong>ATR Open House 2025 (Kyoto, Japan)</strong> — demonstrated
+              real-time offline communication solutions and engaged in technical
+              collaborations.
+            </li>
+            <li>
+              Built FLOS — a disaster response communication tool using
+              Mediasoup, WebSockets, and ASR for hands-free emergency
+              communication in low-connectivity environments.
+            </li>
+            <li>
+              Dockerized development environments and streamlined CI/CD
+              workflows, accelerating onboarding and improving release
+              stability.
+            </li>
+          </ul>
         </div>
+
+        <div class="education-grid anim-reveal delay-1">
+          <div class="edu-card">
+            <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h4>B.Tech, Computer Science Engineering</h4>
+            <p>Anand International College of Engineering, Jaipur</p>
+            <span class="edu-meta">2019 – 2023 · CGPA: 8.5</span>
+          </div>
+          <div class="edu-card">
+            <div class="edu-icon"><i class="fas fa-globe-asia"></i></div>
+            <h4>ATR Open House 2025</h4>
+            <p>
+              Kyoto, Japan — International tech showcase & collaboration event
+            </p>
+            <span class="edu-meta">2025 · Representing Wisflux Tech Labs</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="section section-dark">
-        <div class="container">
-            <div class="section-label anim-reveal">Skills</div>
-            <h2 class="section-title anim-reveal">My <span class="text-gradient">toolbox.</span></h2>
+      <div class="container">
+        <div class="section-label anim-reveal">Skills</div>
+        <h2 class="section-title anim-reveal">
+          My <span class="text-gradient">toolbox.</span>
+        </h2>
 
-            <div class="skills-grid anim-reveal">
-                <div class="skill-group">
-                    <h4><i class="fas fa-display"></i> Frontend</h4>
-                    <div class="skill-pills">
-                        <span>React.js</span><span>Next.js</span><span>TypeScript</span><span>Vite</span><span>Chakra UI</span><span>Tailwind CSS</span><span>D3.js</span><span>Recharts</span><span>React Query</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4><i class="fas fa-server"></i> Backend</h4>
-                    <div class="skill-pills">
-                        <span>Node.js</span><span>NestJS</span><span>Express.js</span><span>Fastify</span><span>Python</span><span>FastAPI</span><span>REST APIs</span><span>Socket.io</span><span>BullMQ</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4><i class="fas fa-database"></i> Data</h4>
-                    <div class="skill-pills">
-                        <span>PostgreSQL</span><span>Prisma</span><span>TypeORM</span><span>Redis</span><span>SQLite</span><span>Qdrant</span><span>MySQL</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4><i class="fas fa-cube"></i> Infra & DevOps</h4>
-                    <div class="skill-pills">
-                        <span>Docker</span><span>Nx</span><span>Turborepo</span><span>Git</span><span>CI/CD</span><span>Firebase</span><span>Postman</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4><i class="fas fa-bolt"></i> Specialties</h4>
-                    <div class="skill-pills">
-                        <span>WebRTC</span><span>Mediasoup</span><span>Tauri + Rust</span><span>LLM Integration</span><span>Algorithmic Trading</span><span>pandas-ta</span>
-                    </div>
-                </div>
+        <div class="skills-grid anim-reveal">
+          <div class="skill-group">
+            <h4><i class="fas fa-display"></i> Frontend</h4>
+            <div class="skill-pills">
+              <span>React.js</span><span>Next.js</span><span>TypeScript</span
+              ><span>Vite</span><span>Chakra UI</span><span>Tailwind CSS</span
+              ><span>D3.js</span><span>Recharts</span><span>React Query</span>
             </div>
+          </div>
+          <div class="skill-group">
+            <h4><i class="fas fa-server"></i> Backend</h4>
+            <div class="skill-pills">
+              <span>Node.js</span><span>NestJS</span><span>Express.js</span
+              ><span>Fastify</span><span>Python</span><span>FastAPI</span
+              ><span>REST APIs</span><span>Socket.io</span><span>BullMQ</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4><i class="fas fa-database"></i> Data</h4>
+            <div class="skill-pills">
+              <span>PostgreSQL</span><span>Prisma</span><span>TypeORM</span
+              ><span>Redis</span><span>SQLite</span><span>Qdrant</span
+              ><span>MySQL</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4><i class="fas fa-cube"></i> Infra & DevOps</h4>
+            <div class="skill-pills">
+              <span>Docker</span><span>Nx</span><span>Turborepo</span
+              ><span>Git</span><span>CI/CD</span><span>Firebase</span
+              ><span>Postman</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4><i class="fas fa-bolt"></i> Specialties</h4>
+            <div class="skill-pills">
+              <span>WebRTC</span><span>Mediasoup</span><span>Tauri + Rust</span
+              ><span>LLM Integration</span><span>Algorithmic Trading</span
+              ><span>pandas-ta</span>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section">
-        <div class="container text-center">
-            <div class="section-label anim-reveal">Contact</div>
-            <h2 class="section-title anim-reveal">Let's build <span class="text-gradient">something together.</span></h2>
-            <p class="section-desc anim-reveal">I'm actively looking for new opportunities where I can contribute, learn, and grow. If you have a role that matches my profile, I'd love to hear from you.</p>
+      <div class="container text-center">
+        <div class="section-label anim-reveal">Contact</div>
+        <h2 class="section-title anim-reveal">
+          Let's build <span class="text-gradient">something together.</span>
+        </h2>
+        <p class="section-desc anim-reveal">
+          I'm actively looking for new opportunities where I can contribute,
+          learn, and grow. If you have a role that matches my profile, I'd love
+          to hear from you.
+        </p>
 
-            <div class="contact-grid anim-reveal delay-1">
-                <a href="mailto:profile.shivam@gmail.com" class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <span style="word-break: break-all; overflow-wrap: break-word;">profile.shivam@gmail.com</span>
-                </a>
-                <a href="https://github.com/shivamgupta1319" target="_blank" class="contact-card">
-                    <i class="fab fa-github"></i>
-                    <span>shivamgupta1319</span>
-                </a>
-                <a href="https://linkedin.com/in/shivam-gupta" target="_blank" class="contact-card">
-                    <i class="fab fa-linkedin-in"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <div class="contact-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Jaipur, India</span>
-                </div>
-            </div>
-
-            <button id="sayHelloBtn" class="btn btn-primary btn-lg mt-6 anim-reveal delay-2" onclick="copyEmail(this)">
-                Say Hello <i class="fas fa-paper-plane"></i>
-            </button>
+        <div class="contact-grid anim-reveal delay-1">
+          <a href="mailto:profile.shivam@gmail.com" class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <span style="word-break: break-all; overflow-wrap: break-word"
+              >profile.shivam@gmail.com</span
+            >
+          </a>
+          <a
+            href="https://github.com/shivamgupta1319"
+            target="_blank"
+            class="contact-card"
+          >
+            <i class="fab fa-github"></i>
+            <span>shivamgupta1319</span>
+          </a>
+          <a
+            href="https://linkedin.com/in/shivam-gupta"
+            target="_blank"
+            class="contact-card"
+          >
+            <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
+          </a>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Jaipur, India</span>
+          </div>
         </div>
+
+        <button
+          id="sayHelloBtn"
+          class="btn btn-primary btn-lg mt-6 anim-reveal delay-2"
+          onclick="copyEmail(this)"
+        >
+          Say Hello <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container footer-content">
-            <p>Designed & Built by <strong>Shivam Gupta</strong> · 2026</p>
-            <div class="footer-links">
-                <a href="https://github.com/shivamgupta1319" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/shivam-gupta" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:profile.shivam@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
+      <div class="container footer-content">
+        <p>Designed & Built by <strong>Shivam Gupta</strong> · 2026</p>
+        <div class="footer-links">
+          <a href="https://github.com/shivamgupta1319" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a href="https://linkedin.com/in/shivam-gupta" target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="mailto:profile.shivam@gmail.com"
+            ><i class="fas fa-envelope"></i
+          ></a>
         </div>
+      </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
