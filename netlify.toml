@@ -1,0 +1,18 @@
+# Netlify build config — static Next.js export (no server runtime).
+# Connect this repo in the Netlify dashboard with production branch = main;
+# merging a PR into main then triggers an automatic production deploy.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # GitHub fetch is skipped without a token; the committed
+  # quests.generated.json (with private repos) is used as-is.
+
+# Long-cache the immutable Next static assets.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
