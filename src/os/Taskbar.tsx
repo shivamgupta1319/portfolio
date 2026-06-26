@@ -6,6 +6,7 @@ import { APPS } from "./apps.registry";
 import { APP_META } from "./apps.meta";
 import { TASKBAR_H } from "./layout";
 import { useSfx } from "@/sound/useSfx";
+import StartMenu from "./StartMenu";
 
 function Clock() {
   const [time, setTime] = useState<string>("");
@@ -33,6 +34,7 @@ export default function Taskbar() {
   const soundOn = useOsStore((s) => s.soundOn);
   const toggleSound = useOsStore((s) => s.toggleSound);
   const sfx = useSfx();
+  const [startOpen, setStartOpen] = useState(false);
 
   const onTile = (id: string, minimized: boolean) => {
     sfx("click");
@@ -46,9 +48,25 @@ export default function Taskbar() {
       style={{ height: TASKBAR_H }}
       className="absolute inset-x-0 bottom-0 z-50 flex items-center gap-2 border-t border-border bg-bg/70 px-3 backdrop-blur-md"
     >
-      <span className="grid h-7 w-7 place-items-center rounded-md border border-border bg-bg-2 font-mono text-xs text-accent-2">
-        ▣
-      </span>
+      <div className="relative">
+        <button
+          onClick={() => {
+            sfx("click");
+            setStartOpen((v) => !v);
+          }}
+          aria-label="Start menu"
+          aria-haspopup="menu"
+          aria-expanded={startOpen}
+          className={`grid h-7 w-7 place-items-center rounded-md border font-mono text-xs transition ${
+            startOpen
+              ? "border-accent/50 bg-accent/20 text-accent-2"
+              : "border-border bg-bg-2 text-accent-2 hover:bg-panel-2"
+          }`}
+        >
+          ▣
+        </button>
+        {startOpen && <StartMenu onClose={() => setStartOpen(false)} />}
+      </div>
 
       <div className="mx-1 h-6 w-px bg-border" />
 
