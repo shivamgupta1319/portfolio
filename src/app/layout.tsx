@@ -61,7 +61,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jbMono.variable} h-full antialiased`}
     >
-      <body className="h-full">{children}</body>
+      <body className="h-full" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }
