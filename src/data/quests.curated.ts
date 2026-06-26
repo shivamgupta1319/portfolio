@@ -12,7 +12,7 @@ export const curated: Record<string, CuratedQuest> = {
     title: "LACS / X-FACE",
     description:
       "A deployed disaster-response communication platform for front-line teams: multimodal voice / video / text comms (Mediasoup WebRTC), on-device ASR/TTS and NLP, push-button SOS and GIS mapping. Built offline-first with bidirectional edge↔cloud PostgreSQL sync so local nodes keep working through intermittent connectivity, plus a cross-platform Expo mobile client and one-touch provisioning for mini-PC field hardware.",
-    liveUrl: "https://disaster-response.lacsplatform.com",
+    liveUrl: "https://dr.alwacs.com",
     liveLabel: "live platform",
     credit: "Team · ATR / Wisflux",
     tags: ["Mediasoup / WebRTC", "ASR / TTS", "NLP", "NestJS", "PostgreSQL", "Edge↔Cloud Sync", "Expo", "OpenStreetMap", "Docker / systemd"],
@@ -250,6 +250,8 @@ export const EXCLUDED = new Set<string>([
   "investment-plan",
   "personal-bot",
   "glacier-tic-tac-toe-game-moqxyvfo",
+  "TripMate",
+  "EasyShare",
 ]);
 
 /** Side quests must be at least this fresh (drops old college/lab repos). */
