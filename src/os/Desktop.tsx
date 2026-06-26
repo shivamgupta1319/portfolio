@@ -7,6 +7,7 @@ import { APPS } from "./apps.registry";
 import { APP_ORDER, APP_META } from "./apps.meta";
 import Hud from "@/hud/Hud";
 import { useSfx } from "@/sound/useSfx";
+import { useOsShortcuts } from "./useOsShortcuts";
 import dynamic from "next/dynamic";
 
 // Three.js is heavy — load it client-side, only after boot.
@@ -77,6 +78,7 @@ function DesktopIcons() {
 export default function Desktop() {
   const windows = useOsStore((s) => s.windows);
   const booted = useOsStore((s) => s.booted);
+  useOsShortcuts();
   return (
     <div className="crt-vignette relative h-full w-full overflow-hidden">
       <Background booted={booted} />
