@@ -68,6 +68,23 @@ function toRecord(repo) {
 
 async function main() {
   const token = getToken();
+
+  // No token (e.g. CI / Netlify): keep the committed JSON, which was generated
+  // locally WITH a token and already includes private repos. An anonymous fetch
+  // would return public-only and silently drop private repos — so we skip it.
+  if (!token) {
+    if (existsSync(OUT)) {
+      const n = JSON.parse(readFileSync(OUT, "utf8")).length;
+      console.log(
+        `[fetch-github] no token — using committed quests.generated.json (${n} repos)`,
+      );
+    } else {
+      writeFileSync(OUT, "[]\n");
+      console.warn("[fetch-github] no token and no cached data; wrote empty list");
+    }
+    return;
+  }
+
   try {
     const repos = (await fetchRepos(token))
       .filter((r) => !r.fork)

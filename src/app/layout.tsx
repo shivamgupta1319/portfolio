@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { SITE_URL, SITE_DESC } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,14 +13,13 @@ const jbMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const SITE = "https://myselfshivam.netlify.app";
-const DESC =
-  "Shivam Gupta — full-stack software engineer building trading systems, AI agents, real-time apps and shipped SaaS. Explore the portfolio as a bootable game-OS.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE),
+  metadataBase: new URL(SITE_URL),
   title: "Shivam Gupta — shivamOS",
-  description: DESC,
+  description: SITE_DESC,
+  applicationName: "shivamOS",
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   keywords: [
     "Shivam Gupta",
     "full-stack engineer",
@@ -34,15 +34,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Shivam Gupta" }],
   openGraph: {
     type: "website",
-    url: SITE,
+    url: SITE_URL,
     title: "Shivam Gupta — shivamOS",
-    description: DESC,
+    description: SITE_DESC,
     siteName: "shivamOS",
   },
   twitter: {
     card: "summary_large_image",
     title: "Shivam Gupta — shivamOS",
-    description: DESC,
+    description: SITE_DESC,
   },
 };
 
