@@ -228,6 +228,15 @@ export const curated: Record<string, CuratedQuest> = {
     tags: ["Python", "CCXT", "Flask", "SQLite"],
     rank: "B",
   },
+  "investment-plan": {
+    title: "FinPilot",
+    description:
+      "A deployed personal-finance web app to kick-start your investment journey — plan goals, explore options and track a simple investment roadmap.",
+    liveUrl: "https://finpilot.netlify.app",
+    liveLabel: "finpilot",
+    tags: ["Web App", "Investment Planning", "JavaScript"],
+    rank: "B",
+  },
 };
 
 /** Repos never shown as quests (junk, boilerplate, superseded, off-theme). */
@@ -247,7 +256,6 @@ export const EXCLUDED = new Set<string>([
   "file-locator",
   "hugo-cms",
   "dream-trip",
-  "investment-plan",
   "personal-bot",
   "glacier-tic-tac-toe-game-moqxyvfo",
   "TripMate",
