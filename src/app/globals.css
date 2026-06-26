@@ -80,6 +80,39 @@ body {
   animation: blink 1s steps(1) infinite;
 }
 
+/* custom cursor */
+.cursor-none,
+.cursor-none * {
+  cursor: none !important;
+}
+.cursor-ring--hot {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: -1.2rem;
+  margin-top: -1.2rem;
+  background-color: rgba(99, 102, 241, 0.12);
+  border-color: rgba(34, 211, 238, 0.8);
+}
+
+/* HUD: xp gain + level up */
+@keyframes xp-pop {
+  0% { opacity: 0; transform: translateY(6px); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-12px); }
+}
+.xp-pop {
+  animation: xp-pop 1.4s ease-out forwards;
+}
+@keyframes level-up-pop {
+  0% { opacity: 0; transform: scale(0.8); }
+  15% { opacity: 1; transform: scale(1.06); }
+  80% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+.level-up-pop {
+  animation: level-up-pop 2.2s ease-out forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

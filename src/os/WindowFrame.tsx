@@ -7,6 +7,7 @@ import { useWindowDrag } from "./useWindowDrag";
 import { useWindowResize } from "./useWindowResize";
 import ResizeHandles from "./ResizeHandles";
 import { TOP_BAR_H, TASKBAR_H } from "./layout";
+import { useSfx } from "@/sound/useSfx";
 import type { WindowState } from "./types";
 
 export default function WindowFrame({ win }: { win: WindowState }) {
@@ -18,6 +19,7 @@ export default function WindowFrame({ win }: { win: WindowState }) {
   const close = useOsStore((s) => s.closeWindow);
   const minimize = useOsStore((s) => s.minimize);
   const toggleMax = useOsStore((s) => s.toggleMaximize);
+  const sfx = useSfx();
 
   if (win.minimized) return null;
 
@@ -61,7 +63,10 @@ export default function WindowFrame({ win }: { win: WindowState }) {
       >
         <div className="group/lights flex items-center gap-1.5">
           <button
-            onClick={() => close(win.id)}
+            onClick={() => {
+              sfx("close");
+              close(win.id);
+            }}
             aria-label="Close window"
             className="grid h-3 w-3 place-items-center rounded-full bg-rose/80 text-[8px] text-bg/0 transition hover:bg-rose group-hover/lights:text-bg/70"
           >

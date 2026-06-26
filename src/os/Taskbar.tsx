@@ -5,6 +5,7 @@ import { useOsStore } from "./store";
 import { APPS } from "./apps.registry";
 import { APP_META } from "./apps.meta";
 import { TASKBAR_H } from "./layout";
+import { useSfx } from "@/sound/useSfx";
 
 function Clock() {
   const [time, setTime] = useState<string>("");
@@ -31,8 +32,10 @@ export default function Taskbar() {
   const restore = useOsStore((s) => s.restore);
   const soundOn = useOsStore((s) => s.soundOn);
   const toggleSound = useOsStore((s) => s.toggleSound);
+  const sfx = useSfx();
 
   const onTile = (id: string, minimized: boolean) => {
+    sfx("click");
     if (minimized) restore(id);
     else if (focusedId === id) minimize(id);
     else focus(id);
@@ -79,7 +82,10 @@ export default function Taskbar() {
       </div>
 
       <button
-        onClick={toggleSound}
+        onClick={() => {
+          toggleSound();
+          sfx("click");
+        }}
         aria-label={soundOn ? "Mute sound" : "Enable sound"}
         className="grid h-7 w-7 place-items-center rounded-md border border-border bg-bg-2 text-xs text-fg-dim transition hover:text-fg"
       >

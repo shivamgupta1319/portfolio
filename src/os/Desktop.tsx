@@ -5,6 +5,8 @@ import WindowFrame from "./WindowFrame";
 import Taskbar from "./Taskbar";
 import { APPS } from "./apps.registry";
 import { APP_ORDER, APP_META } from "./apps.meta";
+import Hud from "@/hud/Hud";
+import { useSfx } from "@/sound/useSfx";
 
 function Background() {
   return (
@@ -22,18 +24,21 @@ function TopBar() {
       <div className="flex items-center gap-2 font-mono text-xs">
         <span className="text-accent-2">▣</span>
         <span className="font-semibold tracking-wide">shivamOS</span>
-        <span className="text-fg-mute">·</span>
-        <span className="text-fg-dim">v2.0</span>
+        <span className="hidden text-fg-mute sm:inline">·</span>
+        <span className="hidden text-fg-dim sm:inline">v2.0</span>
       </div>
-      <div className="font-mono text-[11px] text-fg-mute">
-        guest@shivamos — double-click an app to launch
-      </div>
+      <Hud />
     </div>
   );
 }
 
 function DesktopIcons() {
   const openApp = useOsStore((s) => s.openApp);
+  const sfx = useSfx();
+  const launch = (id: (typeof APP_ORDER)[number]) => {
+    sfx("open");
+    openApp(id);
+  };
   return (
     <div className="absolute left-3 top-14 z-[1] flex flex-col gap-1.5">
       {APP_ORDER.map((id) => {
@@ -41,8 +46,8 @@ function DesktopIcons() {
         return (
           <button
             key={id}
-            onClick={() => openApp(id)}
-            onDoubleClick={() => openApp(id)}
+            onClick={() => launch(id)}
+            onDoubleClick={() => launch(id)}
             className="group flex w-20 flex-col items-center gap-1 rounded-lg border border-transparent px-2 py-2 text-center transition hover:border-border hover:bg-panel"
           >
             <span

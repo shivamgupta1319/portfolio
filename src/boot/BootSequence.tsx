@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useOsStore } from "@/os/store";
+import { useSfx } from "@/sound/useSfx";
 import { BOOT_LINES } from "./bootLog";
 
 const SESSION_KEY = "shivamos-booted";
@@ -9,6 +10,7 @@ const SESSION_KEY = "shivamos-booted";
 export default function BootSequence() {
   const setBooted = useOsStore((s) => s.setBooted);
   const openApp = useOsStore((s) => s.openApp);
+  const sfx = useSfx();
   const [shown, setShown] = useState(0);
   const ready = shown >= BOOT_LINES.length;
 
@@ -18,9 +20,10 @@ export default function BootSequence() {
     } catch {
       /* private mode — ignore */
     }
+    sfx("boot");
     openApp("terminal");
     setBooted(true);
-  }, [openApp, setBooted]);
+  }, [openApp, setBooted, sfx]);
 
   // On soft reloads or with reduced-motion, skip straight to the desktop.
   // (start() only touches the zustand store, never local React state.)
