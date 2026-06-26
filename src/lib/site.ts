@@ -1,7 +1,7 @@
 /** Canonical production URL. Override per-environment via NEXT_PUBLIC_SITE_URL
  *  (set it in the Netlify dashboard once the production domain is known). */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://myselfshivam.netlify.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ershivam.netlify.app"
 ).replace(/\/+$/, "");
 
 export const SITE_DESC =
