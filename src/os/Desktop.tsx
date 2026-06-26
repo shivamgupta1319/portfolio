@@ -2,6 +2,7 @@
 
 import { useOsStore } from "./store";
 import WindowFrame from "./WindowFrame";
+import Taskbar from "./Taskbar";
 import { APPS } from "./apps.registry";
 import { APP_ORDER, APP_META } from "./apps.meta";
 
@@ -69,6 +70,7 @@ export default function Desktop() {
       {windows.map((w) => (
         <WindowFrame key={w.id} win={w} />
       ))}
+      <Taskbar />
     </div>
   );
 }
