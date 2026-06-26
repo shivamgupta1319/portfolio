@@ -8,6 +8,20 @@ import type { CuratedQuest } from "./types";
  */
 export const curated: Record<string, CuratedQuest> = {
   // ── S-tier flagships (main quests) ──────────────────────────────
+  "lacs-v2": {
+    title: "LACS / X-FACE",
+    description:
+      "A deployed disaster-response communication platform for front-line teams: multimodal voice / video / text comms (Mediasoup WebRTC), on-device ASR/TTS and NLP, push-button SOS and GIS mapping. Built offline-first with bidirectional edge↔cloud PostgreSQL sync so local nodes keep working through intermittent connectivity, plus a cross-platform Expo mobile client and one-touch provisioning for mini-PC field hardware.",
+    liveUrl: "https://disaster-response.lacsplatform.com",
+    liveLabel: "live platform",
+    credit: "Team · ATR / Wisflux",
+    tags: ["Mediasoup / WebRTC", "ASR / TTS", "NLP", "NestJS", "PostgreSQL", "Edge↔Cloud Sync", "Expo", "OpenStreetMap", "Docker / systemd"],
+    rank: "S",
+    featured: true,
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
   "programmatic-SEO-engine": {
     title: "pSEO Engine",
     description:
@@ -117,6 +131,31 @@ export const curated: Record<string, CuratedQuest> = {
     tags: ["Next.js", "NestJS", "FastAPI", "PaddleOCR", "Gemini", "AES-256", "PWA"],
     rank: "A",
     featured: true,
+  },
+  "gibp-project": {
+    title: "GIBP",
+    description:
+      "A production-grade multi-tenant fintech / accounting platform: a NestJS API integrated with the Formance financial ledger for organizations, accounts, bills, vendors and reconciliation, with company and super-admin React portals. Nx monorepo with database migrations, role-based access and full E2E test coverage.",
+    credit: "Team · Wisflux",
+    tags: ["NestJS", "Formance Ledger", "Nx Monorepo", "React 19", "PostgreSQL / Sequelize", "Playwright"],
+    rank: "A",
+    featured: true,
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  typezap: {
+    title: "Typezap / Emmple",
+    description:
+      "A live ed-tech learning platform (~2 years in production) that blends touch-typing with core subjects through a Read → Answer → Type loop grounded in the neuroscience of learning. Grade-specific content with quizzes that unlock lessons, leaderboards and friend challenges, achievement certificates, and multi-channel delivery over WhatsApp, email and web.",
+    liveUrl: "https://emmple.com",
+    liveLabel: "emmple.com",
+    credit: "Team · Wisflux",
+    tags: ["Ed-Tech SaaS", "Gamified Learning", "Touch Typing", "Quizzes & Certificates", "Leaderboards", "WhatsApp"],
+    rank: "A",
+    featured: true,
+    synthesize: true,
+    isPrivate: true,
   },
 
   // ── A-tier side quests (light overrides, surface live links) ─────

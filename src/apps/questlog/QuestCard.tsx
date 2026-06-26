@@ -111,7 +111,12 @@ export default function QuestCard({
         {quest.repoUrl && (
           <ExternalLink href={quest.repoUrl}>{"<source>"}</ExternalLink>
         )}
-        {!quest.repoUrl && quest.isPrivate && (
+        {!quest.repoUrl && quest.credit && (
+          <span className="inline-flex items-center rounded-md border border-dashed border-accent/30 px-2 py-1 font-mono text-[11px] text-fg-dim">
+            ◇ {quest.credit}
+          </span>
+        )}
+        {!quest.repoUrl && !quest.credit && quest.isPrivate && (
           <span className="inline-flex items-center rounded-md border border-dashed border-border px-2 py-1 font-mono text-[11px] text-fg-mute">
             source on request
           </span>

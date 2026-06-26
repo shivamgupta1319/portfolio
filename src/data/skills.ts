@@ -19,6 +19,7 @@ export const skills: SkillNode[] = [
   { id: "ts", label: "TypeScript", group: "frontend", tier: 1, deps: ["react"] },
   { id: "tailwind", label: "Tailwind", group: "frontend", tier: 2, deps: ["next"] },
   { id: "viz", label: "D3 / Recharts", group: "frontend", tier: 2, deps: ["ts"] },
+  { id: "i18n", label: "i18n / i18next", group: "frontend", tier: 2, deps: ["ts"] },
 
   // backend
   { id: "node", label: "Node.js", group: "backend", tier: 0, deps: [] },
@@ -31,6 +32,7 @@ export const skills: SkillNode[] = [
   // data
   { id: "postgres", label: "PostgreSQL", group: "data", tier: 0, deps: [] },
   { id: "prisma", label: "Prisma / Drizzle", group: "data", tier: 1, deps: ["postgres"] },
+  { id: "sequelize", label: "Sequelize", group: "data", tier: 1, deps: ["postgres"] },
   { id: "redis", label: "Redis", group: "data", tier: 1, deps: ["postgres"] },
   { id: "vector", label: "pgvector / Qdrant", group: "data", tier: 2, deps: ["prisma"] },
 
@@ -38,12 +40,14 @@ export const skills: SkillNode[] = [
   { id: "docker", label: "Docker", group: "infra", tier: 0, deps: [] },
   { id: "mono", label: "Nx / Turborepo", group: "infra", tier: 1, deps: ["docker"] },
   { id: "cicd", label: "CI/CD", group: "infra", tier: 1, deps: ["docker"] },
+  { id: "edge", label: "Systemd / Edge Deploy", group: "infra", tier: 1, deps: ["docker"] },
 
   // specialties
   { id: "llm", label: "LLM Orchestration", group: "specialty", tier: 0, deps: [] },
   { id: "mcp", label: "MCP Servers", group: "specialty", tier: 1, deps: ["llm"] },
   { id: "webrtc", label: "WebRTC / Mediasoup", group: "specialty", tier: 0, deps: [] },
-  { id: "tauri", label: "Tauri + Rust", group: "specialty", tier: 0, deps: [] },
+  { id: "expo", label: "React Native / Expo", group: "specialty", tier: 0, deps: [] },
+  { id: "gis", label: "GIS / OpenStreetMap", group: "specialty", tier: 0, deps: [] },
   { id: "quant", label: "Algo Trading / pandas-ta", group: "specialty", tier: 0, deps: [] },
 ];
 

@@ -12,7 +12,7 @@ export const experience: ExperienceEntry[] = [
     bullets: [
       "Engineered multi-service applications with React, TypeScript, NestJS and PostgreSQL.",
       "Architected modular backends with JWT, RBAC and API versioning — cut latency ~30%.",
-      "Built FLOS, a disaster-response comms tool (Mediasoup, WebSockets, real-time ASR).",
+      "Core engineer on X-FACE / LACS, a deployed disaster-response comms platform (Mediasoup, WebSockets, real-time ASR, offline-first edge↔cloud sync).",
       "Dockerized dev environments and streamlined CI/CD across services.",
     ],
   },

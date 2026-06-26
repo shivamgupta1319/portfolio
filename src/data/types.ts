@@ -25,6 +25,8 @@ export interface Quest {
   liveUrl?: string;
   liveLabel?: string;
   npmUrl?: string;
+  /** team/company attribution shown instead of a source link */
+  credit?: string;
   language: string | null;
   /** architecture / stack tags shown on the card */
   tags: string[];
@@ -44,6 +46,7 @@ export interface CuratedQuest {
   liveUrl?: string;
   liveLabel?: string;
   npmUrl?: string;
+  credit?: string;
   tags?: string[];
   rank?: Rank;
   featured?: boolean;
