@@ -45,7 +45,7 @@ export default function WindowFrame({ win }: { win: WindowState }) {
       aria-label={win.title}
       onPointerDown={() => focus(win.id)}
       style={style}
-      className={`pointer-events-auto absolute left-0 top-0 flex flex-col overflow-hidden border bg-bg-2/95 backdrop-blur-md transition-shadow ${
+      className={`window-in pointer-events-auto absolute left-0 top-0 flex flex-col overflow-hidden border bg-bg-2/95 backdrop-blur-md transition-shadow ${
         win.maximized ? "rounded-none" : "rounded-xl"
       } ${
         focused

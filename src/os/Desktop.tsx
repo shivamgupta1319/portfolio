@@ -7,13 +7,22 @@ import { APPS } from "./apps.registry";
 import { APP_ORDER, APP_META } from "./apps.meta";
 import Hud from "@/hud/Hud";
 import { useSfx } from "@/sound/useSfx";
+import dynamic from "next/dynamic";
 
-function Background() {
+// Three.js is heavy — load it client-side, only after boot.
+const BackgroundScene = dynamic(() => import("@/three/BackgroundScene"), {
+  ssr: false,
+});
+
+function Background({ booted }: { booted: boolean }) {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* CSS orbs — always present (also the reduced-motion / mobile fallback) */}
       <div className="absolute -left-40 -top-40 h-[36rem] w-[36rem] rounded-full bg-accent/20 blur-[120px]" />
       <div className="absolute -bottom-52 -right-40 h-[40rem] w-[40rem] rounded-full bg-cyan/15 blur-[140px]" />
       <div className="absolute left-1/2 top-1/3 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-rose/10 blur-[120px]" />
+      {/* particle field layered on top of the orbs, behind the desktop */}
+      {booted && <BackgroundScene />}
     </div>
   );
 }
@@ -67,9 +76,10 @@ function DesktopIcons() {
 
 export default function Desktop() {
   const windows = useOsStore((s) => s.windows);
+  const booted = useOsStore((s) => s.booted);
   return (
     <div className="crt-vignette relative h-full w-full overflow-hidden">
-      <Background />
+      <Background booted={booted} />
       <TopBar />
       <DesktopIcons />
       {/* windows live in their own stacking context (z-10) so their internal
