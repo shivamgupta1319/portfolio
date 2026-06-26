@@ -6,6 +6,7 @@ import { APP_ORDER, APP_META } from "@/os/apps.meta";
 import { useXpStore } from "@/hud/xpStore";
 import { useSfx } from "@/sound/useSfx";
 import { useOsStore } from "@/os/store";
+import SoundIcon from "@/os/SoundIcon";
 import type { AppId } from "@/os/types";
 
 function MobileHud() {
@@ -32,9 +33,9 @@ function MobileHud() {
       <button
         onClick={toggleSound}
         aria-label={soundOn ? "Mute sound" : "Enable sound"}
-        className="font-mono text-xs text-fg-dim"
+        className={soundOn ? "text-green" : "text-fg-mute"}
       >
-        {soundOn ? "♪" : "✕"}
+        <SoundIcon on={soundOn} className="h-4 w-4" />
       </button>
     </div>
   );

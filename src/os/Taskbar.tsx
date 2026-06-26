@@ -7,6 +7,7 @@ import { APP_META } from "./apps.meta";
 import { TASKBAR_H } from "./layout";
 import { useSfx } from "@/sound/useSfx";
 import StartMenu from "./StartMenu";
+import SoundIcon from "./SoundIcon";
 
 function Clock() {
   const [time, setTime] = useState<string>("");
@@ -105,9 +106,11 @@ export default function Taskbar() {
           sfx("click");
         }}
         aria-label={soundOn ? "Mute sound" : "Enable sound"}
-        className="grid h-7 w-7 place-items-center rounded-md border border-border bg-bg-2 text-xs text-fg-dim transition hover:text-fg"
+        className={`grid h-7 w-7 place-items-center rounded-md border border-border bg-bg-2 transition hover:text-fg ${
+          soundOn ? "text-green" : "text-fg-mute"
+        }`}
       >
-        {soundOn ? "♪" : "✕"}
+        <SoundIcon on={soundOn} />
       </button>
       <Clock />
     </div>
