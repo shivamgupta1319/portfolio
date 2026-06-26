@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import type { AppId } from "./types";
+import GuideApp from "@/apps/guide/GuideApp";
 import Terminal from "@/apps/terminal/Terminal";
 import QuestLog from "@/apps/questlog/QuestLog";
 import CharacterSheet from "@/apps/character/CharacterSheet";
@@ -17,6 +18,7 @@ export interface AppDef {
 }
 
 export const APPS: Record<AppId, AppDef> = {
+  guide: { id: "guide", glyph: "?", accent: "text-cyan", component: GuideApp },
   terminal: { id: "terminal", glyph: ">_", accent: "text-green", component: Terminal },
   character: { id: "character", glyph: "☻", accent: "text-cyan", component: CharacterSheet },
   questlog: { id: "questlog", glyph: "✦", accent: "text-amber", component: QuestLog },

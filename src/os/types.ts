@@ -1,4 +1,5 @@
 export type AppId =
+  | "guide"
   | "terminal"
   | "character"
   | "questlog"
