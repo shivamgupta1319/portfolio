@@ -2,6 +2,7 @@ import type { AppId, AppMeta } from "./types";
 
 /** Order here drives the desktop-icon / dock order. */
 export const APP_ORDER: AppId[] = [
+  "guide",
   "terminal",
   "character",
   "questlog",
@@ -11,6 +12,13 @@ export const APP_ORDER: AppId[] = [
 ];
 
 export const APP_META: Record<AppId, AppMeta> = {
+  guide: {
+    title: "guide.md",
+    short: "guide",
+    defaultSize: { w: 620, h: 560 },
+    minSize: { w: 360, h: 360 },
+    single: true,
+  },
   terminal: {
     title: "terminal",
     short: "terminal",

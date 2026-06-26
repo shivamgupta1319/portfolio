@@ -20,12 +20,14 @@ const toneClass: Record<Tone, string> = {
 };
 
 const BANNER: OutLine[] = [
-  { text: "shivamOS terminal — type `help` to begin", tone: "accent" },
-  { text: "try: whoami · ls · open quests", tone: "dim" },
+  { text: "shivamOS terminal — type `help` for commands", tone: "accent" },
+  { text: "new here? type `guide` · try: whoami · quests · skills", tone: "dim" },
 ];
 
-export default function Terminal() {
+export default function Terminal({ windowId }: { windowId: string }) {
   const openApp = useOsStore((s) => s.openApp);
+  const closeWindow = useOsStore((s) => s.closeWindow);
+  const isMobile = windowId.startsWith("mobile-");
   const [entries, setEntries] = useState<Entry[]>([{ input: "", output: BANNER }]);
   const [value, setValue] = useState("");
   const [history, setHistory] = useState<string[]>([]);
@@ -47,6 +49,8 @@ export default function Terminal() {
     const output = runCommand(input, {
       openApp,
       clear: () => setEntries([]),
+      close: () => closeWindow(windowId),
+      isMobile,
     });
     // `clear` empties entries inside runCommand; only append when it didn't.
     if (input.trim().toLowerCase() === "clear") {
@@ -95,8 +99,11 @@ export default function Terminal() {
             </div>
           ) : null}
           {entry.output.map((o, j) => (
-            <div key={j} className={toneClass[o.tone ?? "fg"]}>
-              {o.text}
+            <div
+              key={j}
+              className={`whitespace-pre-wrap ${toneClass[o.tone ?? "fg"]}`}
+            >
+              {o.text || " "}
             </div>
           ))}
         </div>
