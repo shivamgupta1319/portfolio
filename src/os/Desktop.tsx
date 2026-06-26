@@ -18,7 +18,7 @@ function Background() {
 
 function TopBar() {
   return (
-    <div className="absolute inset-x-0 top-0 z-40 flex h-10 items-center justify-between border-b border-border bg-bg/60 px-4 backdrop-blur-md">
+    <div className="absolute inset-x-0 top-0 z-50 flex h-10 items-center justify-between border-b border-border bg-bg/60 px-4 backdrop-blur-md">
       <div className="flex items-center gap-2 font-mono text-xs">
         <span className="text-accent-2">▣</span>
         <span className="font-semibold tracking-wide">shivamOS</span>
@@ -35,7 +35,7 @@ function TopBar() {
 function DesktopIcons() {
   const openApp = useOsStore((s) => s.openApp);
   return (
-    <div className="absolute left-3 top-14 z-10 flex flex-col gap-1.5">
+    <div className="absolute left-3 top-14 z-[1] flex flex-col gap-1.5">
       {APP_ORDER.map((id) => {
         const def = APPS[id];
         return (
@@ -67,9 +67,13 @@ export default function Desktop() {
       <Background />
       <TopBar />
       <DesktopIcons />
-      {windows.map((w) => (
-        <WindowFrame key={w.id} win={w} />
-      ))}
+      {/* windows live in their own stacking context (z-10) so their internal
+          z-index can never climb above the chrome (top bar / taskbar at z-50) */}
+      <div className="pointer-events-none absolute inset-0 z-10">
+        {windows.map((w) => (
+          <WindowFrame key={w.id} win={w} />
+        ))}
+      </div>
       <Taskbar />
     </div>
   );

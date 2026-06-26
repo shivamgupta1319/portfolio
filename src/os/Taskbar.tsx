@@ -41,7 +41,7 @@ export default function Taskbar() {
   return (
     <div
       style={{ height: TASKBAR_H }}
-      className="absolute inset-x-0 bottom-0 z-40 flex items-center gap-2 border-t border-border bg-bg/70 px-3 backdrop-blur-md"
+      className="absolute inset-x-0 bottom-0 z-50 flex items-center gap-2 border-t border-border bg-bg/70 px-3 backdrop-blur-md"
     >
       <span className="grid h-7 w-7 place-items-center rounded-md border border-border bg-bg-2 font-mono text-xs text-accent-2">
         ▣

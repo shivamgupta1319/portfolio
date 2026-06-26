@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { AppId } from "./types";
 import Placeholder from "@/apps/Placeholder";
 import Terminal from "@/apps/terminal/Terminal";
+import QuestLog from "@/apps/questlog/QuestLog";
 
 export interface AppDef {
   id: AppId;
@@ -22,7 +23,7 @@ function placeholderFor(appId: AppId): ComponentType<{ windowId: string }> {
 export const APPS: Record<AppId, AppDef> = {
   terminal: { id: "terminal", glyph: ">_", accent: "text-green", component: Terminal },
   character: { id: "character", glyph: "☻", accent: "text-cyan", component: placeholderFor("character") },
-  questlog: { id: "questlog", glyph: "✦", accent: "text-amber", component: placeholderFor("questlog") },
+  questlog: { id: "questlog", glyph: "✦", accent: "text-amber", component: QuestLog },
   skilltree: { id: "skilltree", glyph: "⌘", accent: "text-accent-2", component: placeholderFor("skilltree") },
   campaign: { id: "campaign", glyph: "⚑", accent: "text-rose", component: placeholderFor("campaign") },
   contact: { id: "contact", glyph: "✉", accent: "text-cyan", component: placeholderFor("contact") },
