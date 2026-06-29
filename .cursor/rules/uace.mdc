@@ -1,0 +1,21 @@
+---
+description: UACE shared project memory — recall at session start, save at the end
+globs: []
+alwaysApply: true
+---
+## Project memory (UACE)
+
+This project uses **UACE** — a shared, cross-tool memory served over MCP (server name
+`uace`). Treat it as your source of continuity across sessions and AI tools.
+
+- **At the START of a session**, call `mcp__uace__get_project_context` with this
+  project's name to load prior decisions, the current task, recent changes, and where
+  the last session left off — before asking the user to re-explain anything.
+- **When you make a durable decision, hit a gotcha, or change the architecture**,
+  persist it with `mcp__uace__save_memory` (layer `long-term` for architecture/standards,
+  `working` for the current task/TODOs).
+- **At the END of a session or a meaningful checkpoint**, call `mcp__uace__save_session`
+  with a short summary, key decisions, and next steps so the next session — in any tool —
+  can continue seamlessly.
+
+The project name is this workspace's folder name.
