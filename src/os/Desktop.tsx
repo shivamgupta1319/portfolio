@@ -3,6 +3,7 @@
 import { useOsStore } from "./store";
 import WindowFrame from "./WindowFrame";
 import Taskbar from "./Taskbar";
+import FeaturedProducts from "./FeaturedProducts";
 import { APPS } from "./apps.registry";
 import { APP_ORDER, APP_META } from "./apps.meta";
 import Hud from "@/hud/Hud";
@@ -84,6 +85,7 @@ export default function Desktop() {
       <Background booted={booted} />
       <TopBar />
       <DesktopIcons />
+      <FeaturedProducts />
       {/* windows live in their own stacking context (z-10) so their internal
           z-index can never climb above the chrome (top bar / taskbar at z-50) */}
       <div className="pointer-events-none absolute inset-0 z-10">

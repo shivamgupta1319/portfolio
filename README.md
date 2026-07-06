@@ -6,8 +6,8 @@
 
 _I build systems that think, trade, and communicate._
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit_Website-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://myselfshivam.netlify.app/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/shivam-gupta)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit_Website-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shivamgupta.live)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/myselfshivam)
 [![Email](https://img.shields.io/badge/Email-Say_Hello-22d3ee?style=for-the-badge&logo=gmail&logoColor=white)](mailto:profile.shivam@gmail.com)
 
 </div>

@@ -35,6 +35,19 @@ export const curated: Record<string, CuratedQuest> = {
     isPrivate: true,
     language: "TypeScript",
   },
+  resite: {
+    title: "Resite",
+    description:
+      "An AI résumé platform: build and tailor ATS-optimized résumés, score any résumé against a job description, and publish a personal portfolio to your own subdomain. A NestJS API drives queue-based résumé parsing (PDF/DOCX) and Puppeteer PDF rendering, backed by Postgres for multi-tenant subdomain hosting, with a Next.js 15 app on top.",
+    liveUrl: "https://resite.live",
+    liveLabel: "resite.live",
+    tags: ["Next.js 15", "NestJS", "PostgreSQL + TypeORM", "BullMQ + Redis", "Puppeteer", "ATS Scoring", "Subdomain Portfolios"],
+    rank: "S",
+    featured: true,
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
   "stocksafe-bundles": {
     title: "StockSafe Bundles",
     description:
