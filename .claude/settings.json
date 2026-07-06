@@ -1,4 +1,21 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(npx next *)",
+      "WebFetch(domain:shivamgupta.live)",
+      "Bash(curl -s https://shivamgupta.live/)",
+      "WebFetch(domain:search.google.com)",
+      "Bash(curl -s https://api.github.com/users/shivamgupta1319)",
+      "Bash(unzip -p Shivam_Gupta_Resume.docx word/document.xml)",
+      "Bash(unzip -p Shivam_Gupta_Resume.docx word/_rels/document.xml.rels)",
+      "Bash(unzip -p public/resume/Shivam_Gupta_Resume.docx word/document.xml)",
+      "Bash(unzip -p ../Shivam_Gupta_Resume_fixed.docx word/fontTable.xml)",
+      "Bash(unzip -p ../Shivam_Gupta_Resume_fixed.docx word/styles.xml)",
+      "Bash(fc-list)",
+      "Bash(pdfinfo public/resume/Shivam_Gupta_Resume.pdf)"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {
