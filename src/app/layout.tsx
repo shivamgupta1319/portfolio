@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { SITE_URL, SITE_DESC } from "@/lib/site";
+import { SITE_URL, SITE_DESC, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -32,6 +32,10 @@ export const metadata: Metadata = {
     "MCP",
   ],
   authors: [{ name: "Shivam Gupta" }],
+  creator: "Shivam Gupta",
+  ...(GOOGLE_SITE_VERIFICATION && {
+    verification: { google: GOOGLE_SITE_VERIFICATION },
+  }),
   openGraph: {
     type: "website",
     url: SITE_URL,
