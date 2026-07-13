@@ -16,7 +16,7 @@ export const profile: Profile = {
   twitter: "sg247938",
   photo: "/shivam-gupta.jpg",
   wikidata: "",
-  orcid: "",
+  orcid: "https://orcid.org/0009-0009-1609-3946",
   crunchbase: "",
   level: 24,
   xp: 7200,
