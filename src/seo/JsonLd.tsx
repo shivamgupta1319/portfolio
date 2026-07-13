@@ -1,5 +1,6 @@
 import { profile } from "@/data/profile";
 import { stats, skills } from "@/data/skills";
+import { experience } from "@/data/experience";
 import { SITE_URL } from "@/lib/site";
 
 /**
@@ -21,25 +22,64 @@ export default function JsonLd() {
     ...skills.map((s) => s.label),
   ];
 
-  const graph = [
-    {
-      "@type": "Person",
-      "@id": personId,
-      name: profile.name,
-      alternateName: profile.handle,
-      url: SITE_URL,
-      jobTitle: profile.role,
-      description: profile.tagline,
-      email: `mailto:${profile.email}`,
-      image: `${SITE_URL}/opengraph-image`,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: locality,
-        addressCountry: country,
-      },
-      sameAs: [profile.github, profile.linkedin],
-      knowsAbout,
+  // Verified identity URLs across the web. Placeholders (empty strings) are
+  // filtered out so we never emit a broken `sameAs` link.
+  const sameAs = [
+    profile.github,
+    profile.linkedin,
+    profile.npm && `https://www.npmjs.com/~${profile.npm}`,
+    profile.devto,
+    profile.twitter && `https://x.com/${profile.twitter}`,
+    profile.wikidata,
+    profile.orcid,
+    profile.crunchbase,
+  ].filter(Boolean);
+
+  // A real ImageObject (with caption) is a stronger Knowledge-Graph signal than
+  // a bare URL; fall back to the OG card when no dedicated headshot is set.
+  const image = profile.photo
+    ? {
+        "@type": "ImageObject",
+        url: `${SITE_URL}${profile.photo}`,
+        caption: profile.name,
+      }
+    : `${SITE_URL}/opengraph-image`;
+
+  // Derive employer / school from the same experience data the timeline uses.
+  const currentWork = experience.find((e) => e.kind === "work");
+  const education = experience.find((e) => e.kind === "education");
+  const worksFor = currentWork && {
+    "@type": "Organization",
+    name: currentWork.org,
+  };
+  const alumniOf = education && {
+    "@type": "EducationalOrganization",
+    name: education.org,
+  };
+
+  const person = {
+    "@type": "Person",
+    "@id": personId,
+    name: profile.name,
+    alternateName: profile.handle,
+    url: SITE_URL,
+    jobTitle: profile.role,
+    description: profile.tagline,
+    email: `mailto:${profile.email}`,
+    image,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: locality,
+      addressCountry: country,
     },
+    sameAs,
+    knowsAbout,
+    ...(worksFor && { worksFor }),
+    ...(alumniOf && { alumniOf }),
+  };
+
+  const graph = [
+    person,
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
@@ -58,6 +98,7 @@ export default function JsonLd() {
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": personId },
       mainEntity: { "@id": personId },
+      dateModified: new Date().toISOString().slice(0, 10),
     },
   ];
 

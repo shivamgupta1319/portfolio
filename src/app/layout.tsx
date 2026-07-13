@@ -42,11 +42,14 @@ export const metadata: Metadata = {
     title: "Shivam Gupta — shivamOS",
     description: SITE_DESC,
     siteName: "shivamOS",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Shivam Gupta — shivamOS",
     description: SITE_DESC,
+    site: "@sg247938",
+    creator: "@sg247938",
   },
 };
 

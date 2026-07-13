@@ -70,10 +70,9 @@ Make the **name, headline, and website link identical** everywhere:
   "Full-Stack Software Engineer".
 - **GitHub** → profile + profile README → add the domain as your website/blog link.
 - **Email signature** and the **resume PDF** → use the new domain.
-- ⚠️ **Fix the LinkedIn URL mismatch:** `src/data/profile.ts` links
-  `linkedin.com/in/myselfshivam`. Confirm that's your real vanity URL; if it's actually
-  `/in/shivam-gupta` (as the README badge suggests), update `profile.ts` so the site's
-  `sameAs` points at the live profile — a broken `sameAs` weakens the entity link.
+- ✅ **LinkedIn URL — RESOLVED (2026-07-13):** `linkedin.com/in/myselfshivam` is the correct,
+  live vanity URL (confirmed; matches the README badge). No change needed in `profile.ts`;
+  the `sameAs` link is valid.
 
 ---
 

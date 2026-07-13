@@ -102,6 +102,18 @@ export interface Profile {
   githubUser: string;
   linkedin: string;
   resume: string;
+  /** npm username → https://www.npmjs.com/~<npm> */
+  npm?: string;
+  /** full dev.to profile URL */
+  devto?: string;
+  /** X/Twitter handle without the @ */
+  twitter?: string;
+  /** public headshot path under /public, e.g. "/shivam-gupta.jpg" */
+  photo?: string;
+  /** external-identity placeholders — filled once the accounts exist */
+  wikidata?: string;
+  orcid?: string;
+  crunchbase?: string;
   level: number;
   xp: number;
   xpForNext: number;
