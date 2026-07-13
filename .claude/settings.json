@@ -13,7 +13,12 @@
       "Bash(unzip -p ../Shivam_Gupta_Resume_fixed.docx word/fontTable.xml)",
       "Bash(unzip -p ../Shivam_Gupta_Resume_fixed.docx word/styles.xml)",
       "Bash(fc-list)",
-      "Bash(pdfinfo public/resume/Shivam_Gupta_Resume.pdf)"
+      "Bash(pdfinfo public/resume/Shivam_Gupta_Resume.pdf)",
+      "Bash(ffprobe -v error -show_entries stream=width,height -of csv=s=x:p=0 \"Pi7_Passport_Photo \\(3\\).jpeg\")",
+      "Bash(ffmpeg -y -i \"Pi7_Passport_Photo \\(3\\).jpeg\" -vf \"unsharp=5:5:0.8:3:3:0.4,eq=contrast=1.06:brightness=0.01:saturation=1.03\" -q:v 2 public/shivam-gupta.jpg)",
+      "Bash(ffprobe -v error -show_entries stream=width,height -of csv=s=x:p=0 public/shivam-gupta.jpg)",
+      "Bash(ffprobe -v error -show_entries stream=width,height -of csv=s=x:p=0 new-profile-image.jpeg)",
+      "Bash(ffmpeg -y -i new-profile-image.jpeg -vf \"unsharp=3:3:0.4:3:3:0.0,eq=contrast=1.03:saturation=1.02\" -q:v 2 public/shivam-gupta.jpg)"
     ]
   },
   "hooks": {

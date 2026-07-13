@@ -1,75 +1,114 @@
 [
   {
-    "name": "portfolio",
-    "description": "",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 0,
-    "isPrivate": false,
-    "url": "https://github.com/shivamgupta1319/portfolio",
-    "homepage": "",
-    "pushedAt": "2026-07-06T09:21:14Z",
-    "updatedAt": "2026-07-06T09:21:18Z"
-  },
-  {
-    "name": "resite",
-    "description": "Resite — AI resume builder, ATS checker, and subdomain portfolio publishing",
-    "language": "TypeScript",
+    "name": "youtube-auto-stream",
+    "description": "Autonomous anime self-improvement YouTube system (AI-assisted, human-approved)",
+    "language": "Python",
     "topics": [],
     "stars": 0,
     "isPrivate": true,
-    "url": "https://github.com/shivamgupta1319/resite",
+    "url": "https://github.com/shivamgupta1319/youtube-auto-stream",
     "homepage": "",
-    "pushedAt": "2026-07-06T08:39:31Z",
-    "updatedAt": "2026-07-02T16:57:17Z"
-  },
-  {
-    "name": "programmatic-SEO-engine",
-    "description": "",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 0,
-    "isPrivate": true,
-    "url": "https://github.com/shivamgupta1319/programmatic-SEO-engine",
-    "homepage": "",
-    "pushedAt": "2026-07-02T15:37:20Z",
-    "updatedAt": "2026-07-02T15:38:45Z"
-  },
-  {
-    "name": "smart-trading",
-    "description": "",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 0,
-    "isPrivate": false,
-    "url": "https://github.com/shivamgupta1319/smart-trading",
-    "homepage": "",
-    "pushedAt": "2026-07-02T15:28:41Z",
-    "updatedAt": "2026-06-05T06:07:12Z"
-  },
-  {
-    "name": "UACE",
-    "description": "",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 0,
-    "isPrivate": false,
-    "url": "https://github.com/shivamgupta1319/UACE",
-    "homepage": "",
-    "pushedAt": "2026-06-29T12:45:56Z",
-    "updatedAt": "2026-06-29T12:46:00Z"
+    "pushedAt": "2026-07-12T18:20:43Z",
+    "updatedAt": "2026-07-12T18:20:55Z"
   },
   {
     "name": "stocksafe-bundles",
     "description": "",
     "language": "TypeScript",
     "topics": [],
-    "stars": 0,
+    "stars": 1,
     "isPrivate": true,
     "url": "https://github.com/shivamgupta1319/stocksafe-bundles",
     "homepage": "",
-    "pushedAt": "2026-06-26T16:05:37Z",
-    "updatedAt": "2026-06-26T08:06:58Z"
+    "pushedAt": "2026-07-12T14:42:50Z",
+    "updatedAt": "2026-07-06T12:51:22Z"
+  },
+  {
+    "name": "programmatic-SEO-engine",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/programmatic-SEO-engine",
+    "homepage": "",
+    "pushedAt": "2026-07-12T10:11:33Z",
+    "updatedAt": "2026-07-12T10:11:38Z"
+  },
+  {
+    "name": "resite",
+    "description": "Resite — AI resume builder, ATS checker, and subdomain portfolio publishing",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/resite",
+    "homepage": "",
+    "pushedAt": "2026-07-11T10:36:45Z",
+    "updatedAt": "2026-07-11T10:36:53Z"
+  },
+  {
+    "name": "trip",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/trip",
+    "homepage": "https://trip-eight-omega.vercel.app",
+    "pushedAt": "2026-07-07T11:29:47Z",
+    "updatedAt": "2026-07-07T11:29:51Z"
+  },
+  {
+    "name": "portfolio",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": false,
+    "url": "https://github.com/shivamgupta1319/portfolio",
+    "homepage": "",
+    "pushedAt": "2026-07-06T11:21:50Z",
+    "updatedAt": "2026-07-06T12:51:17Z"
+  },
+  {
+    "name": "shivamgupta1319",
+    "description": "Config files for my GitHub profile.",
+    "language": null,
+    "topics": [
+      "config",
+      "github-config"
+    ],
+    "stars": 1,
+    "isPrivate": false,
+    "url": "https://github.com/shivamgupta1319/shivamgupta1319",
+    "homepage": "https://github.com/shivamgupta1319",
+    "pushedAt": "2026-07-06T09:45:59Z",
+    "updatedAt": "2026-07-06T09:46:03Z"
+  },
+  {
+    "name": "smart-trading",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": false,
+    "url": "https://github.com/shivamgupta1319/smart-trading",
+    "homepage": "",
+    "pushedAt": "2026-07-02T15:28:41Z",
+    "updatedAt": "2026-07-06T12:51:20Z"
+  },
+  {
+    "name": "UACE",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": false,
+    "url": "https://github.com/shivamgupta1319/UACE",
+    "homepage": "",
+    "pushedAt": "2026-06-29T12:45:56Z",
+    "updatedAt": "2026-07-06T12:51:21Z"
   },
   {
     "name": "outlook-dashboard",
@@ -148,27 +187,12 @@
     "description": "",
     "language": "TypeScript",
     "topics": [],
-    "stars": 0,
+    "stars": 1,
     "isPrivate": false,
     "url": "https://github.com/shivamgupta1319/echo",
     "homepage": "",
     "pushedAt": "2026-06-03T10:19:14Z",
-    "updatedAt": "2026-06-03T10:19:19Z"
-  },
-  {
-    "name": "shivamgupta1319",
-    "description": "Config files for my GitHub profile.",
-    "language": null,
-    "topics": [
-      "config",
-      "github-config"
-    ],
-    "stars": 1,
-    "isPrivate": false,
-    "url": "https://github.com/shivamgupta1319/shivamgupta1319",
-    "homepage": "https://github.com/shivamgupta1319",
-    "pushedAt": "2026-06-03T05:04:50Z",
-    "updatedAt": "2026-06-03T05:04:54Z"
+    "updatedAt": "2026-07-06T12:51:32Z"
   },
   {
     "name": "jarvis",
@@ -241,18 +265,6 @@
     "homepage": "",
     "pushedAt": "2026-05-12T08:27:43Z",
     "updatedAt": "2026-05-12T08:27:47Z"
-  },
-  {
-    "name": "trip",
-    "description": "",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 0,
-    "isPrivate": true,
-    "url": "https://github.com/shivamgupta1319/trip",
-    "homepage": "https://trip-eight-omega.vercel.app",
-    "pushedAt": "2026-05-08T11:16:53Z",
-    "updatedAt": "2026-05-08T11:16:57Z"
   },
   {
     "name": "investment",
