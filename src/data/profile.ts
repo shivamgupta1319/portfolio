@@ -15,7 +15,7 @@ export const profile: Profile = {
   devto: "https://dev.to/shivamgupta1319",
   twitter: "sg247938",
   photo: "/shivam-gupta.jpg",
-  wikidata: "",
+  wikidata: "https://www.wikidata.org/wiki/Q140528915",
   orcid: "https://orcid.org/0009-0009-1609-3946",
   crunchbase: "https://www.crunchbase.com/person/shivam-gupta-d1cb",
   level: 24,
