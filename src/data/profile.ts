@@ -17,7 +17,7 @@ export const profile: Profile = {
   photo: "/shivam-gupta.jpg",
   wikidata: "",
   orcid: "https://orcid.org/0009-0009-1609-3946",
-  crunchbase: "",
+  crunchbase: "https://www.crunchbase.com/person/shivam-gupta-d1cb",
   level: 24,
   xp: 7200,
   xpForNext: 9000,
