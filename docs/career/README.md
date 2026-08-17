@@ -16,6 +16,7 @@ Full strategy & month-by-month roadmap: `~/.claude/plans/as-its-my-portfolio-goo
 | 5 | [story-bank.md](story-bank.md) | 8 STAR behavioral stories from your real work | Month 1 |
 | 6 | [application-tracker.md](application-tracker.md) | Where to apply, referral templates, pipeline, negotiation | Month 1+ |
 | 7 | [interview-qa/](interview-qa/INDEX.md) | 341 Q&A across your whole stack + project grilling + 130 coding problems with tested JS solutions | Before every interview |
+| 8 | [genai/](genai/INDEX.md) | **Gen AI Engineer track** — curriculum, RAG/agents/evals depth, AI system design & machine coding, deep-dives built from your real source code | If targeting GenAI roles |
 
 ## The one-paragraph strategy
 Your DSA is the *entry gate*; your **shipped products + system design are your unfair

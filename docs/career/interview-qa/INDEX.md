@@ -66,6 +66,7 @@ Then only ever re-drill ⚠️ and ❌. Re-reading ✅ questions feels productiv
 | **System design / HLD** | 07, 05, 06 | Framework in [system-design-prep.md](../system-design-prep.md); the *content* is here. |
 | **Hiring manager** | 08 | Decisions, tradeoffs, gaps, and the questions you ask back. |
 | **Behavioural / bar-raiser** | — | See [story-bank.md](../story-bank.md). |
+| **AI / GenAI rounds** | — | Different interview, own kit: [genai/INDEX.md](../genai/INDEX.md). File 07 here is the 10-minute overview; the depth is there. |
 
 ---
 
@@ -120,6 +121,7 @@ Deliberately, so nothing is duplicated or drifts out of sync:
 | Resume metrics & ATS keywords | [resume-v2.md](../resume-v2.md) |
 | Salary framing, negotiation, pipeline | [application-tracker.md](../application-tracker.md) |
 | LinkedIn & inbound | [linkedin-optimization.md](../linkedin-optimization.md) |
+| **GenAI depth** — transformers, RAG strategies, agents in production, evals, serving, safety, AI system design, AI project deep-dives | [genai/INDEX.md](../genai/INDEX.md) |
 
 ---
 
