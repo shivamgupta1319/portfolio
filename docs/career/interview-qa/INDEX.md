@@ -122,6 +122,7 @@ Deliberately, so nothing is duplicated or drifts out of sync:
 | Salary framing, negotiation, pipeline | [application-tracker.md](../application-tracker.md) |
 | LinkedIn & inbound | [linkedin-optimization.md](../linkedin-optimization.md) |
 | **GenAI depth** — transformers, RAG strategies, agents in production, evals, serving, safety, AI system design, AI project deep-dives | [genai/INDEX.md](../genai/INDEX.md) |
+| **Video streaming & robot-fleet cloud platforms** — RTMP/RTSP/WebRTC/HLS, multi-source ingest, recording & retrieval, vision AI on video, MQTT (company-specific: D.Hive) | [dhive/interview-qa.md](../dhive/interview-qa.md) |
 
 ---
 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shivam Gupta — Resume (D.Hive, Full-Stack Software Engineer, Cloud Platform)</title>
+<style>
+  @page { size: A4; margin: 12mm 13mm; }
+
+  body {
+    font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif;
+    font-size: 9.6pt;
+    line-height: 1.34;
+    color: #111;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 20pt;
+    letter-spacing: 0.4pt;
+    margin: 0 0 1pt 0;
+    font-weight: 700;
+  }
+
+  .title {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: #1f3864;
+    margin: 0 0 3pt 0;
+  }
+
+  .contact { font-size: 9pt; margin: 0 0 1pt 0; }
+  .contact a { color: #1155cc; text-decoration: none; }
+
+  h2 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    letter-spacing: 0.6pt;
+    text-transform: uppercase;
+    color: #1f3864;
+    border-bottom: 1.2pt solid #1f3864;
+    padding-bottom: 1.5pt;
+    margin: 11pt 0 5pt 0;
+  }
+
+  h3 {
+    font-size: 9.9pt;
+    font-weight: 700;
+    margin: 7pt 0 1pt 0;
+  }
+  h3 .right { float: right; font-weight: 600; font-size: 9pt; }
+  h3 .right a { color: #1155cc; text-decoration: none; }
+  h3::after { content: ""; display: block; clear: both; }
+
+  .stack {
+    font-size: 8.9pt;
+    font-style: italic;
+    color: #444;
+    margin: 0 0 2pt 0;
+  }
+
+  p { margin: 0 0 3pt 0; }
+
+  ul { margin: 0 0 2pt 0; padding-left: 15pt; }
+  li { margin: 0 0 2.5pt 0; page-break-inside: avoid; }
+
+  .skills p { margin: 0 0 2.5pt 0; }
+  .skills b { color: #1f3864; }
+
+  .edu { margin: 0; }
+  .right-plain { float: right; font-weight: 600; font-size: 9pt; }
+  .edu::after { content: ""; display: block; clear: both; }
+</style>
+</head>
+<body>
+
+<h1>Shivam Gupta</h1>
+<p class="title">Full-Stack Software Engineer &middot; Real-Time Applications &amp; Cloud Platforms</p>
+<p class="contact"><a href="mailto:profile.shivam@gmail.com">profile.shivam@gmail.com</a> &bull; +91-7014217098 &bull; Jaipur, India</p>
+<p class="contact"><a href="https://linkedin.com/in/myselfshivam">linkedin.com/in/myselfshivam</a> &bull; <a href="https://github.com/shivamgupta1319">github.com/shivamgupta1319</a> &bull; <a href="https://shivamgupta.live">shivamgupta.live</a></p>
+
+<h2>Professional Summary</h2>
+<p>Full-Stack Software Engineer with 4+ years building and shipping production-grade real-time video and cloud systems. Core engineer on a deployed disaster-response platform that handles multi-source live video &mdash; WebRTC / Mediasoup Selective Forwarding Unit (SFU) sessions alongside Real-Time Streaming Protocol (RTSP) and Real-Time Messaging Protocol (RTMP) camera feeds &mdash; with FFmpeg recording, playback and later retrieval, offline-first edge-to-cloud PostgreSQL synchronisation, and Geographic Information System (GIS) mapping with Global Positioning System (GPS) telemetry replay, running on Amazon Web Services (AWS) and Docker. Also build Vision Artificial Intelligence (AI) pipelines in Python &mdash; YOLO object detection and face recognition over live camera feeds. Four years of progressive growth inside a single team, expanding from front-end into backend, real-time media, cloud infrastructure and edge deployment. Represented the company at ATR Open House 2025, Kyoto, Japan.</p>
+
+<h2>Technical Skills</h2>
+<div class="skills">
+<p><b>Real-Time Video &amp; Streaming:</b> WebRTC, Mediasoup SFU, simulcast, STUN / TURN, RTSP and RTMP ingest, FFmpeg (recording, transcoding, segmenting), Socket.IO, WebSockets</p>
+<p><b>Cloud &amp; DevOps:</b> AWS (EC2, S3, CloudFront, Lambda, API Gateway, SQS), Docker, Docker Compose, Nginx, GitHub Actions (CI/CD), systemd / edge deployment, Netlify, Vercel, Render</p>
+<p><b>AI &amp; Computer Vision:</b> YOLO object detection, face recognition, OpenCV, PaddleOCR (Optical Character Recognition), Automatic Speech Recognition (ASR) / Text-to-Speech (TTS), Large Language Model (LLM) orchestration, Model Context Protocol (MCP)</p>
+<p><b>Frontend:</b> React, Next.js, TypeScript, JavaScript, Tailwind CSS, three.js / React Three Fiber, D3.js / Recharts, React Query, React Native (Expo)</p>
+<p><b>Backend:</b> Node.js, NestJS, Express, Fastify, Python, FastAPI, REST APIs, GraphQL, BullMQ, pg-boss</p>
+<p><b>Databases:</b> PostgreSQL, MySQL, Redis, SQLite, Prisma / TypeORM / Drizzle, pgvector / Qdrant (vector databases)</p>
+<p><b>Practices:</b> Multi-tenant architecture, microservices, monorepos (Nx / Turborepo), OAuth / JSON Web Tokens (JWT) / Role-Based Access Control (RBAC), AES-256 encryption, GIS / OpenStreetMap, Agile / Scrum</p>
+</div>
+
+<h2>Professional Experience</h2>
+
+<h3>Full-Stack Software Engineer &mdash; Wisflux Tech Labs, Jaipur, India<span class="right">Jun 2022 &ndash; Present</span></h3>
+<ul>
+  <li>Core engineer on <b>X-FACE / LACS</b>, a deployed disaster-response communication platform &mdash; built the multi-source live-video layer combining WebRTC / Mediasoup SFU sessions for multi-party voice and video with RTSP / RTMP ingest from fixed camera feeds, so a single operator view spans several video sources at once.</li>
+  <li>Implemented FFmpeg-based recording, transcoding and segmenting of live streams into stored media, with playback and retrieval so any past incident can be reviewed after the fact.</li>
+  <li>Built the cloud side on <b>AWS</b> &mdash; EC2 for containerised services, S3 and CloudFront for recorded media delivery, and Lambda / API Gateway with SQS for asynchronous processing &mdash; paired with offline-first edge-to-cloud PostgreSQL synchronisation so field systems keep operating without connectivity and reconcile when the link returns.</li>
+  <li>Delivered GIS mapping with live GPS telemetry and time-series replay of field-device position and status, plus one-touch provisioning of field mini-PCs, giving the team repeatable device onboarding and fleet management across deployed systems; showcased at ATR Open House 2025, Kyoto, Japan.</li>
+  <li>Built the operator-facing React interfaces for live multi-source monitoring, map visualisation, device status and recorded-session playback, kept in sync over WebSockets / Socket.IO.</li>
+  <li>Built <b>GIBP</b>, a multi-tenant fintech and accounting platform on a NestJS Application Programming Interface (API) integrated with the Formance ledger (organisations, bills, vendors, reconciliation), with React admin portals and end-to-end test coverage.</li>
+  <li>Architected modular backend services with JWT authentication, RBAC and API versioning, reducing API response latency by up to 30%; Dockerised development and production environments and streamlined CI/CD pipelines, improving release stability and developer onboarding.</li>
+  <li>Published <b>StreamVerse</b>, an open-source npm package for WebRTC audio, video and screen sharing with Mediasoup SFU integration; also contributed to <b>Emmple</b>, a live ed-tech learning platform serving students across web and WhatsApp over roughly two years.</li>
+</ul>
+
+<h2>Key Projects</h2>
+
+<h3>Home Guard &mdash; AI Camera Monitoring &amp; Visitor Log</h3>
+<p class="stack">Python &middot; YOLO &middot; OpenCV &middot; face recognition &middot; React dashboard</p>
+<ul>
+  <li>Built a security-camera system that ingests a live camera feed, detects people crossing the frame with YOLO object detection, and matches each detected face against an enrolled identity database to separate known residents from unrecognised visitors.</li>
+  <li>Records per-person entry and exit events into a searchable log; unrecognised faces queue into an unknown-visitor list that can be enrolled with details or purged from a dashboard &mdash; the same recognise &rarr; record &rarr; retrieve loop a multi-site monitoring platform needs.</li>
+</ul>
+
+<h3>StreamVerse &mdash; WebRTC Streaming SDK<span class="right">Open source &middot; npm</span></h3>
+<p class="stack">TypeScript &middot; WebRTC &middot; Mediasoup SFU &middot; Socket.IO</p>
+<ul>
+  <li>Open-source SDK for audio, video and screen sharing over a Mediasoup SFU &mdash; transport, producer and consumer lifecycle, signalling and reconnection handled behind a small API so an application can add multi-party streaming without touching WebRTC internals.</li>
+</ul>
+
+<h3>Echo &mdash; End-to-End Encrypted Messaging PWA</h3>
+<p class="stack">React &middot; TypeScript &middot; WebRTC &middot; libsodium &middot; IndexedDB &middot; Docker</p>
+<ul>
+  <li>Offline-first, self-hosted messaging Progressive Web App (PWA) with peer-to-peer WebRTC voice and video that prioritises local-network connections; libsodium end-to-end encryption, QR pairing, no accounts.</li>
+</ul>
+
+<h3>Resite &mdash; AI Resume Platform<span class="right">Live: <a href="https://resite.live">resite.live</a></span></h3>
+<p class="stack">NestJS &middot; PostgreSQL / TypeORM &middot; BullMQ + Redis &middot; Puppeteer &middot; Google OAuth</p>
+<ul>
+  <li>Platform to create and tailor ATS-optimised resumes, score any resume against a job description, and publish a portfolio to a custom subdomain &mdash; NestJS API with queue-based PDF/DOCX parsing and Puppeteer rendering over multi-tenant PostgreSQL.</li>
+</ul>
+
+<h3>SmartTrader &mdash; Algorithmic Trading Platform</h3>
+<p class="stack">Nx monorepo &middot; NestJS &middot; React + Vite &middot; Python FastAPI &middot; PostgreSQL &middot; Socket.IO &middot; Docker</p>
+<ul>
+  <li>Polyglot platform for the Indian stock market backtesting 28 strategies, with a live market scanner and real-time WebSocket and Telegram alerts &mdash; a Node.js and Python service split orchestrated with Docker Compose behind a React dashboard.</li>
+</ul>
+
+<h3>pSEO Engine &mdash; Programmatic-SEO SaaS<span class="right">Live: <a href="https://pseo.cloud">pseo.cloud</a></span></h3>
+<p class="stack">Next.js &middot; Drizzle &middot; PostgreSQL / pgvector &middot; pg-boss &middot; multi-LLM router &middot; Lemon Squeezy</p>
+<ul>
+  <li>Generates and quality-gates penalty-resistant SEO landing pages (semantic deduplication via pgvector, thin-content guardrails) and publishes them into a customer repository; resilient multi-provider LLM router with automatic failover.</li>
+</ul>
+
+<h3>UACE &mdash; Universal AI Context Engine<span class="right">npm: uace-mcp</span></h3>
+<p class="stack">TypeScript &middot; Model Context Protocol &middot; SQLite + sqlite-vec &middot; local embeddings &middot; VS Code extension</p>
+<ul>
+  <li>Local-first MCP server giving any AI coding assistant one shared project memory with offline semantic search, git-history ingestion and live file-watch; published to npm with a companion VS Code extension.</li>
+</ul>
+
+<h2>Education</h2>
+<p class="edu"><b>Bachelor of Technology (B.Tech), Computer Science Engineering</b><span class="right-plain">2019 &ndash; 2023</span></p>
+<p class="edu">Anand International College of Engineering, Jaipur &nbsp;&bull;&nbsp; CGPA: 8.5 / 10.0</p>
+
+<h2>Achievements &amp; Recognition</h2>
+<ul>
+  <li>Represented Wisflux Tech Labs at <b>ATR Open House 2025, Kyoto, Japan</b> &mdash; an international technology showcase and collaboration event.</li>
+  <li>Published npm packages: <b>StreamVerse</b> (WebRTC SDK over Mediasoup SFU) and <b>UACE</b> (uace-mcp, MCP server).</li>
+  <li>Shipped three live products: pSEO Engine (pseo.cloud), Resite (resite.live) and StockSafe Bundles (Shopify App Store).</li>
+  <li>Maintain 65+ repositories spanning real-time media, full-stack web, AI agents and algorithmic trading.</li>
+</ul>
+
+</body>
+</html>
