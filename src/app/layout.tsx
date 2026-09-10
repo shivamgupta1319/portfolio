@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { SITE_URL, SITE_DESC, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
+import { SITE_URL, SITE_TITLE, SITE_DESC, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
+import Analytics from "@/analytics/Analytics";
 import { THEME_SCRIPT } from "@/theme/themeScript";
 import StoreHydrator from "@/lib/StoreHydrator";
 import Toasts from "@/hud/Toasts";
@@ -18,7 +19,7 @@ const jbMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Shivam Gupta — shivamOS",
+  title: SITE_TITLE,
   description: SITE_DESC,
   applicationName: "shivamOS",
   alternates: { canonical: "/" },
@@ -27,7 +28,9 @@ export const metadata: Metadata = {
     "Shivam Gupta",
     "full-stack engineer",
     "software engineer portfolio",
-    "AI agents",
+    "AI engineer",
+    "RAG",
+    "LLM gateway",
     "algorithmic trading",
     "Next.js",
     "TypeScript",
@@ -42,14 +45,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Shivam Gupta — shivamOS",
+    title: SITE_TITLE,
     description: SITE_DESC,
-    siteName: "shivamOS",
+    siteName: "Shivam Gupta",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shivam Gupta — shivamOS",
+    title: SITE_TITLE,
     description: SITE_DESC,
     site: "@sg247938",
     creator: "@sg247938",
@@ -93,6 +96,7 @@ export default function RootLayout({
         <StoreHydrator />
         {children}
         <Toasts />
+        <Analytics />
       </body>
     </html>
   );
