@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { useOsStore } from "@/os/store";
+import { usePrefs } from "@/lib/prefsStore";
 
 export type Sfx = "open" | "close" | "boot" | "levelup" | "click" | "hover";
 
@@ -56,10 +56,10 @@ function playBlip(ac: AudioContext, b: Blip, startAt: number) {
   osc.stop(startAt + b.dur + 0.02);
 }
 
-/** Synthesized SFX — no audio assets. Honors the OS sound toggle. */
+/** Synthesized SFX — no audio assets. Honors the persisted sound preference. */
 export function useSfx() {
   return useCallback((name: Sfx) => {
-    if (!useOsStore.getState().soundOn) return;
+    if (!usePrefs.getState().soundOn) return;
     const ac = audio();
     if (!ac) return;
     let t = ac.currentTime;

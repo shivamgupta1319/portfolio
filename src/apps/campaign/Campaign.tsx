@@ -27,11 +27,11 @@ export default function Campaign() {
               />
               <div className="flex flex-wrap items-baseline justify-between gap-x-3">
                 <h3 className="text-sm font-semibold text-fg">{e.role}</h3>
-                <span className="font-mono text-[11px] text-fg-mute">
+                <span className="font-mono text-xs text-fg-mute">
                   {e.start} — {e.end}
                 </span>
               </div>
-              <div className="mt-0.5 flex flex-wrap items-center gap-2 font-mono text-[11px]">
+              <div className="mt-0.5 flex flex-wrap items-center gap-2 font-mono text-xs">
                 <span className={k.tag}>{k.label}</span>
                 <span className="text-fg-dim">
                   {e.org} · {e.location}

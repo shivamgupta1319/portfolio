@@ -12,7 +12,7 @@ export default function Home() {
   const booted = useOsStore((s) => s.booted);
   const isMobile = useMediaQuery("(max-width: 767px)");
   return (
-    <main className="relative h-full w-full select-none">
+    <main id="main" className="relative h-full w-full select-none">
       <SeoContent />
       {isMobile ? <MobileShell /> : <Desktop />}
       {!booted && <BootSequence />}

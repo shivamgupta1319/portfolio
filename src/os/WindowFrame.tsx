@@ -68,21 +68,21 @@ export default function WindowFrame({ win }: { win: WindowState }) {
               close(win.id);
             }}
             aria-label="Close window"
-            className="grid h-3 w-3 place-items-center rounded-full bg-rose/80 text-[8px] text-bg/0 transition hover:bg-rose group-hover/lights:text-bg/70"
+            className="grid h-3.5 w-3.5 place-items-center rounded-full bg-rose/80 text-xs leading-none text-bg/0 transition hover:bg-rose group-hover/lights:text-bg/70"
           >
             ×
           </button>
           <button
             onClick={() => minimize(win.id)}
             aria-label="Minimize window"
-            className="grid h-3 w-3 place-items-center rounded-full bg-amber/80 text-[8px] text-bg/0 transition hover:bg-amber group-hover/lights:text-bg/70"
+            className="grid h-3.5 w-3.5 place-items-center rounded-full bg-amber/80 text-xs leading-none text-bg/0 transition hover:bg-amber group-hover/lights:text-bg/70"
           >
             –
           </button>
           <button
             onClick={() => toggleMax(win.id)}
             aria-label="Maximize window"
-            className="grid h-3 w-3 place-items-center rounded-full bg-green/80 text-[8px] text-bg/0 transition hover:bg-green group-hover/lights:text-bg/70"
+            className="grid h-3.5 w-3.5 place-items-center rounded-full bg-green/80 text-xs leading-none text-bg/0 transition hover:bg-green group-hover/lights:text-bg/70"
           >
             +
           </button>

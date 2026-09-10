@@ -58,7 +58,7 @@ export default function StartMenu({ onClose }: { onClose: () => void }) {
         </span>
         <div className="min-w-0">
           <div className="truncate text-sm font-medium text-fg">{profile.name}</div>
-          <div className="truncate font-mono text-[10px] text-fg-mute">
+          <div className="truncate font-mono text-xs text-fg-mute">
             {profile.role}
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function StartMenu({ onClose }: { onClose: () => void }) {
       <div className="flex items-center justify-between border-t border-border px-2 py-2">
         <button
           onClick={showDesktop}
-          className="rounded-md px-2 py-1 font-mono text-[11px] text-fg-mute transition hover:text-fg"
+          className="rounded-md px-2 py-1 font-mono text-xs text-fg-mute transition hover:text-fg"
         >
           ▢ show desktop
         </button>
@@ -101,7 +101,7 @@ export default function StartMenu({ onClose }: { onClose: () => void }) {
           target="_blank"
           rel="noreferrer noopener"
           onClick={onClose}
-          className="rounded-md px-2 py-1 font-mono text-[11px] text-fg-mute transition hover:text-fg"
+          className="rounded-md px-2 py-1 font-mono text-xs text-fg-mute transition hover:text-fg"
         >
           ⬇ résumé
         </a>
