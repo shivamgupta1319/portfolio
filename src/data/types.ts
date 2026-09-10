@@ -59,7 +59,7 @@ export interface Quest {
   xpReward: number;
   featured: boolean;
 
-  // ── profile-page fields (additive; the desktop QuestCard ignores them) ──
+  // ── profile-page fields (additive; the desktop quest log ignores them) ──
   /** filter chips; [] for uncurated auto side-quests */
   category: ProjectCategory[];
   /** one-liner (≤ ~90 chars), distinct from `description` */
