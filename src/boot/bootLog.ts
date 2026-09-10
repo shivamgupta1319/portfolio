@@ -5,14 +5,11 @@ export interface BootLine {
   delay: number;
 }
 
+/** ~0.7 s total — a flourish, not a gate. The Skip button is always visible. */
 export const BOOT_LINES: BootLine[] = [
-  { text: "shivamOS BIOS v2.0 — booting…", tone: "accent", delay: 120 },
-  { text: "POST .................... OK", tone: "ok", delay: 220 },
-  { text: "mount /dev/quests ....... OK", tone: "ok", delay: 180 },
-  { text: "mount /dev/skills ....... OK", tone: "ok", delay: 160 },
-  { text: "init window-manager ..... OK", tone: "ok", delay: 200 },
-  { text: "load profile: shivam.gupta", tone: "dim", delay: 200 },
-  { text: "  role  = full-stack engineer", tone: "dim", delay: 120 },
-  { text: "  class = systems · ai · trading · realtime", tone: "dim", delay: 120 },
-  { text: "render pipeline .......... READY", tone: "ok", delay: 260 },
+  { text: "shivamOS v3.0 — booting desktop mode…", tone: "accent", delay: 80 },
+  { text: "mount /dev/projects ....... OK", tone: "ok", delay: 150 },
+  { text: "mount /dev/skills ......... OK", tone: "ok", delay: 130 },
+  { text: "init window-manager ....... OK", tone: "ok", delay: 150 },
+  { text: "render pipeline ........... READY", tone: "ok", delay: 190 },
 ];

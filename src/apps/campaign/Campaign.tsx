@@ -5,15 +5,15 @@ const KIND_STYLE: Record<
   ExperienceEntry["kind"],
   { dot: string; tag: string; label: string }
 > = {
-  work: { dot: "bg-accent border-accent", tag: "text-accent-2", label: "MISSION" },
-  milestone: { dot: "bg-amber border-amber", tag: "text-amber", label: "ACHIEVEMENT" },
-  education: { dot: "bg-cyan border-cyan", tag: "text-cyan", label: "TRAINING" },
+  work: { dot: "bg-accent border-accent", tag: "text-accent-2", label: "Work · mission" },
+  milestone: { dot: "bg-amber border-amber", tag: "text-amber", label: "Milestone · achievement" },
+  education: { dot: "bg-cyan border-cyan", tag: "text-cyan", label: "Education · training" },
 };
 
 export default function Campaign() {
   return (
     <div className="os-scroll h-full overflow-auto bg-bg/30 p-5">
-      <h2 className="mb-5 font-mono text-sm text-rose">⚑ CAMPAIGN LOG</h2>
+      <h2 className="mb-5 font-mono text-sm text-rose">⚑ Experience · campaign log</h2>
 
       <ol className="relative ml-3 border-l border-border">
         {experience.map((e, i) => {

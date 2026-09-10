@@ -5,8 +5,12 @@ import { useOsStore } from "@/os/store";
 import { useSfx } from "@/sound/useSfx";
 import { BOOT_LINES } from "./bootLog";
 
-const SESSION_KEY = "shivamos-booted";
-
+/**
+ * Short boot flourish shown when entering desktop mode. Skippable at any
+ * moment, auto-continues when the log finishes, and opens the Guide (unless a
+ * deep link asked for a specific app) so first-timers land on instructions,
+ * not a bare terminal.
+ */
 export default function BootSequence() {
   const setBooted = useOsStore((s) => s.setBooted);
   const openApp = useOsStore((s) => s.openApp);
@@ -15,82 +19,72 @@ export default function BootSequence() {
   const ready = shown >= BOOT_LINES.length;
 
   const start = useCallback(() => {
-    try {
-      sessionStorage.setItem(SESSION_KEY, "1");
-    } catch {
-      /* private mode — ignore */
-    }
     sfx("boot");
-    openApp("terminal");
+    const deepLinked = new URLSearchParams(window.location.search).has("app");
+    if (!deepLinked) openApp("guide");
     setBooted(true);
   }, [openApp, setBooted, sfx]);
 
-  // On soft reloads or with reduced-motion, skip straight to the desktop.
-  // (start() only touches the zustand store, never local React state.)
+  // Reduced motion: skip straight to the desktop.
   useEffect(() => {
-    const reduced = window.matchMedia?.(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    let already = false;
-    try {
-      already = sessionStorage.getItem(SESSION_KEY) === "1";
-    } catch {
-      /* ignore */
-    }
-    if (already || reduced) start();
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) start();
   }, [start]);
 
-  // Type the boot log one line at a time (setState lives in an async callback).
+  // Type the boot log one line at a time.
   useEffect(() => {
     if (shown >= BOOT_LINES.length) return;
     const t = setTimeout(() => setShown((s) => s + 1), BOOT_LINES[shown].delay);
     return () => clearTimeout(t);
   }, [shown]);
 
-  // Enter / Space boots once the log finishes.
+  // Auto-continue shortly after the log completes.
   useEffect(() => {
     if (!ready) return;
+    const t = setTimeout(start, 350);
+    return () => clearTimeout(t);
+  }, [ready, start]);
+
+  // Enter / Space / Escape skip ahead.
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
+      if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
         e.preventDefault();
         start();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [ready, start]);
+  }, [start]);
 
   const tone = (t?: string) =>
-    t === "ok"
-      ? "text-green"
-      : t === "accent"
-        ? "text-accent-2"
-        : "text-fg-dim";
+    t === "ok" ? "text-green" : t === "accent" ? "text-accent-2" : "text-fg-dim";
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg px-6">
-      <div className="w-full max-w-lg font-mono text-[13px] leading-relaxed">
+    <div
+      role="status"
+      aria-live="polite"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg px-6"
+    >
+      <div className="w-full max-w-lg font-mono text-sm leading-relaxed">
         {BOOT_LINES.slice(0, shown).map((line, i) => (
           <div key={i} className={tone(line.tone)}>
             {line.text}
           </div>
         ))}
-        {!ready && <span className="cursor-blink text-green">▮</span>}
+        {!ready && (
+          <span aria-hidden className="cursor-blink text-green">
+            ▮
+          </span>
+        )}
       </div>
-
-      {ready && (
-        <>
-          <button
-            onClick={start}
-            className="mt-10 rounded-lg border border-accent/60 bg-accent/10 px-8 py-3 font-mono text-sm tracking-[0.3em] text-accent-2 transition hover:bg-accent/20 focus:outline-none focus:ring-2 focus:ring-accent/60"
-          >
-            PRESS START
-          </button>
-          <p className="mt-4 font-mono text-xs text-fg-mute">
-            press ENTER or click to boot
-          </p>
-        </>
-      )}
+      <button
+        type="button"
+        onClick={start}
+        autoFocus
+        className="mt-10 rounded-lg border border-border bg-panel px-5 py-2 font-mono text-xs text-fg-dim transition hover:border-border-strong hover:text-fg"
+      >
+        Skip <span aria-hidden>›</span>
+      </button>
     </div>
   );
 }

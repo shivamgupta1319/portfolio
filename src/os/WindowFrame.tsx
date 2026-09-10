@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import { useOsStore } from "./store";
 import { APPS } from "./apps.registry";
 import { useWindowDrag } from "./useWindowDrag";
@@ -20,6 +20,18 @@ export default function WindowFrame({ win }: { win: WindowState }) {
   const minimize = useOsStore((s) => s.minimize);
   const toggleMax = useOsStore((s) => s.toggleMaximize);
   const sfx = useSfx();
+  const titleId = useId();
+  const opener = useRef<Element | null>(null);
+
+  // Move keyboard focus into the window when it opens; hand it back on close.
+  useEffect(() => {
+    opener.current = document.activeElement;
+    elRef.current?.focus({ preventScroll: true });
+    return () => {
+      const el = opener.current;
+      if (el instanceof HTMLElement && el.isConnected) el.focus({ preventScroll: true });
+    };
+  }, []);
 
   if (win.minimized) return null;
 
@@ -42,7 +54,8 @@ export default function WindowFrame({ win }: { win: WindowState }) {
     <div
       ref={elRef}
       role="dialog"
-      aria-label={win.title}
+      aria-labelledby={titleId}
+      tabIndex={-1}
       onPointerDown={() => focus(win.id)}
       style={style}
       className={`window-in pointer-events-auto absolute left-0 top-0 flex flex-col overflow-hidden border bg-bg-2/95 backdrop-blur-md transition-shadow ${
@@ -88,6 +101,7 @@ export default function WindowFrame({ win }: { win: WindowState }) {
           </button>
         </div>
         <span
+          id={titleId}
           className={`ml-1.5 select-none truncate font-mono text-xs ${
             focused ? "text-fg-dim" : "text-fg-mute"
           }`}

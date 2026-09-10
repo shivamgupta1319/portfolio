@@ -24,7 +24,7 @@ export default function QuestLog() {
       {/* header */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-panel px-4 py-3">
         <div className="flex items-baseline gap-2">
-          <span className="font-mono text-sm text-amber">✦ QUEST LOG</span>
+          <span className="font-mono text-sm text-amber">✦ Projects · quest log</span>
           <span className="font-mono text-xs text-fg-mute">
             {mainQuests.length} main · {sideQuests.length} side
           </span>

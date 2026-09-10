@@ -78,7 +78,7 @@ export default function SkillTree() {
 
   return (
     <div className="os-scroll h-full overflow-auto bg-bg/30 p-4">
-      <h2 className="mb-3 font-mono text-sm text-accent-2">⌘ SKILL TREE</h2>
+      <h2 className="mb-3 font-mono text-sm text-accent-2">⌘ Skills · skill tree</h2>
       <div className="relative" style={{ width, height }}>
         {/* connector lines */}
         <svg

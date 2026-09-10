@@ -19,7 +19,7 @@ export default function Contact() {
 
   return (
     <div className="os-scroll h-full overflow-auto bg-bg/30 p-5">
-      <h2 className="mb-1 font-mono text-sm text-cyan">✉ COMMS LINK</h2>
+      <h2 className="mb-1 font-mono text-sm text-cyan">✉ Contact · comms link</h2>
       <p className="mb-5 font-mono text-xs text-fg-mute">
         open a channel — I&apos;m available for opportunities.
       </p>

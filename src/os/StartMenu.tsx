@@ -6,6 +6,7 @@ import { APPS } from "./apps.registry";
 import { APP_ORDER, APP_META } from "./apps.meta";
 import { profile } from "@/data/profile";
 import { useSfx } from "@/sound/useSfx";
+import ExitToProfile from "./ExitToProfile";
 
 export default function StartMenu({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -89,7 +90,8 @@ export default function StartMenu({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* footer actions */}
-      <div className="flex items-center justify-between border-t border-border px-2 py-2">
+      <div className="flex items-center justify-between gap-2 border-t border-border px-2 py-2">
+        <ExitToProfile />
         <button
           onClick={showDesktop}
           className="rounded-md px-2 py-1 font-mono text-xs text-fg-mute transition hover:text-fg"
