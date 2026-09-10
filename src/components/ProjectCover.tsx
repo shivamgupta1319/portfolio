@@ -15,10 +15,13 @@ function initials(title: string): string {
 export default function ProjectCover({
   quest,
   short = false,
+  eager = false,
 }: {
   quest: Quest;
   /** shorter cover for dense grids */
   short?: boolean;
+  /** above-the-fold covers should not be lazy */
+  eager?: boolean;
 }) {
   const aspect = short ? "aspect-[5/2]" : "aspect-[16/10]";
   if (quest.screenshot) {
@@ -29,7 +32,7 @@ export default function ProjectCover({
         alt={`${quest.title} screenshot`}
         width={1280}
         height={800}
-        loading="lazy"
+        loading={eager ? "eager" : "lazy"}
         decoding="async"
         className={`${aspect} w-full object-cover object-top`}
       />

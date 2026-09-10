@@ -11,6 +11,12 @@
   # GitHub fetch is skipped without a token; the committed
   # quests.generated.json (with private repos) is used as-is.
 
+# Project cover screenshots (regenerated locally via `npm run shots`).
+[[headers]]
+  for = "/shots/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 # Long-cache the immutable Next static assets.
 [[headers]]
   for = "/_next/static/*"

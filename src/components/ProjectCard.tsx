@@ -48,7 +48,7 @@ export default function ProjectCard({
     <article
       className="group relative flex w-full flex-col overflow-hidden rounded-xl border border-border bg-bg-2/70 transition hover:border-border-strong hover:shadow-[0_18px_50px_-24px_rgba(99,102,241,0.45)]"
     >
-      {!compact && <ProjectCover quest={quest} short={!featured} />}
+      {!compact && <ProjectCover quest={quest} short={!featured} eager={featured} />}
 
       <div className={`flex flex-1 flex-col gap-3 ${compact ? "p-4" : "p-5"}`}>
         <div className="flex items-start gap-3">

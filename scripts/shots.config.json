@@ -1,0 +1,16 @@
+{
+  "_comment": "quest id -> live URL (captured headless) or { \"file\": \"/abs/path.png\" } (converted). Skipped on purpose: AI-ROUTER (admin token prompt), trip (sign-in page), lacs-v2 (live dashboard with user names). Run: npm run shots",
+  "programmatic-SEO-engine": "https://pseo.cloud",
+  "resite": "https://resite.live",
+  "stocksafe-bundles": "https://apps.shopify.com/stocksafe-bundles",
+  "typezap": "https://emmple.com",
+  "streamverse": "https://streamverse-delta.vercel.app",
+  "investment": "https://investment-alpha-seven.vercel.app",
+  "investment-plan": "https://finpilot.netlify.app",
+  "market-news": {
+    "file": "/home/shivam/workspace/market-news/docs/images/feed.jpg"
+  },
+  "dividend": {
+    "file": "/home/shivam/workspace/dividend/docs/screenshot.png"
+  }
+}
