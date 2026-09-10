@@ -519,6 +519,173 @@ export const curated: Record<string, CuratedQuest> = {
     synthesize: true,
     language: "TypeScript",
   },
+  "AI-TRADING-BRAIN": {
+    title: "AI Trading Brain",
+    summary:
+      "Zero-cost swing-trading research platform for NSE — honest before clever, benchmarked vs Nifty 50.",
+    description:
+      "A research platform for Indian equity swing trading whose primary job is to say, honestly, whether an idea beats buying an index fund after real costs. Data platform first (free NSE data into DuckDB/Parquet), an event-driven backtester that makes look-ahead bias structurally hard, deliberately dumb strategies before any ML, LightGBM over deep learning (right-sized for a few thousand effective samples), triple-barrier labels with walk-forward validation, and frozen-strategy forward paper trading as the only fully honest test. An LLM may parse text into features but never makes the decision.",
+    highlights: [
+      "Everything measured against buy-and-hold Nifty 50, after costs",
+      "Triple-barrier labels + walk-forward CV; LightGBM, not deep RL",
+      "\u20b90 stack: free NSE data, DuckDB, one always-on local machine",
+    ],
+    tags: ["Python 3.12", "DuckDB / Parquet", "pandas", "LightGBM", "Backtesting", "Walk-forward CV"],
+    category: ["fintech", "ai"],
+    rank: "A",
+    year: 2026,
+    status: "wip",
+    synthesize: true,
+    language: "Python",
+  },
+  "Photo-AI": {
+    title: "Photo-AI",
+    summary:
+      "File sharing with on-device face recognition — find photos by who is in them, no cloud vision API.",
+    description:
+      "A file-sharing service with face recognition built in: upload photos into folders and the backend detects and matches faces locally so images can be found by the people in them. Detection runs on-device with TensorFlow.js and face-api (landmarks, expression, age/gender models bundled) — photos never leave the server. NestJS + TypeORM on PostgreSQL with JWT auth and Multer uploads, sharp for image processing, and a React + Chakra UI front end.",
+    highlights: [
+      "On-device face detection + matching (TensorFlow.js, face-api) — no third-party vision API",
+      "Folder hierarchy, JWT auth, PostgreSQL via TypeORM",
+    ],
+    tags: ["NestJS", "TensorFlow.js", "face-api", "PostgreSQL", "React", "Chakra UI", "Docker"],
+    category: ["ai", "tools"],
+    rank: "B",
+    year: 2025,
+    status: "archived",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  nova: {
+    title: "Nova",
+    summary:
+      "Self-hosted private communication app for two: chat, WebRTC calls, screen share, media vault, PIN pairing.",
+    description:
+      "A self-hosted communication platform built for exactly two people — no accounts, no social graph, no cloud dependency. Real-time chat with voice messages and media, peer-to-peer WebRTC voice/video calls with screen sharing, a shared media vault organised into albums, a dashboard with partner status, and 6-digit PIN pairing instead of passwords. Installable as a PWA. Next.js 15 front end, NestJS + TypeORM + PostgreSQL backend, Socket.IO signalling, Docker Compose + Nginx.",
+    highlights: [
+      "WebRTC calls + screen share, Socket.IO chat with read receipts",
+      "PIN pairing, PWA install, runs entirely on your own box",
+    ],
+    tags: ["Next.js 15", "NestJS", "PostgreSQL", "Socket.IO", "WebRTC", "PWA", "Docker"],
+    category: ["realtime"],
+    rank: "B",
+    year: 2025,
+    status: "archived",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  "postgresql-db-sync": {
+    title: "PostgreSQL DB Sync",
+    summary:
+      "Offline-first sync service keeping PostgreSQL aligned across disconnected field units and the cloud.",
+    description:
+      "An offline-first synchronisation service that keeps PostgreSQL databases aligned across disconnected local units and a central cloud deployment — the standalone form of the edge\u2194cloud sync pattern used in LACS. Change-log-driven replication with per-device tracking, secure cloud sync over WebSocket/HTTP plus LAN peer discovery via mDNS, conflict detection with pluggable resolution strategies, and a FastAPI dashboard/CLI for status and manual control.",
+    highlights: [
+      "Change-log replication with per-device tracking and conflict strategies",
+      "WebSocket/HTTP cloud transport + mDNS LAN peer discovery",
+    ],
+    tags: ["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "WebSocket", "mDNS"],
+    category: ["tools", "realtime"],
+    rank: "B",
+    year: 2025,
+    status: "wip",
+    synthesize: true,
+    isPrivate: true,
+    language: "Python",
+  },
+  "mediasoup-sfu-calling": {
+    title: "mediasoup SFU Calling",
+    summary:
+      "Group video calling on a mediasoup SFU — NestJS Socket.IO signalling, React client.",
+    description:
+      "Group video calling built directly on mediasoup: the SFU receives each participant's stream once and forwards it to the others, so a client's upload stays constant as the room grows (unlike a peer-to-peer mesh). A NestJS WebSocket gateway handles signalling — RTP capabilities and transport negotiation over Socket.IO — then media flows over WebRTC to the SFU. React + Tailwind client using mediasoup-client.",
+    highlights: [
+      "Constant per-client upload as rooms grow (SFU vs mesh)",
+      "Workers, routers and transports managed in NestJS services",
+    ],
+    tags: ["mediasoup", "NestJS", "Socket.IO", "WebRTC", "React", "Tailwind"],
+    category: ["realtime"],
+    rank: "B",
+    year: 2025,
+    status: "archived",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  "live-kit": {
+    title: "LiveKit Calling",
+    summary:
+      "Browser video calls for up to 10 participants on LiveKit — no accounts, no database.",
+    description:
+      "A video-calling app on LiveKit for 2\u201310 participants: enter a name and start a call in the browser, with mute, camera toggle and screen sharing. React 18 + Vite + Tailwind with LiveKit React components on the front, a NestJS token/room service on the LiveKit Server SDK behind it, all under Docker Compose — no registration and no database.",
+    highlights: ["2\u201310 participants per room, screen share, no sign-up", "LiveKit Server SDK token service in NestJS"],
+    tags: ["LiveKit", "React 18", "Vite", "NestJS", "WebRTC", "Docker Compose"],
+    category: ["realtime"],
+    rank: "B",
+    year: 2025,
+    status: "archived",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  shareit: {
+    title: "LAN Remote Control (Android)",
+    summary:
+      "Android-to-Android screen mirroring and remote touch over LAN with WebRTC — no servers, no internet.",
+    description:
+      "A private Android-to-Android remote control app: share one device's screen and control it (tap, swipe, gesture) from another on the same Wi-Fi. Zero-config discovery with Android NSD (mDNS), 6-digit PIN pairing over a local TCP signalling server, hardware-accelerated H.264 mirroring via MediaProjection + WebRTC, touch injection through an AccessibilityService, wake locks for persistent sessions, a floating host-side Stop widget and hard 15-minute session timeouts.",
+    highlights: [
+      "MediaProjection + WebRTC H.264 mirroring, AccessibilityService touch injection",
+      "mDNS discovery + PIN pairing — everything stays on the LAN",
+    ],
+    tags: ["Android", "Kotlin", "WebRTC", "MediaProjection", "AccessibilityService", "mDNS"],
+    category: ["realtime", "tools"],
+    rank: "B",
+    year: 2025,
+    status: "archived",
+    synthesize: true,
+    isPrivate: true,
+    language: "Kotlin",
+  },
+  "lacs-fleet": {
+    title: "LACS Fleet",
+    summary:
+      "Inventory-as-code + Ansible control plane for the LACS mini-PC fleet — replaces 5 repos and 2 runbooks.",
+    description:
+      "One repo to deploy and operate the LACS field fleet of mini-PCs: inventory-as-code with a validator, an Ansible control plane with playbooks for provisioning and updates over VPN, offline validate/test targets, and a dependency-free Fleet Control web GUI. Consolidates what used to be five repos, a multi-gigabyte off-repo artifact pile and two disagreeing runbooks into a single authoritative deployment procedure.",
+    highlights: [
+      "Inventory-as-code (fleet.yml) + validator, Ansible playbooks over VPN",
+      "Replaced 5 repos and 2 runbooks with one procedure",
+    ],
+    credit: "Team \u00b7 ATR / Wisflux",
+    tags: ["Ansible", "Python", "YAML Inventory", "Fleet Ops", "systemd", "Make"],
+    category: ["tools"],
+    rank: "B",
+    year: 2026,
+    status: "active",
+    synthesize: true,
+    isPrivate: true,
+    language: "Python",
+  },
+  "x-face-app": {
+    title: "X-FACE Mobile",
+    summary:
+      "Expo/React Native client for LACS: server selection, permission flow, native SOS alerts and ringtones.",
+    description:
+      "The cross-platform (iOS/Android) mobile client for the LACS / X-FACE disaster-response platform. Loads the bundled web app in a WebView against a selectable Cloud, Local or Custom server instance, manages camera, microphone, location, media and notification permissions, plays native ringtones and SOS alerts, and persists configuration with AsyncStorage.",
+    highlights: ["Cloud / Local / Custom server instance selection", "Native alerts, SOS sounds and permission management"],
+    credit: "Team \u00b7 ATR / Wisflux",
+    tags: ["Expo", "React Native", "WebView", "iOS / Android", "AsyncStorage"],
+    category: ["realtime", "product"],
+    rank: "B",
+    year: 2026,
+    status: "live",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
   investment: {
     title: "Investment Tracker",
     description:
@@ -658,8 +825,6 @@ export const EXCLUDED = new Set<string>([
   // unlicensed music source — private use only (see repo README)
   "musafir",
   "musafir-backend",
-  // overlaps strategy-backtest / swing-trading-system
-  "AI-TRADING-BRAIN",
 ]);
 
 /** Side quests must be at least this fresh (drops old college/lab repos). */
