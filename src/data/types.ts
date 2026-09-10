@@ -1,6 +1,27 @@
 export type Rank = "S" | "A" | "B";
 export type QuestType = "main" | "side";
 
+/** Filter chips on the profile page ("All" is synthesised by the UI). */
+export type ProjectCategory = "ai" | "fintech" | "realtime" | "product" | "tools";
+
+export const PROJECT_CATEGORIES: ProjectCategory[] = [
+  "ai",
+  "fintech",
+  "realtime",
+  "product",
+  "tools",
+];
+
+export const PROJECT_CATEGORY_LABELS: Record<ProjectCategory, string> = {
+  ai: "AI",
+  fintech: "FinTech",
+  realtime: "Real-time",
+  product: "Products",
+  tools: "Tools",
+};
+
+export type ProjectStatus = "live" | "active" | "archived" | "wip";
+
 /** Raw shape written by scripts/fetch-github.mjs */
 export interface RepoRecord {
   name: string;
@@ -37,6 +58,23 @@ export interface Quest {
   questType: QuestType;
   xpReward: number;
   featured: boolean;
+
+  // ── profile-page fields (additive; the desktop QuestCard ignores them) ──
+  /** filter chips; [] for uncurated auto side-quests */
+  category: ProjectCategory[];
+  /** one-liner (≤ ~90 chars), distinct from `description` */
+  summary?: string;
+  /** 1–3 metric-bearing proof lines */
+  highlights?: string[];
+  /** display year; derived from pushedAt when not curated */
+  year?: number;
+  /** featured ordering — lower first; undefined sorts last */
+  order?: number;
+  /** derived: `/shots/<id>.webp` when listed in shots.ts */
+  screenshot?: string;
+  status?: ProjectStatus;
+  /** derived: lower-cased haystack for client-side search */
+  searchIndex: string;
 }
 
 /** Curated override / seed keyed by repo name. */
@@ -54,6 +92,14 @@ export interface CuratedQuest {
   synthesize?: boolean;
   language?: string | null;
   isPrivate?: boolean;
+  category?: ProjectCategory[];
+  summary?: string;
+  highlights?: string[];
+  year?: number;
+  order?: number;
+  status?: ProjectStatus;
+  /** explicit override; normally derived from shots.ts */
+  screenshot?: string;
 }
 
 export interface StatBar {
@@ -88,13 +134,18 @@ export interface ExperienceEntry {
   end: string;
   kind: "work" | "education" | "milestone";
   bullets: string[];
+  /** short metric chips rendered above the bullets, e.g. "40+ users / node" */
+  metrics?: string[];
   highlight?: boolean;
 }
 
 export interface Profile {
   name: string;
   handle: string;
+  /** clean job title — used for JSON-LD jobTitle */
   role: string;
+  /** marketing headline for the hero */
+  headline: string;
   tagline: string;
   location: string;
   email: string;

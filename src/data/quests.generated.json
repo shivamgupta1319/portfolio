@@ -1,5 +1,29 @@
 [
   {
+    "name": "dividend",
+    "description": "Indian dividend ex-date screener with Groww MTF leverage, position sizing and honest net-of-cost economics",
+    "language": "Python",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/dividend",
+    "homepage": "",
+    "pushedAt": "2026-09-10T09:33:55Z",
+    "updatedAt": "2026-09-10T09:33:59Z"
+  },
+  {
+    "name": "market-news",
+    "description": "Real-time market news aggregation with AI enrichment for Indian equities, US equities and crypto",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/market-news",
+    "homepage": "",
+    "pushedAt": "2026-09-10T08:23:25Z",
+    "updatedAt": "2026-09-10T08:23:41Z"
+  },
+  {
     "name": "youtube-auto-stream",
     "description": "Autonomous anime self-improvement YouTube system (AI-assisted, human-approved)",
     "language": "Python",
@@ -8,20 +32,20 @@
     "isPrivate": true,
     "url": "https://github.com/shivamgupta1319/youtube-auto-stream",
     "homepage": "",
-    "pushedAt": "2026-07-12T18:20:43Z",
-    "updatedAt": "2026-07-12T18:20:55Z"
+    "pushedAt": "2026-09-10T06:26:44Z",
+    "updatedAt": "2026-09-10T06:26:51Z"
   },
   {
-    "name": "stocksafe-bundles",
-    "description": "",
-    "language": "TypeScript",
+    "name": "strategy-backtest",
+    "description": "Intraday NSE strategy research and backtesting, net of real Dhan charges",
+    "language": "Python",
     "topics": [],
-    "stars": 1,
+    "stars": 0,
     "isPrivate": true,
-    "url": "https://github.com/shivamgupta1319/stocksafe-bundles",
+    "url": "https://github.com/shivamgupta1319/strategy-backtest",
     "homepage": "",
-    "pushedAt": "2026-07-12T14:42:50Z",
-    "updatedAt": "2026-07-06T12:51:22Z"
+    "pushedAt": "2026-09-10T06:26:35Z",
+    "updatedAt": "2026-09-10T06:26:40Z"
   },
   {
     "name": "programmatic-SEO-engine",
@@ -32,8 +56,8 @@
     "isPrivate": true,
     "url": "https://github.com/shivamgupta1319/programmatic-SEO-engine",
     "homepage": "",
-    "pushedAt": "2026-07-12T10:11:33Z",
-    "updatedAt": "2026-07-12T10:11:38Z"
+    "pushedAt": "2026-09-10T06:26:27Z",
+    "updatedAt": "2026-09-10T06:26:32Z"
   },
   {
     "name": "resite",
@@ -44,8 +68,188 @@
     "isPrivate": true,
     "url": "https://github.com/shivamgupta1319/resite",
     "homepage": "",
-    "pushedAt": "2026-07-11T10:36:45Z",
-    "updatedAt": "2026-07-11T10:36:53Z"
+    "pushedAt": "2026-09-10T06:26:17Z",
+    "updatedAt": "2026-09-10T06:26:00Z"
+  },
+  {
+    "name": "repo-intelligence",
+    "description": "Understand any cross-cutting concern in a codebase, with every claim cited to file:line",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/repo-intelligence",
+    "homepage": "",
+    "pushedAt": "2026-09-10T06:25:44Z",
+    "updatedAt": "2026-09-10T06:25:51Z"
+  },
+  {
+    "name": "musafir-backend",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/musafir-backend",
+    "homepage": "",
+    "pushedAt": "2026-09-10T06:25:38Z",
+    "updatedAt": "2026-09-10T06:25:43Z"
+  },
+  {
+    "name": "AI-TRADING-BRAIN",
+    "description": "Research platform for Indian equity swing trading whose primary job is to honestly say when an idea does not work.",
+    "language": "Python",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/AI-TRADING-BRAIN",
+    "homepage": "",
+    "pushedAt": "2026-09-10T06:25:20Z",
+    "updatedAt": "2026-09-10T06:25:25Z"
+  },
+  {
+    "name": "AI-ROUTER",
+    "description": "Self-hosted OpenAI-compatible gateway over free-tier AI/ML providers, with health-first routing and a model quality scorecard",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/AI-ROUTER",
+    "homepage": "",
+    "pushedAt": "2026-09-10T06:25:14Z",
+    "updatedAt": "2026-09-10T06:25:22Z"
+  },
+  {
+    "name": "indian-ipo",
+    "description": "Indian IPO tracker: NSE subscription, grey-market premium and RHP fundamentals, on a published rubric that refuses to score what it cannot measure",
+    "language": "HTML",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/indian-ipo",
+    "homepage": "",
+    "pushedAt": "2026-09-10T05:48:27Z",
+    "updatedAt": "2026-09-10T05:48:37Z"
+  },
+  {
+    "name": "musafir",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/musafir",
+    "homepage": "",
+    "pushedAt": "2026-09-09T10:10:27Z",
+    "updatedAt": "2026-09-09T10:11:58Z"
+  },
+  {
+    "name": "pseo-test",
+    "description": "",
+    "language": null,
+    "topics": [],
+    "stars": 0,
+    "isPrivate": false,
+    "url": "https://github.com/shivamgupta1319/pseo-test",
+    "homepage": "",
+    "pushedAt": "2026-09-01T06:12:36Z",
+    "updatedAt": "2026-06-23T18:28:35Z"
+  },
+  {
+    "name": "portfolio",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": false,
+    "url": "https://github.com/shivamgupta1319/portfolio",
+    "homepage": "",
+    "pushedAt": "2026-08-27T08:35:19Z",
+    "updatedAt": "2026-08-27T08:37:19Z"
+  },
+  {
+    "name": "project-hub",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/project-hub",
+    "homepage": "",
+    "pushedAt": "2026-08-05T07:27:43Z",
+    "updatedAt": "2026-08-05T07:28:00Z"
+  },
+  {
+    "name": "multi-agent-coding-platform",
+    "description": "Planner decomposes a feature, specialist agents build in parallel, reviewer integrates",
+    "language": null,
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/multi-agent-coding-platform",
+    "homepage": "",
+    "pushedAt": "2026-08-04T11:50:56Z",
+    "updatedAt": "2026-08-04T11:51:23Z"
+  },
+  {
+    "name": "ai-devops-engineer",
+    "description": "Generate reviewable deployment infra: Docker, Nginx, SSL, CI/CD, rollback",
+    "language": null,
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/ai-devops-engineer",
+    "homepage": "",
+    "pushedAt": "2026-08-04T11:50:52Z",
+    "updatedAt": "2026-08-04T11:51:07Z"
+  },
+  {
+    "name": "offline-enterprise-rag",
+    "description": "Air-gapped Q&A over enterprise documents: PDFs, Excel, email, scans, code",
+    "language": null,
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/offline-enterprise-rag",
+    "homepage": "",
+    "pushedAt": "2026-08-04T11:50:48Z",
+    "updatedAt": "2026-08-04T11:51:31Z"
+  },
+  {
+    "name": "ai-architecture-generator",
+    "description": "Describe a product, get architecture, ER diagram, API surface, and folder structure",
+    "language": null,
+    "topics": [],
+    "stars": 0,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/ai-architecture-generator",
+    "homepage": "",
+    "pushedAt": "2026-08-04T11:50:42Z",
+    "updatedAt": "2026-08-04T11:50:58Z"
+  },
+  {
+    "name": "stocksafe-bundles",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": true,
+    "url": "https://github.com/shivamgupta1319/stocksafe-bundles",
+    "homepage": "",
+    "pushedAt": "2026-07-31T16:06:21Z",
+    "updatedAt": "2026-07-06T12:51:22Z"
+  },
+  {
+    "name": "smart-trading",
+    "description": "",
+    "language": "TypeScript",
+    "topics": [],
+    "stars": 1,
+    "isPrivate": false,
+    "url": "https://github.com/shivamgupta1319/smart-trading",
+    "homepage": "",
+    "pushedAt": "2026-07-15T11:11:43Z",
+    "updatedAt": "2026-07-06T12:51:20Z"
   },
   {
     "name": "trip",
@@ -58,18 +262,6 @@
     "homepage": "https://trip-eight-omega.vercel.app",
     "pushedAt": "2026-07-07T11:29:47Z",
     "updatedAt": "2026-07-07T11:29:51Z"
-  },
-  {
-    "name": "portfolio",
-    "description": "",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 1,
-    "isPrivate": false,
-    "url": "https://github.com/shivamgupta1319/portfolio",
-    "homepage": "",
-    "pushedAt": "2026-07-06T11:21:50Z",
-    "updatedAt": "2026-07-06T12:51:17Z"
   },
   {
     "name": "shivamgupta1319",
@@ -85,18 +277,6 @@
     "homepage": "https://github.com/shivamgupta1319",
     "pushedAt": "2026-07-06T09:45:59Z",
     "updatedAt": "2026-07-06T09:46:03Z"
-  },
-  {
-    "name": "smart-trading",
-    "description": "",
-    "language": "TypeScript",
-    "topics": [],
-    "stars": 1,
-    "isPrivate": false,
-    "url": "https://github.com/shivamgupta1319/smart-trading",
-    "homepage": "",
-    "pushedAt": "2026-07-02T15:28:41Z",
-    "updatedAt": "2026-07-06T12:51:20Z"
   },
   {
     "name": "UACE",
@@ -121,18 +301,6 @@
     "homepage": "",
     "pushedAt": "2026-06-26T07:35:24Z",
     "updatedAt": "2026-06-26T07:35:29Z"
-  },
-  {
-    "name": "pseo-test",
-    "description": "",
-    "language": null,
-    "topics": [],
-    "stars": 0,
-    "isPrivate": false,
-    "url": "https://github.com/shivamgupta1319/pseo-test",
-    "homepage": "",
-    "pushedAt": "2026-06-25T16:34:29Z",
-    "updatedAt": "2026-06-23T18:28:35Z"
   },
   {
     "name": "shivam_shukla",

@@ -4,7 +4,9 @@ export const profile: Profile = {
   name: "Shivam Gupta",
   handle: "shivamgupta1319",
   role: "Full-Stack Software Engineer",
-  tagline: "I build systems that think, trade, and communicate.",
+  headline: "Full-Stack Engineer · AI & FinTech systems",
+  tagline:
+    "I build systems that think, trade and communicate — and ship them to production.",
   location: "Jaipur, India",
   email: "profile.shivam@gmail.com",
   github: "https://github.com/shivamgupta1319",
@@ -22,3 +24,11 @@ export const profile: Profile = {
   xp: 7200,
   xpForNext: 9000,
 };
+
+/** Hero proof line. Order matters; the hero shows the first three. */
+export const proofPoints: string[] = [
+  "3 live SaaS products",
+  "2 published npm packages",
+  "4+ years shipping",
+  "80+ repositories",
+];

@@ -32,5 +32,8 @@ export function recordToQuest(r: RepoRecord): Quest {
     questType: "side",
     xpReward: XP_BY_RANK.B,
     featured: false,
+    category: [],
+    year: new Date(r.pushedAt).getUTCFullYear(),
+    searchIndex: "",
   };
 }
