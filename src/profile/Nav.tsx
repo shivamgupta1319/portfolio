@@ -53,8 +53,12 @@ export default function Nav() {
 
         <div className="ml-auto flex items-center gap-2">
           <XpBadge compact />
-          <ResumeLink className="hidden !py-1.5 !text-xs sm:inline-flex" />
-          <ModeSwitch className="hidden md:inline-flex" />
+          <div className="hidden sm:block">
+            <ResumeLink size="sm" />
+          </div>
+          <div className="hidden md:block">
+            <ModeSwitch />
+          </div>
           <ThemeToggle />
           <button
             ref={btnRef}
@@ -92,7 +96,7 @@ export default function Nav() {
         </ul>
         <div className="mt-3 flex flex-wrap gap-2">
           <ResumeLink className="flex-1" />
-          <ModeSwitch className="flex-1 justify-center !py-2.5" />
+          <ModeSwitch className="flex-1 justify-center py-2.5" />
         </div>
       </div>
     </header>

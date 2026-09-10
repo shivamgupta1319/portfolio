@@ -4,7 +4,7 @@ import ResumeLink from "./ResumeLink";
 
 export default function Hero() {
   return (
-    <div id="top" className="grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1fr_auto]">
+    <div id="top" className="grid items-center gap-8 py-12 sm:py-20 lg:grid-cols-[1fr_auto] lg:gap-10">
       <div className="flex flex-col gap-5">
         <span aria-hidden className="game-sub">
           player profile · lvl {profile.level}
@@ -44,8 +44,8 @@ export default function Hero() {
       </div>
 
       {profile.photo && (
-        <div className="justify-self-center lg:justify-self-end">
-          <div className="relative h-40 w-40 overflow-hidden rounded-2xl border border-border bg-bg-2 shadow-[0_24px_80px_-30px_rgba(99,102,241,0.6)] sm:h-52 sm:w-52">
+        <div className="order-first justify-self-start lg:order-none lg:justify-self-end">
+          <div className="relative h-28 w-28 overflow-hidden rounded-2xl border border-border bg-bg-2 shadow-[0_24px_80px_-30px_rgba(99,102,241,0.6)] sm:h-52 sm:w-52">
             <Image
               src={profile.photo}
               alt={`${profile.name}, ${profile.role}`}
