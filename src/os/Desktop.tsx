@@ -9,6 +9,7 @@ import { APP_ORDER, APP_META } from "./apps.meta";
 import Hud from "@/hud/Hud";
 import { useSfx } from "@/sound/useSfx";
 import { useOsShortcuts } from "./useOsShortcuts";
+import ExitToProfile from "./ExitToProfile";
 import dynamic from "next/dynamic";
 
 // Three.js is heavy — load it client-side, only after boot.
@@ -36,7 +37,8 @@ function TopBar() {
         <span className="text-accent-2">▣</span>
         <span className="font-semibold tracking-wide">shivamOS</span>
         <span className="hidden text-fg-mute sm:inline">·</span>
-        <span className="hidden text-fg-dim sm:inline">v2.0</span>
+        <span className="hidden text-fg-dim sm:inline">v3.0</span>
+        <ExitToProfile className="ml-2" />
       </div>
       <Hud />
     </div>
