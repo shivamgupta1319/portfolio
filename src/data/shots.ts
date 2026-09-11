@@ -4,14 +4,19 @@
  */
 export const SHOTS = new Set<string>([
   "AI-ROUTER",
+  "crypto-ai",
   "dividend",
+  "indian-ipo",
   "investment",
   "investment-plan",
   "market-news",
   "programmatic-SEO-engine",
+  "repo-intelligence",
   "resite",
+  "smart-trading",
   "stocksafe-bundles",
   "strategy-backtest",
   "streamverse",
   "typezap",
+  "youtube-auto-stream",
 ]);

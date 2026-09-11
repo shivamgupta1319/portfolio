@@ -21,5 +21,55 @@
       "input": "input",
       "valueEnv": "AI_ADMIN_TOKEN"
     }
+  },
+  "repo-intelligence": {
+    "url": "http://localhost:18772",
+    "authEnv": "SHOTS_WORKPC_AUTH",
+    "steps": [
+      {
+        "wait": 4000
+      },
+      {
+        "clickText": "OmniRoute"
+      },
+      {
+        "wait": 2500
+      },
+      {
+        "type": "textarea",
+        "value": "explain authentication"
+      },
+      {
+        "press": "Enter"
+      },
+      {
+        "wait": 25000
+      },
+      {
+        "clickText": "Ranked"
+      },
+      {
+        "wait": 2000
+      },
+      {
+        "hideText": "synthesis failed"
+      }
+    ]
+  },
+  "indian-ipo": {
+    "url": "http://localhost:15176",
+    "authEnv": "SHOTS_WORKPC_AUTH"
+  },
+  "smart-trading": {
+    "url": "http://localhost:15173/backtesting",
+    "authEnv": "SHOTS_WORKPC_AUTH"
+  },
+  "crypto-ai": {
+    "url": "http://localhost:15190",
+    "authEnv": "SHOTS_WORKPC_AUTH"
+  },
+  "youtube-auto-stream": {
+    "url": "http://localhost:18770",
+    "authEnv": "SHOTS_WORKPC_AUTH"
   }
 }

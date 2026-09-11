@@ -6,7 +6,10 @@
 // behind HTTP Basic Auth with "user:pass" taken from that env var; a { file }
 // entry is a local image rendered cover-fit into the same frame. An optional
 // { form: { input, valueEnv, submit } } types a secret from env into a field
-// (e.g. an admin token) before the shot — the value never touches the repo. Existing files are skipped unless
+// (e.g. an admin token) before the shot — the value never touches the repo.
+// { steps: [...] } runs simple interactions first: { wait: ms }, { click: css },
+// { clickText: "label" }, { type: css, value | valueEnv }, { press: "Enter" },
+// { hideText: "…" } (blank a transient banner for the shot). Existing files are skipped unless
 // --force is passed. Afterwards src/data/shots.ts is regenerated from the
 // files that exist, so the site picks the covers up automatically.
 //
@@ -84,7 +87,40 @@ async function dismissBanners(page) {
     .catch(() => {});
 }
 
-async function shootUrl(page, url, out, authEnv, form) {
+/** Generic interaction steps run after navigation (see shots.config.json). */
+async function runSteps(page, steps) {
+  for (const step of steps) {
+    if (step.wait) await new Promise((r) => setTimeout(r, step.wait));
+    if (step.click) await page.click(step.click);
+    if (step.clickText) {
+      const ok = await page.evaluate((text) => {
+        const el = [...document.querySelectorAll("button, a, [role=button], [role=tab]")].find((e) =>
+          e.textContent.trim().includes(text),
+        );
+        if (el) el.click();
+        return !!el;
+      }, step.clickText);
+      if (!ok) throw new Error(`clickText: nothing matches "${step.clickText}"`);
+    }
+    if (step.type) {
+      const value = step.valueEnv ? process.env[step.valueEnv] : step.value;
+      if (!value) throw new Error(`type: no value for ${step.type}`);
+      await page.waitForSelector(step.type, { timeout: 10_000 });
+      await page.type(step.type, value);
+    }
+    if (step.press) await page.keyboard.press(step.press);
+    if (step.hideText) {
+      // Hide the innermost element containing this text (e.g. a transient error banner).
+      await page.evaluate((text) => {
+        const all = [...document.querySelectorAll("body *")].filter((e) => e.textContent.includes(text));
+        const innermost = all.filter((e) => ![...e.children].some((c) => c.textContent.includes(text)));
+        for (const el of innermost) el.style.visibility = "hidden";
+      }, step.hideText);
+    }
+  }
+}
+
+async function shootUrl(page, url, out, authEnv, form, steps) {
   if (authEnv) {
     const cred = process.env[authEnv];
     if (!cred) throw new Error(`env ${authEnv} not set (expected user:pass)`);
@@ -102,6 +138,7 @@ async function shootUrl(page, url, out, authEnv, form) {
     else await page.keyboard.press("Enter");
     await page.waitForNetworkIdle({ timeout: NAV_TIMEOUT }).catch(() => {});
   }
+  if (steps) await runSteps(page, steps);
   await new Promise((r) => setTimeout(r, SETTLE_MS));
   await dismissBanners(page);
   await page.screenshot({ path: out, type: "webp", quality: QUALITY });
@@ -170,7 +207,7 @@ async function main() {
       await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "dark" }]);
       try {
         if (typeof src === "string") await shootUrl(page, src, out);
-        else if (src.url) await shootUrl(page, src.url, out, src.authEnv, src.form);
+        else if (src.url) await shootUrl(page, src.url, out, src.authEnv, src.form, src.steps);
         else await shootFile(page, src.file, out);
         console.log(`[shots] ✓ ${id}`);
         ok++;
