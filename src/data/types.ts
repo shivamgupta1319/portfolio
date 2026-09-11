@@ -70,7 +70,7 @@ export interface Quest {
   year?: number;
   /** featured ordering — lower first; undefined sorts last */
   order?: number;
-  /** derived: `/shots/<id>.webp` when listed in shots.ts */
+  /** derived: `/shots/<id>.jpg` when listed in shots.ts */
   screenshot?: string;
   status?: ProjectStatus;
   /** derived: lower-cased haystack for client-side search */

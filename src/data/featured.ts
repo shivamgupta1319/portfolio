@@ -38,7 +38,7 @@ export const featuredProducts: FeaturedProduct[] = [
   },
   {
     id: "stocksafe",
-    name: "StockSafe Bundles",
+    name: "Stock Safe Bundles",
     domain: "apps.shopify.com",
     href: "https://apps.shopify.com/stocksafe-bundles",
     tagline: "Shopify app — truthful bundle inventory across locations.",
@@ -47,7 +47,7 @@ export const featuredProducts: FeaturedProduct[] = [
   },
   {
     id: "ai-router",
-    name: "AI-ROUTER",
+    name: "AI Router",
     domain: "ai.pseo.cloud",
     href: "https://ai.pseo.cloud",
     tagline: "OpenAI-compatible gateway over 8 providers, serving 5 live projects.",

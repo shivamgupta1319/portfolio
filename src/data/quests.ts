@@ -16,7 +16,7 @@ const generated = generatedJson as RepoRecord[];
 const RANK_ORDER: Record<Rank, number> = { S: 0, A: 1, B: 2 };
 
 /** How many featured projects the profile hero grid shows. */
-export const FEATURED_TOP_N = 4;
+export const FEATURED_TOP_N = 6;
 
 function byOrderThenRank(a: Quest, b: Quest): number {
   const ao = a.order ?? Number.POSITIVE_INFINITY;
@@ -29,7 +29,7 @@ function byOrderThenRank(a: Quest, b: Quest): number {
 function withDerived(q: Quest): Quest {
   const year = q.year ?? new Date(q.pushedAt).getUTCFullYear();
   const screenshot =
-    q.screenshot ?? (SHOTS.has(q.id) ? `/shots/${q.id}.webp` : undefined);
+    q.screenshot ?? (SHOTS.has(q.id) ? `/shots/${q.id}.jpg` : undefined);
   const searchIndex = [
     q.title,
     q.summary,

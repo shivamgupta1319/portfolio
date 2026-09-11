@@ -30,7 +30,7 @@ export default function Hero() {
 
         <div className="mt-2 flex flex-col gap-3 sm:flex-row">
           <a
-            href="#projects"
+            href="#featured"
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-bg-2 px-4 py-2.5 text-sm font-medium text-fg transition hover:border-border-strong"
           >
             View projects <span aria-hidden>↓</span>

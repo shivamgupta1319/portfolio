@@ -6,11 +6,6 @@ function hue(id: string): number {
   return h % 360;
 }
 
-function initials(title: string): string {
-  const words = title.replace(/[^\p{L}\p{N} ]/gu, " ").trim().split(/\s+/);
-  return (words.length > 1 ? words[0][0] + words[1][0] : words[0].slice(0, 2)).toUpperCase();
-}
-
 /** Screenshot when one exists, otherwise a deterministic gradient cover. */
 export default function ProjectCover({
   quest,
@@ -51,8 +46,8 @@ export default function ProjectCover({
         className="absolute -right-8 -top-8 h-40 w-40 rounded-full blur-2xl"
         style={{ background: `hsl(${(h + 60) % 360} 80% 55% / 0.35)` }}
       />
-      <span className="font-mono text-3xl font-semibold tracking-tight text-white/70">
-        {initials(quest.title)}
+      <span className="max-w-[85%] text-center font-mono text-xl font-semibold leading-snug tracking-tight text-white/80 sm:text-2xl">
+        {quest.title}
       </span>
     </div>
   );

@@ -17,9 +17,9 @@ export default function ProfilePage() {
       <main id="main" className="mx-auto max-w-6xl px-4 sm:px-6">
         <Hero />
         <Featured />
-        <Projects />
         <Experience />
         <Skills />
+        <Projects />
         <Contact />
       </main>
       <Footer />
