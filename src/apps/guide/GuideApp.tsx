@@ -8,9 +8,9 @@ import type { AppId } from "@/os/types";
 const APP_BLURB: Record<AppId, string> = {
   guide: "This manual.",
   terminal: "A real command line — type help, or an app name to open it.",
-  character: "About me: a character sheet with skill stat-bars and traits.",
-  questlog: "Projects as ranked quests (S/A/B) with live links and stacks.",
-  skilltree: "My tech stack as an unlockable skill tree.",
+  character: "About me — a character sheet with stat bars and traits.",
+  questlog: "All projects as ranked quests (S/A/B) with live links and stacks.",
+  skilltree: "My tech stack drawn as a skill tree.",
   campaign: "Experience & education as a campaign timeline.",
   contact: "Ways to reach me — copy my email or grab my résumé.",
 };
@@ -52,9 +52,11 @@ export default function GuideApp() {
         </h2>
       </div>
       <p className="mt-2">
-        This portfolio is a tiny operating system. Everything is an app you can
-        open, drag, resize and close — explore however you like. Here&apos;s the
-        full tour.
+        Desktop mode turns the portfolio into a tiny operating system. Everything
+        is an app you can open, drag, resize and close — explore however you
+        like. Prefer a normal page? Use <span className="font-mono text-fg">‹ Profile</span>{" "}
+        in the top bar (or type <span className="font-mono text-green">home</span> in
+        the terminal) at any time.
       </p>
 
       <Section title="◆ Open & manage apps">
@@ -134,12 +136,13 @@ export default function GuideApp() {
             <span className="text-green">social</span>{" "}
             <span className="text-fg-mute">— my links</span> ·{" "}
             <span className="text-green">clear</span> ·{" "}
-            <span className="text-green">exit</span>
+            <span className="text-green">exit</span> ·{" "}
+            <span className="text-green">home</span>
           </li>
         </ul>
         <p className="mt-2 text-xs">
           Tip: a bare app name works too — e.g.{" "}
-          <span className="font-mono text-cyan">quests</span>,{" "}
+          <span className="font-mono text-cyan">projects</span>,{" "}
           <span className="font-mono text-cyan">skills</span>,{" "}
           <span className="font-mono text-cyan">about</span>.
         </p>
@@ -188,7 +191,7 @@ export default function GuideApp() {
           onClick={() => openApp("questlog")}
           className="rounded-lg border border-amber/40 bg-amber/10 px-3 py-2 font-mono text-xs text-amber transition hover:bg-amber/20"
         >
-          ✦ jump to the Quest Log
+          ✦ open Projects
         </button>
         <button
           onClick={() => openApp("contact")}

@@ -1,0 +1,71 @@
+{
+  "_comment": "quest id -> live URL (captured headless), { url, authEnv?, form? } for pages needing auth (secrets come from env, never committed), or { file } (local image converted). Skipped on purpose: trip (sign-in page), lacs-v2 (live dashboard with user names). Run: npm run shots",
+  "programmatic-SEO-engine": "https://pseo.cloud",
+  "resite": "https://resite.live",
+  "stocksafe-bundles": "https://apps.shopify.com/stocksafe-bundles",
+  "typezap": "https://emmple.com",
+  "streamverse": "https://streamverse-delta.vercel.app",
+  "investment": "https://investment-alpha-seven.vercel.app",
+  "investment-plan": "https://finpilot.netlify.app",
+  "market-news": {
+    "file": "/home/shivam/workspace/market-news/docs/images/feed.jpg"
+  },
+  "dividend": {
+    "file": "/home/shivam/workspace/dividend/docs/screenshot.png"
+  },
+  "_tunnel": "work-pc apps: ssh -f -N -L 18772:127.0.0.1:8772 -L 15176:127.0.0.1:5176 -L 18792:127.0.0.1:8792 -L 15173:127.0.0.1:5173 -L 15190:127.0.0.1:5190 -L 18770:127.0.0.1:8770 -L 18771:127.0.0.1:8771 work-pc ; entries with authEnv read user:pass from that env var (HTTP Basic Auth) \u2014 never commit credentials",
+  "strategy-backtest": "http://localhost:18792",
+  "AI-ROUTER": {
+    "url": "https://ai.pseo.cloud",
+    "form": {
+      "input": "input",
+      "valueEnv": "AI_ADMIN_TOKEN"
+    }
+  },
+  "repo-intelligence": {
+    "url": "http://localhost:18772",
+    "authEnv": "SHOTS_WORKPC_AUTH",
+    "steps": [
+      {
+        "wait": 4000
+      },
+      {
+        "clickText": "OmniRoute"
+      },
+      {
+        "wait": 2500
+      },
+      {
+        "type": "textarea",
+        "value": "explain authentication"
+      },
+      {
+        "press": "Enter"
+      },
+      {
+        "wait": 25000
+      },
+      {
+        "clickText": "Ranked"
+      },
+      {
+        "wait": 2000
+      },
+      {
+        "hideText": "synthesis failed"
+      }
+    ]
+  },
+  "indian-ipo": {
+    "url": "http://localhost:15176",
+    "authEnv": "SHOTS_WORKPC_AUTH"
+  },
+  "smart-trading": {
+    "url": "http://localhost:15173/backtesting",
+    "authEnv": "SHOTS_WORKPC_AUTH"
+  },
+  "crypto-ai": {
+    "url": "http://localhost:15190",
+    "authEnv": "SHOTS_WORKPC_AUTH"
+  }
+}

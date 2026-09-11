@@ -36,6 +36,8 @@ export default function Taskbar() {
   const restore = useOsStore((s) => s.restore);
   const soundOn = usePrefs((s) => s.soundOn);
   const toggleSound = usePrefs((s) => s.toggleSound);
+  const cursorFx = usePrefs((s) => s.cursorFx);
+  const setCursorFx = usePrefs((s) => s.setCursorFx);
   const sfx = useSfx();
   const [startOpen, setStartOpen] = useState(false);
 
@@ -113,6 +115,20 @@ export default function Taskbar() {
         }`}
       >
         <SoundIcon on={soundOn} />
+      </button>
+      <button
+        onClick={() => {
+          setCursorFx(!cursorFx);
+          sfx("click");
+        }}
+        aria-label={cursorFx ? "Disable game cursor" : "Enable game cursor"}
+        aria-pressed={cursorFx}
+        title="Game-style cursor"
+        className={`hidden h-7 w-7 place-items-center rounded-md border border-border bg-bg-2 font-mono text-xs transition hover:text-fg [@media(pointer:fine)]:grid ${
+          cursorFx ? "text-cyan" : "text-fg-dim"
+        }`}
+      >
+        <span aria-hidden>⌖</span>
       </button>
       <ThemeToggle className="h-7 w-7" />
       <Clock />

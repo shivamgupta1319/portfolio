@@ -1,6 +1,8 @@
 import { profile } from "@/data/profile";
 import { stats, skills } from "@/data/skills";
 import { experience } from "@/data/experience";
+import { featuredQuests } from "@/data/quests";
+import { PROJECT_CATEGORY_LABELS } from "@/data/types";
 import { SITE_URL } from "@/lib/site";
 
 /**
@@ -20,6 +22,9 @@ export default function JsonLd() {
   const knowsAbout = [
     ...stats.map((s) => s.label),
     ...skills.map((s) => s.label),
+    "Retrieval-Augmented Generation",
+    "LLM Evaluation",
+    "Model Context Protocol",
   ];
 
   // Verified identity URLs across the web. Placeholders (empty strings) are
@@ -64,7 +69,7 @@ export default function JsonLd() {
     alternateName: profile.handle,
     url: SITE_URL,
     jobTitle: profile.role,
-    description: profile.tagline,
+    description: `${profile.headline}. ${profile.tagline}`,
     email: `mailto:${profile.email}`,
     image,
     address: {
@@ -78,14 +83,29 @@ export default function JsonLd() {
     ...(alumniOf && { alumniOf }),
   };
 
+  // Featured projects with a public URL, as works authored by this person.
+  const works = featuredQuests
+    .filter((q) => q.liveUrl || q.npmUrl)
+    .map((q) => ({
+      "@type": "SoftwareApplication",
+      "@id": `${SITE_URL}/#project-${q.id}`,
+      name: q.title,
+      description: q.summary ?? q.description,
+      url: q.liveUrl ?? q.npmUrl,
+      applicationCategory: q.category.map((c) => PROJECT_CATEGORY_LABELS[c]).join(", "),
+      author: { "@id": personId },
+    }));
+
   const graph = [
     person,
+    ...works,
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: "shivamOS",
-      description: `${profile.name} — ${profile.role}. ${profile.tagline}`,
+      name: profile.name,
+      alternateName: "shivamOS",
+      description: `${profile.name} — ${profile.headline}. ${profile.tagline}`,
       inLanguage: "en",
       author: { "@id": personId },
       publisher: { "@id": personId },
@@ -94,7 +114,7 @@ export default function JsonLd() {
       "@type": "ProfilePage",
       "@id": `${SITE_URL}/#profilepage`,
       url: SITE_URL,
-      name: `${profile.name} — ${profile.role}`,
+      name: `${profile.name} — ${profile.headline}`,
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": personId },
       mainEntity: { "@id": personId },

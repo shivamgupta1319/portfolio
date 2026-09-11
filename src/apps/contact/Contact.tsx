@@ -2,38 +2,7 @@
 
 import { useState } from "react";
 import { profile } from "@/data/profile";
-
-interface Channel {
-  label: string;
-  value: string;
-  href: string;
-  glyph: string;
-  accent: string;
-}
-
-const channels: Channel[] = [
-  {
-    label: "github",
-    value: profile.githubUser,
-    href: profile.github,
-    glyph: "⌥",
-    accent: "text-fg",
-  },
-  {
-    label: "linkedin",
-    value: "in/myselfshivam",
-    href: profile.linkedin,
-    glyph: "in",
-    accent: "text-cyan",
-  },
-  {
-    label: "location",
-    value: profile.location,
-    href: `https://maps.google.com/?q=${encodeURIComponent(profile.location)}`,
-    glyph: "◉",
-    accent: "text-green",
-  },
-];
+import { channels } from "@/data/contact";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -50,7 +19,7 @@ export default function Contact() {
 
   return (
     <div className="os-scroll h-full overflow-auto bg-bg/30 p-5">
-      <h2 className="mb-1 font-mono text-sm text-cyan">✉ COMMS LINK</h2>
+      <h2 className="mb-1 font-mono text-sm text-cyan">✉ Contact · comms link</h2>
       <p className="mb-5 font-mono text-xs text-fg-mute">
         open a channel — I&apos;m available for opportunities.
       </p>

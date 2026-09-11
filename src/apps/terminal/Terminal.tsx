@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useOsStore } from "@/os/store";
 import { runCommand, type OutLine, type Tone } from "./commands";
 
@@ -21,12 +22,13 @@ const toneClass: Record<Tone, string> = {
 
 const BANNER: OutLine[] = [
   { text: "shivamOS terminal — type `help` for commands", tone: "accent" },
-  { text: "new here? type `guide` · try: whoami · quests · skills", tone: "dim" },
+  { text: "new here? type `guide` · try: whoami · projects · skills · home", tone: "dim" },
 ];
 
 export default function Terminal({ windowId }: { windowId: string }) {
   const openApp = useOsStore((s) => s.openApp);
   const closeWindow = useOsStore((s) => s.closeWindow);
+  const router = useRouter();
   const isMobile = windowId.startsWith("mobile-");
   const [entries, setEntries] = useState<Entry[]>([{ input: "", output: BANNER }]);
   const [value, setValue] = useState("");
@@ -50,6 +52,7 @@ export default function Terminal({ windowId }: { windowId: string }) {
       openApp,
       clear: () => setEntries([]),
       close: () => closeWindow(windowId),
+      exitToProfile: () => router.push("/"),
       isMobile,
     });
     // `clear` empties entries inside runCommand; only append when it didn't.

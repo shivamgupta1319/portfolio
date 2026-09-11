@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:text": "! grep -rnE 'text-\\[(8|9|10|11)px\\]' src",
-    "fetch:github": "node scripts/fetch-github.mjs"
+    "fetch:github": "node scripts/fetch-github.mjs",
+    "shots": "node scripts/capture-shots.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -28,6 +29,7 @@
     "@types/three": "^0.169.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "puppeteer-core": "^25.10.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

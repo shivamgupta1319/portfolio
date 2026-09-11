@@ -12,6 +12,8 @@ export interface CmdCtx {
   clear: () => void;
   /** close this terminal window (desktop only) */
   close: () => void;
+  /** leave desktop mode for the profile page */
+  exitToProfile: () => void;
   isMobile: boolean;
 }
 
@@ -31,7 +33,6 @@ const APP_ALIASES: Record<string, AppId> = {
   terminal: "terminal",
   about: "character",
   character: "character",
-  profile: "character",
   quests: "questlog",
   questlog: "questlog",
   projects: "questlog",
@@ -140,6 +141,14 @@ export const COMMANDS: Record<string, Command> = {
       return [];
     },
   },
+  home: {
+    usage: "home",
+    desc: "leave desktop mode → profile page",
+    run: (_a, ctx) => {
+      ctx.exitToProfile();
+      return [line("returning to the profile page…", "green")];
+    },
+  },
   sudo: {
     usage: "sudo",
     desc: "nice try",
@@ -152,7 +161,7 @@ export function runCommand(input: string, ctx: CmdCtx): OutLine[] {
   const name = (parts[0] ?? "").toLowerCase();
   if (!name) return [];
 
-  const cmd = COMMANDS[name];
+  const cmd = COMMANDS[name] ?? (name === "profile" ? COMMANDS.home : undefined);
   if (cmd) return cmd.run(parts.slice(1), ctx);
 
   // forgiving: a bare app name just opens that app

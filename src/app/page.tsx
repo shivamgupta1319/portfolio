@@ -1,22 +1,14 @@
-"use client";
+import JsonLd from "@/seo/JsonLd";
+import ProfilePage from "@/profile/ProfilePage";
+import LegacyDeepLink from "@/profile/LegacyDeepLink";
 
-import { useOsStore } from "@/os/store";
-import { useMediaQuery } from "@/lib/useMediaQuery";
-import Desktop from "@/os/Desktop";
-import MobileShell from "@/mobile/MobileShell";
-import BootSequence from "@/boot/BootSequence";
-import CustomCursor from "@/cursor/CustomCursor";
-import SeoContent from "@/seo/SeoContent";
-
+/** `/` — the recruiter-friendly profile page. Server-rendered into static HTML. */
 export default function Home() {
-  const booted = useOsStore((s) => s.booted);
-  const isMobile = useMediaQuery("(max-width: 767px)");
   return (
-    <main id="main" className="relative h-full w-full select-none">
-      <SeoContent />
-      {isMobile ? <MobileShell /> : <Desktop />}
-      {!booted && <BootSequence />}
-      <CustomCursor />
-    </main>
+    <>
+      <JsonLd />
+      <ProfilePage />
+      <LegacyDeepLink />
+    </>
   );
 }

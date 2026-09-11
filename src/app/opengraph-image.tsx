@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const dynamic = "force-static";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Shivam Gupta — shivamOS";
+export const alt = "Shivam Gupta — Full-Stack Engineer · AI & FinTech systems";
 
 export default function OgImage() {
   return new ImageResponse(
@@ -23,16 +23,16 @@ export default function OgImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14, color: "#818cf8", fontSize: 30 }}>
-          [ shivamOS v2.0 ]
+          [ shivamgupta.live ]
         </div>
         <div style={{ fontSize: 84, fontWeight: 800, marginTop: 24, letterSpacing: -2 }}>
           Shivam Gupta
         </div>
-        <div style={{ fontSize: 40, color: "#8b8b8e", marginTop: 8 }}>
-          Full-Stack Software Engineer
+        <div style={{ fontSize: 40, color: "#a1a1a8", marginTop: 8 }}>
+          Full-Stack Engineer · AI &amp; FinTech systems
         </div>
         <div style={{ display: "flex", gap: 16, marginTop: 40, flexWrap: "wrap" }}>
-          {["Trading Systems", "AI Agents", "Real-Time", "Shipped SaaS"].map((t) => (
+          {["3 live SaaS products", "2 npm packages", "AI · FinTech · Real-time"].map((t) => (
             <div
               key={t}
               style={{
@@ -48,7 +48,7 @@ export default function OgImage() {
           ))}
         </div>
         <div style={{ marginTop: 56, fontSize: 26, color: "#34d399" }}>
-          guest@shivamos:~$ ./explore --portfolio _
+          guest@shivamos:~$ open projects --featured _
         </div>
       </div>
     ),

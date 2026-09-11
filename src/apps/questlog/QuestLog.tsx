@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { mainQuests, sideQuests } from "@/data/quests";
-import QuestCard from "./QuestCard";
+import ProjectCard from "@/components/ProjectCard";
 
 type Filter = "main" | "side" | "all";
 
@@ -24,7 +24,7 @@ export default function QuestLog() {
       {/* header */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-panel px-4 py-3">
         <div className="flex items-baseline gap-2">
-          <span className="font-mono text-sm text-amber">✦ QUEST LOG</span>
+          <span className="font-mono text-sm text-amber">✦ Projects · quest log</span>
           <span className="font-mono text-xs text-fg-mute">
             {mainQuests.length} main · {sideQuests.length} side
           </span>
@@ -60,7 +60,7 @@ export default function QuestLog() {
             </h2>
             <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
               {mainQuests.map((q) => (
-                <QuestCard key={q.id} quest={q} variant="main" />
+                <ProjectCard key={q.id} quest={q} variant="compact" showGameMeta />
               ))}
             </div>
           </section>
@@ -73,7 +73,7 @@ export default function QuestLog() {
             </h2>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {sideQuests.map((q) => (
-                <QuestCard key={q.id} quest={q} variant="side" />
+                <ProjectCard key={q.id} quest={q} variant="compact" showGameMeta />
               ))}
             </div>
           </section>

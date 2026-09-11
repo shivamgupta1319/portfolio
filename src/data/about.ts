@@ -1,6 +1,6 @@
 export const bio: string[] = [
-  "Over 4+ years I've evolved from building web apps to architecting complex systems — finance platforms, autonomous AI agents, and real-time communication tools.",
-  "I gravitate to hard problems at the intersection of systems, AI and money: algorithmic trading engines, LLM-driven agents, and low-latency real-time infrastructure — and I ship them, from local prototypes to products live on the web.",
+  "Full-Stack Software Engineer with 4+ years shipping products end-to-end — 3 live SaaS products (pSEO.cloud, Resite.live and StockSafe Bundles on the Shopify App Store) and 2 published npm packages (StreamVerse, uace-mcp) — and core engineer on a deployed disaster-response platform running WebRTC and on-device speech recognition on field hardware with zero internet dependency.",
+  "The work I choose keeps landing where AI meets money: a code-intelligence engine measured against labelled ground truth, an OpenAI-compatible LLM gateway serving five of my own products, an LLM-tracing platform, and NSE research tools that cost trades to the paisa and publish their negative results. I build the measurement before the feature, and I ship the product around the model — not just the notebook.",
 ];
 
 export interface Trait {
@@ -13,21 +13,24 @@ export const traits: Trait[] = [
   {
     icon: "⚙",
     title: "Systems Architecture",
-    detail: "Polyglot monorepos, Docker, microservices, queue-driven workers.",
+    detail:
+      "Polyglot monorepos, Docker, queue-driven workers, offline-first sync, multi-tenant SaaS.",
   },
   {
     icon: "✦",
-    title: "AI & Automation",
-    detail: "Agents, LLM routers, MCP servers, vector memory, TTS/STT.",
+    title: "AI Engineering",
+    detail:
+      "RAG + evals, LLM gateways with typed failover, MCP servers, agents, tracing, on-device ASR.",
   },
   {
     icon: "₿",
-    title: "FinTech & Trading",
-    detail: "28+ strategies, backtesting, ML meta-labeling, live alerts.",
+    title: "FinTech & Markets",
+    detail:
+      "28+ strategies, net-of-cost backtests, IPO/dividend screeners, real-time market news.",
   },
   {
     icon: "◈",
     title: "Real-Time Systems",
-    detail: "WebRTC, Mediasoup, Socket.io, sub-second streaming.",
+    detail: "WebRTC / Mediasoup SFU, FFmpeg, Socket.io, sub-second streaming.",
   },
 ];

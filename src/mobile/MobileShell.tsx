@@ -9,6 +9,7 @@ import { useSfx } from "@/sound/useSfx";
 import { usePrefs } from "@/lib/prefsStore";
 import SoundIcon from "@/os/SoundIcon";
 import ThemeToggle from "@/theme/ThemeToggle";
+import ExitToProfile from "@/os/ExitToProfile";
 import type { AppId } from "@/os/types";
 
 function MobileHud() {
@@ -16,9 +17,7 @@ function MobileHud() {
   const toggleSound = usePrefs((s) => s.toggleSound);
   return (
     <div className="flex items-center gap-2 border-b border-border bg-bg/70 px-4 py-2 backdrop-blur-md">
-      <span className="font-mono text-xs font-semibold">
-        <span className="text-accent-2">▣</span> shivamOS
-      </span>
+      <ExitToProfile />
       <div className="flex-1">
         <XpBadge compact />
       </div>
