@@ -3,40 +3,33 @@
 import { useState } from "react";
 import { APPS } from "@/os/apps.registry";
 import { APP_ORDER, APP_META } from "@/os/apps.meta";
-import { useXpStore } from "@/hud/xpStore";
+import { useXpStore, XP } from "@/hud/xpStore";
+import XpBadge from "@/hud/XpBadge";
 import { useSfx } from "@/sound/useSfx";
-import { useOsStore } from "@/os/store";
+import { usePrefs } from "@/lib/prefsStore";
 import SoundIcon from "@/os/SoundIcon";
+import ThemeToggle from "@/theme/ThemeToggle";
 import type { AppId } from "@/os/types";
 
 function MobileHud() {
-  const level = useXpStore((s) => s.level);
-  const xp = useXpStore((s) => s.xp);
-  const max = useXpStore((s) => s.max);
-  const soundOn = useOsStore((s) => s.soundOn);
-  const toggleSound = useOsStore((s) => s.toggleSound);
-  const pct = Math.min(100, Math.round((xp / max) * 100));
+  const soundOn = usePrefs((s) => s.soundOn);
+  const toggleSound = usePrefs((s) => s.toggleSound);
   return (
     <div className="flex items-center gap-2 border-b border-border bg-bg/70 px-4 py-2 backdrop-blur-md">
       <span className="font-mono text-xs font-semibold">
         <span className="text-accent-2">▣</span> shivamOS
       </span>
-      <span className="rounded border border-amber/40 bg-amber/10 px-1.5 py-0.5 font-mono text-[10px] text-amber">
-        LVL {level} ⚡
-      </span>
-      <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-bg-2">
-        <div
-          className="h-full rounded-full bg-gradient-to-r from-green to-cyan transition-[width] duration-700"
-          style={{ width: `${pct}%` }}
-        />
+      <div className="flex-1">
+        <XpBadge compact />
       </div>
       <button
         onClick={toggleSound}
         aria-label={soundOn ? "Mute sound" : "Enable sound"}
-        className={soundOn ? "text-green" : "text-fg-mute"}
+        className={`grid h-8 w-8 place-items-center rounded-md border border-border bg-bg-2 ${soundOn ? "text-green" : "text-fg-dim"}`}
       >
         <SoundIcon on={soundOn} className="h-4 w-4" />
       </button>
+      <ThemeToggle />
     </div>
   );
 }
@@ -44,7 +37,7 @@ function MobileHud() {
 function HomeScreen({ onOpen }: { onOpen: (id: AppId) => void }) {
   return (
     <div className="os-scroll flex-1 overflow-auto p-6">
-      <p className="mb-6 text-center font-mono text-[11px] text-fg-mute">
+      <p className="mb-6 text-center font-mono text-xs text-fg-mute">
         tap an app to open
       </p>
       <div className="mx-auto grid max-w-sm grid-cols-3 gap-4">
@@ -61,7 +54,7 @@ function HomeScreen({ onOpen }: { onOpen: (id: AppId) => void }) {
               >
                 {def.glyph}
               </span>
-              <span className="font-mono text-[10px] text-fg-dim">
+              <span className="font-mono text-xs text-fg-dim">
                 {APP_META[id].short}
               </span>
             </button>
@@ -79,7 +72,7 @@ export default function MobileShell() {
 
   const openApp = (id: AppId) => {
     sfx("open");
-    award(`app:${id}`, 300, `Discovered ${id}`);
+    award(`app:${id}`, XP.app, `Discovered ${id}`);
     setOpen(id);
   };
   const back = () => {
@@ -90,7 +83,7 @@ export default function MobileShell() {
   const Active = open ? APPS[open].component : null;
 
   return (
-    <div className="crt-vignette relative flex h-full w-full flex-col overflow-hidden">
+    <div className="os-viewport crt-vignette flex flex-col">
       {/* CSS-orb backdrop (no WebGL on mobile) */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-accent/20 blur-[100px]" />

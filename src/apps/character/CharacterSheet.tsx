@@ -13,7 +13,7 @@ function StatBar({ label, value }: { label: string; value: number }) {
   }, [value]);
   return (
     <div>
-      <div className="mb-1 flex items-center justify-between font-mono text-[11px]">
+      <div className="mb-1 flex items-center justify-between font-mono text-xs">
         <span className="text-fg-dim">{label}</span>
         <span className="text-green">{value}</span>
       </div>
@@ -40,12 +40,12 @@ export default function CharacterSheet() {
             <h2 className="truncate text-lg font-semibold text-fg">
               {profile.name}
             </h2>
-            <span className="rounded border border-amber/40 bg-amber/10 px-1.5 py-0.5 font-mono text-[10px] text-amber">
+            <span className="rounded border border-amber/40 bg-amber/10 px-1.5 py-0.5 font-mono text-xs text-amber">
               LVL {profile.level}
             </span>
           </div>
           <p className="font-mono text-xs text-fg-dim">{profile.role}</p>
-          <p className="mt-0.5 flex items-center gap-1.5 font-mono text-[11px] text-fg-mute">
+          <p className="mt-0.5 flex items-center gap-1.5 font-mono text-xs text-fg-mute">
             <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-green" />
             available for opportunities · {profile.location}
           </p>
@@ -61,7 +61,7 @@ export default function CharacterSheet() {
 
       {/* stats */}
       <div className="mt-6">
-        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-fg-mute">
+        <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-fg-mute">
           ◆ Attributes
         </h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -73,7 +73,7 @@ export default function CharacterSheet() {
 
       {/* class traits */}
       <div className="mt-6">
-        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-fg-mute">
+        <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-fg-mute">
           ◆ Class Abilities
         </h3>
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">

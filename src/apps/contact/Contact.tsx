@@ -51,7 +51,7 @@ export default function Contact() {
   return (
     <div className="os-scroll h-full overflow-auto bg-bg/30 p-5">
       <h2 className="mb-1 font-mono text-sm text-cyan">✉ COMMS LINK</h2>
-      <p className="mb-5 font-mono text-[11px] text-fg-mute">
+      <p className="mb-5 font-mono text-xs text-fg-mute">
         open a channel — I&apos;m available for opportunities.
       </p>
 
@@ -65,14 +65,14 @@ export default function Contact() {
             @
           </span>
           <span>
-            <span className="block font-mono text-[10px] uppercase tracking-wider text-fg-mute">
+            <span className="block font-mono text-xs uppercase tracking-wider text-fg-mute">
               email
             </span>
             <span className="font-mono text-sm text-fg">{profile.email}</span>
           </span>
         </span>
         <span
-          className={`rounded-md border px-2 py-1 font-mono text-[11px] transition ${
+          className={`rounded-md border px-2 py-1 font-mono text-xs transition ${
             copied
               ? "border-green/50 text-green"
               : "border-border text-fg-dim group-hover:text-fg"
@@ -98,7 +98,7 @@ export default function Contact() {
               {c.glyph}
             </span>
             <span className="min-w-0">
-              <span className="block font-mono text-[10px] uppercase tracking-wider text-fg-mute">
+              <span className="block font-mono text-xs uppercase tracking-wider text-fg-mute">
                 {c.label}
               </span>
               <span className="block truncate font-mono text-xs text-fg-dim">

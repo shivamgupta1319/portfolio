@@ -30,7 +30,7 @@ function ExternalLink({
       href={href}
       target="_blank"
       rel="noreferrer noopener"
-      className="inline-flex items-center gap-1 rounded-md border border-border bg-panel px-2 py-1 font-mono text-[11px] text-fg-dim transition hover:border-border-strong hover:text-fg"
+      className="inline-flex items-center gap-1 rounded-md border border-border bg-panel px-2 py-1 font-mono text-xs text-fg-dim transition hover:border-border-strong hover:text-fg"
     >
       {children}
     </a>
@@ -62,17 +62,17 @@ export default function QuestCard({
           <div className="flex items-center gap-2">
             <h3 className="truncate font-semibold text-fg">{quest.title}</h3>
             {quest.isPrivate && (
-              <span className="shrink-0 rounded border border-border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-fg-mute">
+              <span className="shrink-0 rounded border border-border px-1.5 py-0.5 font-mono text-xs uppercase tracking-wider text-fg-mute">
                 🔒 private
               </span>
             )}
           </div>
-          <div className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-fg-mute">
+          <div className="mt-0.5 font-mono text-xs uppercase tracking-wider text-fg-mute">
             {variant === "main" ? "main quest" : "side quest"}
             {quest.language ? ` · ${quest.language}` : ""}
           </div>
         </div>
-        <span className="shrink-0 font-mono text-[11px] text-green">
+        <span className="shrink-0 font-mono text-xs text-green">
           +{quest.xpReward} XP
         </span>
       </div>
@@ -88,7 +88,7 @@ export default function QuestCard({
           {quest.tags.map((t) => (
             <span
               key={t}
-              className="rounded border border-border bg-panel px-1.5 py-0.5 font-mono text-[10px] text-fg-dim"
+              className="rounded border border-border bg-panel px-1.5 py-0.5 font-mono text-xs text-fg-dim"
             >
               {t}
             </span>
@@ -112,12 +112,12 @@ export default function QuestCard({
           <ExternalLink href={quest.repoUrl}>{"<source>"}</ExternalLink>
         )}
         {!quest.repoUrl && quest.credit && (
-          <span className="inline-flex items-center rounded-md border border-dashed border-accent/30 px-2 py-1 font-mono text-[11px] text-fg-dim">
+          <span className="inline-flex items-center rounded-md border border-dashed border-accent/30 px-2 py-1 font-mono text-xs text-fg-dim">
             ◇ {quest.credit}
           </span>
         )}
         {!quest.repoUrl && !quest.credit && quest.isPrivate && (
-          <span className="inline-flex items-center rounded-md border border-dashed border-border px-2 py-1 font-mono text-[11px] text-fg-mute">
+          <span className="inline-flex items-center rounded-md border border-dashed border-border px-2 py-1 font-mono text-xs text-fg-mute">
             source on request
           </span>
         )}

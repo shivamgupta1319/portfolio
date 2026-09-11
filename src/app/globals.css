@@ -1,33 +1,70 @@
 @import "tailwindcss";
 
-@theme {
-  /* surfaces */
-  --color-bg: #0a0a0b;
-  --color-bg-2: #111113;
-  --color-panel: rgba(255, 255, 255, 0.025);
-  --color-panel-2: rgba(255, 255, 255, 0.04);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.14);
+/* ── raw palettes ─────────────────────────────────────────────────────────
+   Dark is the default; [data-theme="light"] is set before first paint by the
+   inline script in layout.tsx. Utilities reference these through @theme inline
+   so `bg-accent/20` etc. re-resolve per theme. All text tokens ≥ 4.5:1. */
+:root {
+  color-scheme: dark;
+  --c-bg: #0a0a0b;
+  --c-bg-2: #111113;
+  --c-panel: rgba(255, 255, 255, 0.025);
+  --c-panel-2: rgba(255, 255, 255, 0.04);
+  --c-border: rgba(255, 255, 255, 0.08);
+  --c-border-strong: rgba(255, 255, 255, 0.14);
+  --c-fg: #f5f5f7;
+  --c-fg-dim: #a1a1a8;
+  --c-fg-mute: #82828c;
+  --c-accent: #6366f1;
+  --c-accent-2: #818cf8;
+  --c-cyan: #22d3ee;
+  --c-green: #34d399;
+  --c-amber: #fbbf24;
+  --c-rose: #fb7185;
+}
 
-  /* text */
-  --color-fg: #f5f5f7;
-  --color-fg-dim: #8b8b8e;
-  --color-fg-mute: #555558;
+[data-theme="light"] {
+  color-scheme: light;
+  --c-bg: #f7f7f9;
+  --c-bg-2: #ffffff;
+  --c-panel: rgba(0, 0, 0, 0.03);
+  --c-panel-2: rgba(0, 0, 0, 0.05);
+  --c-border: rgba(0, 0, 0, 0.1);
+  --c-border-strong: rgba(0, 0, 0, 0.18);
+  --c-fg: #111114;
+  --c-fg-dim: #4b4b52;
+  --c-fg-mute: #5f5f68;
+  --c-accent: #4f46e5;
+  --c-accent-2: #4338ca;
+  --c-cyan: #0e7490;
+  --c-green: #047857;
+  --c-amber: #b45309;
+  --c-rose: #be123c;
+}
 
-  /* game palette */
-  --color-accent: #6366f1;
-  --color-accent-2: #818cf8;
-  --color-cyan: #22d3ee;
-  --color-green: #34d399;
-  --color-amber: #fbbf24;
-  --color-rose: #fb7185;
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-bg-2: var(--c-bg-2);
+  --color-panel: var(--c-panel);
+  --color-panel-2: var(--c-panel-2);
+  --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
+  --color-fg: var(--c-fg);
+  --color-fg-dim: var(--c-fg-dim);
+  --color-fg-mute: var(--c-fg-mute);
+  --color-accent: var(--c-accent);
+  --color-accent-2: var(--c-accent-2);
+  --color-cyan: var(--c-cyan);
+  --color-green: var(--c-green);
+  --color-amber: var(--c-amber);
+  --color-rose: var(--c-rose);
 
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jbmono);
-}
 
-:root {
-  color-scheme: dark;
+  /* type floor: the smallest utility is 13px */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.25rem;
 }
 
 /* visible focus ring for keyboard users */
@@ -47,11 +84,44 @@ body {
   color: var(--color-fg);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow: hidden; /* the OS owns the viewport */
+}
+
+/* Desktop mode owns the viewport; the profile page scrolls normally. */
+.os-viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
   overscroll-behavior: none;
 }
 
-/* faint vignette so the desktop reads as a "screen" */
+/* skip link: visually hidden until focused */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-accent);
+  background: var(--color-bg-2);
+  color: var(--color-fg);
+  padding: 0.5rem 0.875rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* game-flavoured secondary label under a plain heading */
+.game-sub {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-fg-mute);
+}
+
+/* faint vignette so the desktop reads as a "screen" (dark theme only) */
 .crt-vignette::after {
   content: "";
   position: fixed;
@@ -63,6 +133,23 @@ body {
     rgba(0, 0, 0, 0.55) 100%
   );
   z-index: 30;
+}
+[data-theme="light"] .crt-vignette::after {
+  display: none;
+}
+
+/* subtle scanlines for the profile page background */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+[data-theme="light"] .scanlines {
+  display: none;
 }
 
 /* thin terminal-style scrollbars inside windows */
@@ -87,7 +174,7 @@ body {
   animation: blink 1s steps(1) infinite;
 }
 
-/* custom cursor */
+/* custom cursor (opt-in, desktop mode only) */
 .cursor-none,
 .cursor-none * {
   cursor: none !important;
@@ -101,7 +188,7 @@ body {
   border-color: rgba(34, 211, 238, 0.8);
 }
 
-/* HUD: xp gain + level up */
+/* HUD: xp gain pop */
 @keyframes xp-pop {
   0% { opacity: 0; transform: translateY(6px); }
   20% { opacity: 1; }
@@ -110,14 +197,14 @@ body {
 .xp-pop {
   animation: xp-pop 1.4s ease-out forwards;
 }
-@keyframes level-up-pop {
-  0% { opacity: 0; transform: scale(0.8); }
-  15% { opacity: 1; transform: scale(1.06); }
-  80% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1); }
+
+/* toasts: slide in from below, no full-screen overlays */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.level-up-pop {
-  animation: level-up-pop 2.2s ease-out forwards;
+.toast-in {
+  animation: toast-in 0.22s ease-out;
 }
 
 /* window open: fade in (opacity only — transform holds window position) */
@@ -136,5 +223,8 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+  .scanlines {
+    display: none;
   }
 }

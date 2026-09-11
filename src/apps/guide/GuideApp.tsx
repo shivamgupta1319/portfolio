@@ -24,7 +24,7 @@ function Section({
 }) {
   return (
     <section className="mt-5 first:mt-0">
-      <h3 className="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-fg-mute">
+      <h3 className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-fg-mute">
         {title}
       </h3>
       {children}
@@ -34,7 +34,7 @@ function Section({
 
 function Key({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="rounded border border-border bg-bg-2 px-1.5 py-0.5 font-mono text-[10px] text-fg-dim">
+    <kbd className="rounded border border-border bg-bg-2 px-1.5 py-0.5 font-mono text-xs text-fg-dim">
       {children}
     </kbd>
   );

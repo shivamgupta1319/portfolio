@@ -66,7 +66,7 @@ function DesktopIcons() {
             >
               {def.glyph}
             </span>
-            <span className="font-mono text-[10px] leading-tight text-fg-dim">
+            <span className="font-mono text-xs leading-tight text-fg-dim">
               {APP_META[id].short}
             </span>
           </button>
@@ -81,7 +81,7 @@ export default function Desktop() {
   const booted = useOsStore((s) => s.booted);
   useOsShortcuts();
   return (
-    <div className="crt-vignette relative h-full w-full overflow-hidden">
+    <div className="os-viewport crt-vignette">
       <Background booted={booted} />
       <TopBar />
       <DesktopIcons />

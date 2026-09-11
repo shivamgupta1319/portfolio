@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "lint:text": "! grep -rnE 'text-\\[(8|9|10|11)px\\]' src",
     "fetch:github": "node scripts/fetch-github.mjs"
   },
   "dependencies": {

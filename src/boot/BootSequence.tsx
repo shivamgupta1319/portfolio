@@ -86,7 +86,7 @@ export default function BootSequence() {
           >
             PRESS START
           </button>
-          <p className="mt-4 font-mono text-[11px] text-fg-mute">
+          <p className="mt-4 font-mono text-xs text-fg-mute">
             press ENTER or click to boot
           </p>
         </>

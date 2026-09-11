@@ -23,7 +23,6 @@ interface OsState {
   focusedId: string | null;
   topZ: number;
   booted: boolean;
-  soundOn: boolean;
 
   openApp: (appId: AppId) => void;
   closeWindow: (id: string) => void;
@@ -33,7 +32,6 @@ interface OsState {
   toggleMaximize: (id: string) => void;
   moveResize: (id: string, rect: Partial<Rect>) => void;
   setBooted: (b: boolean) => void;
-  toggleSound: () => void;
 }
 
 export const useOsStore = create<OsState>((set, get) => ({
@@ -41,7 +39,6 @@ export const useOsStore = create<OsState>((set, get) => ({
   focusedId: null,
   topZ: 1,
   booted: false,
-  soundOn: false,
 
   openApp: (appId) => {
     const { windows, topZ } = get();
@@ -141,5 +138,4 @@ export const useOsStore = create<OsState>((set, get) => ({
     })),
 
   setBooted: (b) => set({ booted: b }),
-  toggleSound: () => set((s) => ({ soundOn: !s.soundOn })),
 }));

@@ -8,6 +8,8 @@ import { TASKBAR_H } from "./layout";
 import { useSfx } from "@/sound/useSfx";
 import StartMenu from "./StartMenu";
 import SoundIcon from "./SoundIcon";
+import ThemeToggle from "@/theme/ThemeToggle";
+import { usePrefs } from "@/lib/prefsStore";
 
 function Clock() {
   const [time, setTime] = useState<string>("");
@@ -32,8 +34,8 @@ export default function Taskbar() {
   const focus = useOsStore((s) => s.focusWindow);
   const minimize = useOsStore((s) => s.minimize);
   const restore = useOsStore((s) => s.restore);
-  const soundOn = useOsStore((s) => s.soundOn);
-  const toggleSound = useOsStore((s) => s.toggleSound);
+  const soundOn = usePrefs((s) => s.soundOn);
+  const toggleSound = usePrefs((s) => s.toggleSound);
   const sfx = useSfx();
   const [startOpen, setStartOpen] = useState(false);
 
@@ -73,7 +75,7 @@ export default function Taskbar() {
 
       <div className="flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto">
         {windows.length === 0 && (
-          <span className="font-mono text-[11px] text-fg-mute">
+          <span className="font-mono text-xs text-fg-mute">
             no apps running — launch one from the desktop
           </span>
         )}
@@ -85,7 +87,7 @@ export default function Taskbar() {
               key={w.id}
               onClick={() => onTile(w.id, w.minimized)}
               title={w.title}
-              className={`flex h-8 shrink-0 items-center gap-1.5 rounded-md border px-2 font-mono text-[11px] transition ${
+              className={`flex h-8 shrink-0 items-center gap-1.5 rounded-md border px-2 font-mono text-xs transition ${
                 active
                   ? "border-accent/50 bg-accent/15 text-fg"
                   : w.minimized
@@ -107,11 +109,12 @@ export default function Taskbar() {
         }}
         aria-label={soundOn ? "Mute sound" : "Enable sound"}
         className={`grid h-7 w-7 place-items-center rounded-md border border-border bg-bg-2 transition hover:text-fg ${
-          soundOn ? "text-green" : "text-fg-mute"
+          soundOn ? "text-green" : "text-fg-dim"
         }`}
       >
         <SoundIcon on={soundOn} />
       </button>
+      <ThemeToggle className="h-7 w-7" />
       <Clock />
     </div>
   );

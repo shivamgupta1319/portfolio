@@ -113,7 +113,7 @@ export default function SkillTree() {
         {bands.map((b) => (
           <div
             key={b.group}
-            className="absolute font-mono text-[10px] uppercase tracking-wider text-fg-mute"
+            className="absolute font-mono text-xs uppercase tracking-wider text-fg-mute"
             style={{ left: 0, top: b.y + b.h / 2 - 8, width: LABEL_W - 12 }}
           >
             {SKILL_GROUP_LABELS[b.group]}
@@ -130,7 +130,7 @@ export default function SkillTree() {
               style={{ left: p.x, top: p.y, width: NODE_W, height: NODE_H }}
               title={`${p.node.label} — unlocked`}
             >
-              <span className={`text-[10px] ${c.text}`}>◆</span>
+              <span className={`text-xs ${c.text}`}>◆</span>
               <span className="truncate">{p.node.label}</span>
             </div>
           );

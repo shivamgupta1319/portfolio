@@ -12,7 +12,7 @@ export default function FeaturedProducts() {
   const sfx = useSfx();
   return (
     <aside className="window-in absolute right-3 top-14 z-[1] hidden w-60 flex-col gap-2 md:flex">
-      <div className="flex items-center gap-1.5 px-1 font-mono text-[10px] uppercase tracking-[0.2em] text-fg-mute">
+      <div className="flex items-center gap-1.5 px-1 font-mono text-xs uppercase tracking-[0.2em] text-fg-mute">
         <span className="text-amber">★</span> Featured Products
       </div>
       {featuredProducts.map((p) => (
@@ -34,12 +34,12 @@ export default function FeaturedProducts() {
               <span className="block truncate font-mono text-xs font-semibold text-fg">
                 {p.name}
               </span>
-              <span className={`block truncate font-mono text-[10px] ${p.accent}`}>
+              <span className={`block truncate font-mono text-xs ${p.accent}`}>
                 {p.domain} ↗
               </span>
             </span>
           </div>
-          <p className="text-[11px] leading-snug text-fg-dim">{p.tagline}</p>
+          <p className="text-xs leading-snug text-fg-dim">{p.tagline}</p>
         </a>
       ))}
     </aside>
