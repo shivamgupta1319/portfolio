@@ -20,7 +20,7 @@ export const traits: Trait[] = [
     icon: "✦",
     title: "AI Engineering",
     detail:
-      "RAG + evals, LLM gateways with typed failover, MCP servers, agents, tracing, on-device ASR.",
+      "RAG + evals, LLM gateways with typed failover, MCP servers, agents, on-device ASR.",
   },
   {
     icon: "₿",
