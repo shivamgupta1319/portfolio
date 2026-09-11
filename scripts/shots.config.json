@@ -27,7 +27,7 @@
     "authEnv": "SHOTS_WORKPC_AUTH",
     "steps": [
       {
-        "wait": 4000
+        "wait": 10000
       },
       {
         "clickText": "OmniRoute"
@@ -43,16 +43,7 @@
         "press": "Enter"
       },
       {
-        "wait": 25000
-      },
-      {
-        "clickText": "Ranked"
-      },
-      {
-        "wait": 2000
-      },
-      {
-        "hideText": "synthesis failed"
+        "wait": 90000
       }
     ]
   },
