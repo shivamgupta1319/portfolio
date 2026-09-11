@@ -1,5 +1,5 @@
 {
-  "_comment": "quest id -> live URL (captured headless) or { \"file\": \"/abs/path.png\" } (converted). Skipped on purpose: AI-ROUTER (admin token prompt), trip (sign-in page), lacs-v2 (live dashboard with user names). Run: npm run shots",
+  "_comment": "quest id -> live URL (captured headless), { url, authEnv?, form? } for pages needing auth (secrets come from env, never committed), or { file } (local image converted). Skipped on purpose: trip (sign-in page), lacs-v2 (live dashboard with user names). Run: npm run shots",
   "programmatic-SEO-engine": "https://pseo.cloud",
   "resite": "https://resite.live",
   "stocksafe-bundles": "https://apps.shopify.com/stocksafe-bundles",
@@ -12,5 +12,14 @@
   },
   "dividend": {
     "file": "/home/shivam/workspace/dividend/docs/screenshot.png"
+  },
+  "_tunnel": "work-pc apps: ssh -f -N -L 18772:127.0.0.1:8772 -L 15176:127.0.0.1:5176 -L 18792:127.0.0.1:8792 -L 15173:127.0.0.1:5173 -L 15190:127.0.0.1:5190 -L 18770:127.0.0.1:8770 -L 18771:127.0.0.1:8771 work-pc ; entries with authEnv read user:pass from that env var (HTTP Basic Auth) \u2014 never commit credentials",
+  "strategy-backtest": "http://localhost:18792",
+  "AI-ROUTER": {
+    "url": "https://ai.pseo.cloud",
+    "form": {
+      "input": "input",
+      "valueEnv": "AI_ADMIN_TOKEN"
+    }
   }
 }

@@ -2,8 +2,11 @@
 //
 // Sources come from scripts/shots.config.json: a live URL is captured with the
 // locally installed Chrome (puppeteer-core — nothing is downloaded, and this
-// never runs as part of `npm run build`); a { file } entry is a local image
-// rendered cover-fit into the same frame. Existing files are skipped unless
+// never runs as part of `npm run build`); { url, authEnv } captures a page
+// behind HTTP Basic Auth with "user:pass" taken from that env var; a { file }
+// entry is a local image rendered cover-fit into the same frame. An optional
+// { form: { input, valueEnv, submit } } types a secret from env into a field
+// (e.g. an admin token) before the shot — the value never touches the repo. Existing files are skipped unless
 // --force is passed. Afterwards src/data/shots.ts is regenerated from the
 // files that exist, so the site picks the covers up automatically.
 //
@@ -81,8 +84,24 @@ async function dismissBanners(page) {
     .catch(() => {});
 }
 
-async function shootUrl(page, url, out) {
+async function shootUrl(page, url, out, authEnv, form) {
+  if (authEnv) {
+    const cred = process.env[authEnv];
+    if (!cred) throw new Error(`env ${authEnv} not set (expected user:pass)`);
+    const [username, ...rest] = cred.split(":");
+    await page.authenticate({ username, password: rest.join(":") });
+  }
   await page.goto(url, { waitUntil: "networkidle2", timeout: NAV_TIMEOUT });
+  if (form) {
+    // { input, valueEnv, submit }: type a secret from env into a field and submit.
+    const value = process.env[form.valueEnv];
+    if (!value) throw new Error(`env ${form.valueEnv} not set`);
+    await page.waitForSelector(form.input, { timeout: 10_000 });
+    await page.type(form.input, value);
+    if (form.submit) await page.click(form.submit);
+    else await page.keyboard.press("Enter");
+    await page.waitForNetworkIdle({ timeout: NAV_TIMEOUT }).catch(() => {});
+  }
   await new Promise((r) => setTimeout(r, SETTLE_MS));
   await dismissBanners(page);
   await page.screenshot({ path: out, type: "webp", quality: QUALITY });
@@ -151,6 +170,7 @@ async function main() {
       await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "dark" }]);
       try {
         if (typeof src === "string") await shootUrl(page, src, out);
+        else if (src.url) await shootUrl(page, src.url, out, src.authEnv, src.form);
         else await shootFile(page, src.file, out);
         console.log(`[shots] ✓ ${id}`);
         ok++;
