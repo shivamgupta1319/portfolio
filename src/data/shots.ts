@@ -18,5 +18,4 @@ export const SHOTS = new Set<string>([
   "strategy-backtest",
   "streamverse",
   "typezap",
-  "youtube-auto-stream",
 ]);

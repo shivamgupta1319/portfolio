@@ -67,9 +67,5 @@
   "crypto-ai": {
     "url": "http://localhost:15190",
     "authEnv": "SHOTS_WORKPC_AUTH"
-  },
-  "youtube-auto-stream": {
-    "url": "http://localhost:18770",
-    "authEnv": "SHOTS_WORKPC_AUTH"
   }
 }

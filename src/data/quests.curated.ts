@@ -462,26 +462,6 @@ export const curated: Record<string, CuratedQuest> = {
     synthesize: true,
     language: "Python",
   },
-  "youtube-auto-stream": {
-    title: "YouTube Auto Stream",
-    summary:
-      "Three YouTube channels from one codebase — AI-generated daily, human-approved before publish.",
-    description:
-      "Autonomous, AI-assisted, human-approved YouTube automation running three channels from one codebase and one Docker image: a daily narrated anime self-improvement motion-comic episode plus a derived Short, and Chart A Day — data-driven market shorts, each an animated candlestick reveal with narration built from live crypto and spot-gold data. Content is generated daily, waits at an approval gate for a one-tap decision, then publishes and monitors performance. Built to stay free (NVIDIA NIM + OpenRouter, edge-tts, ffmpeg, keyless market data) and policy-safe: original content, real variation, and a human gate rather than mass upload.",
-    highlights: [
-      "3 channels · 1 codebase · 1 Docker image",
-      "Human approval gate before every publish",
-      "Zero-cost stack: NVIDIA NIM + OpenRouter + edge-tts + ffmpeg",
-    ],
-    liveUrl: "https://youtube.com/@chartaday",
-    liveLabel: "@chartaday",
-    tags: ["Python", "uv", "NVIDIA NIM", "OpenRouter", "edge-tts", "ffmpeg", "YouTube API", "Docker"],
-    category: ["ai", "tools"],
-    rank: "B",
-    year: 2026,
-    status: "live",
-    language: "Python",
-  },
   "geo-india": {
     title: "geo-india",
     summary:
@@ -822,6 +802,8 @@ export const EXCLUDED = new Set<string>([
   "multi-agent-coding-platform",
   "ai-architecture-generator",
   "ai-devops-engineer",
+  // personal YouTube channels — not portfolio material
+  "youtube-auto-stream",
   // unlicensed music source — private use only (see repo README)
   "musafir",
   "musafir-backend",
