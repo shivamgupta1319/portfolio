@@ -8,10 +8,10 @@ export default function Featured() {
       id="featured"
       title="Featured work"
       sub="main quests"
-      intro="Four projects that best show how I build: live products, measured AI systems and real-time infrastructure."
+      intro="Six projects that best show how I build: live products, measured AI systems and real-time infrastructure."
       className="!pt-4"
     >
-      <ul className="grid gap-5 md:grid-cols-2">
+      <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {featuredTop.map((q) => (
           <li key={q.id} className="flex">
             <div className="flex w-full">

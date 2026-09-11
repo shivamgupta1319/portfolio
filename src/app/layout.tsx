@@ -83,7 +83,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body className="h-full" suppressHydrationWarning>
+      <body className="min-h-full" suppressHydrationWarning>
         <a href="#main" className="skip-link">
           Skip to content
         </a>

@@ -36,7 +36,7 @@ export const curated: Record<string, CuratedQuest> = {
     language: "TypeScript",
   },
   "repo-intelligence": {
-    title: "repo-intelligence",
+    title: "Repo Intelligence",
     summary:
       "Code-intelligence engine: cited path:line answers to “explain auth” over any TS/JS repo.",
     description:
@@ -82,7 +82,7 @@ export const curated: Record<string, CuratedQuest> = {
     language: "TypeScript",
   },
   "AI-ROUTER": {
-    title: "AI-ROUTER",
+    title: "AI Router",
     summary:
       "OpenAI-compatible gateway over 8 free-tier AI providers — live, serving 5 projects.",
     description:
@@ -129,7 +129,7 @@ export const curated: Record<string, CuratedQuest> = {
     language: "TypeScript",
   },
   "stocksafe-bundles": {
-    title: "StockSafe Bundles",
+    title: "Stock Safe Bundles",
     summary:
       "Shopify App Store app that keeps fixed-bundle inventory truthful across locations.",
     description:
@@ -145,7 +145,7 @@ export const curated: Record<string, CuratedQuest> = {
     category: ["product"],
     rank: "S",
     featured: true,
-    order: 6,
+    order: 7,
     year: 2026,
     status: "live",
     synthesize: true,
@@ -168,12 +168,12 @@ export const curated: Record<string, CuratedQuest> = {
     category: ["ai", "tools"],
     rank: "S",
     featured: true,
-    order: 7,
+    order: 6,
     year: 2026,
     status: "live",
   },
   "market-news": {
-    title: "market·news",
+    title: "Market News",
     summary:
       "Real-time news terminal for NSE, US equities and crypto — deduped, ticker-tagged, ranked.",
     description:
@@ -194,7 +194,7 @@ export const curated: Record<string, CuratedQuest> = {
     language: "TypeScript",
   },
   "smart-trading": {
-    title: "SmartTrader",
+    title: "Smart Trader",
     summary:
       "Polyglot NSE trading platform: 28 backtested strategies, live scanner, Telegram alerts.",
     description:
@@ -212,7 +212,7 @@ export const curated: Record<string, CuratedQuest> = {
     status: "active",
   },
   "strategy-backtest": {
-    title: "strategy-backtest",
+    title: "Strategy Backtest",
     summary:
       "NSE strategy research net of real Dhan costs — pre-registered, with published verdicts.",
     description:
@@ -230,28 +230,6 @@ export const curated: Record<string, CuratedQuest> = {
     year: 2026,
     status: "active",
     synthesize: true,
-    language: "Python",
-  },
-  "AI-observability-engine": {
-    title: "AI Observability Engine",
-    summary:
-      "LLM tracing platform: prompts, tokens, cost and latency across chains and agents.",
-    description:
-      "An LLM-application tracing product in the Langfuse/Helicone category — built, not just used. Postgres holds config and metadata (teams, projects, API keys, users, model pricing); ClickHouse stores trace events behind a rollup materialised view so dashboards never scan raw spans; Redis buffers ingestion. A Python SDK ships an `@observe` decorator, context managers and OpenAI/Anthropic wrappers; cost is enriched at ingestion from a pricing table so a later price change never rewrites history. Auth, sessions, RBAC, an admin API and an RBAC-scoped query API with trace trees and CSV export are shipped (phases P1–P6a); the Next.js dashboard is a scaffold and the system has not taken production traffic.",
-    highlights: [
-      "Postgres + ClickHouse split with a rollup MV for trace analytics",
-      "Python SDK: @observe, context managers, OpenAI / Anthropic wrappers",
-      "P1–P6a shipped · 161 backend tests",
-    ],
-    tags: ["Python 3.12", "FastAPI", "ClickHouse", "PostgreSQL", "Redis", "Next.js", "RBAC", "Python SDK"],
-    category: ["ai", "tools"],
-    rank: "A",
-    featured: true,
-    order: 11,
-    year: 2026,
-    status: "wip",
-    synthesize: true,
-    isPrivate: true,
     language: "Python",
   },
   "indian-ipo": {
@@ -276,7 +254,7 @@ export const curated: Record<string, CuratedQuest> = {
     language: "TypeScript",
   },
   streamverse: {
-    title: "StreamVerse",
+    title: "Stream Verse",
     summary:
       "npm WebRTC SDK: calls, streaming and screen share with automatic P2P→SFU scaling.",
     description:
@@ -297,7 +275,7 @@ export const curated: Record<string, CuratedQuest> = {
     status: "live",
   },
   "crypto-ai": {
-    title: "crypto-ai — Quant Engine",
+    title: "Crypto AI",
     summary:
       "Crypto-futures quant engine: 12 strategies, walk-forward / Monte-Carlo, ML meta-labeling.",
     description:
@@ -312,42 +290,6 @@ export const curated: Record<string, CuratedQuest> = {
     rank: "S",
     featured: true,
     order: 14,
-    year: 2026,
-    status: "active",
-  },
-  "gibp-project": {
-    title: "GIBP",
-    summary:
-      "Multi-tenant fintech/accounting platform on the Formance ledger, with E2E-tested money flows.",
-    description:
-      "A production-grade multi-tenant fintech / accounting platform: a NestJS API integrated with the Formance financial ledger for organizations, accounts, bills, vendors and reconciliation, with company and super-admin React portals. Nx monorepo with database migrations, role-based access and full E2E test coverage.",
-    highlights: [
-      "Formance ledger integration across multiple tenant organisations",
-      "Playwright end-to-end coverage on money-movement flows",
-    ],
-    credit: "Team · Wisflux",
-    tags: ["NestJS", "Formance Ledger", "Nx Monorepo", "React 19", "PostgreSQL / Sequelize", "Playwright"],
-    category: ["fintech", "product"],
-    rank: "A",
-    featured: true,
-    order: 15,
-    year: 2024,
-    status: "live",
-    synthesize: true,
-    isPrivate: true,
-    language: "TypeScript",
-  },
-  "copy-trading": {
-    title: "CopyTrade Pro",
-    summary:
-      "Signal-driven crypto-futures execution with LLM risk checks and queue-based workers.",
-    description:
-      "An automated crypto-futures platform that ingests trade signals, validates them through LLM risk-checks, and executes on Binance Futures via a custom CCXT layer. Resilient queue-based architecture (NestJS + BullMQ/Redis workers), AES-256-GCM key encryption, and live P&L / Sharpe / win-rate analytics.",
-    tags: ["Nx Monorepo", "NestJS", "BullMQ + Redis", "CCXT", "PostgreSQL", "AES-256"],
-    category: ["fintech"],
-    rank: "A",
-    featured: true,
-    order: 16,
     year: 2026,
     status: "active",
   },
@@ -376,20 +318,6 @@ export const curated: Record<string, CuratedQuest> = {
     rank: "A",
     featured: true,
     order: 18,
-    year: 2026,
-    status: "active",
-  },
-  "outlook-dashboard": {
-    title: "Inbox Agent (MCP)",
-    summary:
-      "Local-first mail assistant exposing a needs-reply queue to Claude through MCP.",
-    description:
-      "A local-first AI mail assistant that unifies multi-account Gmail into a \"needs-reply\" queue and exposes it to Claude through a Model Context Protocol server for summarizing, analyzing and drafting replies. TypeScript monorepo with encrypted token storage and a React dashboard.",
-    tags: ["MCP", "TypeScript", "Gmail API", "SQLite", "React"],
-    category: ["ai", "tools"],
-    rank: "A",
-    featured: true,
-    order: 19,
     year: 2026,
     status: "active",
   },
@@ -422,7 +350,7 @@ export const curated: Record<string, CuratedQuest> = {
     status: "active",
   },
   typezap: {
-    title: "Typezap / Emmple",
+    title: "Typezap (Emmple)",
     summary:
       "Live ed-tech platform blending touch-typing with school subjects — 2,000+ students.",
     description:
@@ -444,11 +372,11 @@ export const curated: Record<string, CuratedQuest> = {
 
   // ── side quests ──────────────────────────────────────────────────
   dividend: {
-    title: "Dividend + MTF Screener",
+    title: "Dividend Screener",
     summary:
       "NSE dividend ex-date screener with Groww MTF leverage and honest net-of-cost economics.",
     description:
-      "Finds NSE stocks with an upcoming dividend ex-date, works out whether Groww's MTF gives leverage on them, sizes a position against your capital, and costs the whole round trip: MTF interest, brokerage, STT, stamp duty, GST, DP charges and slab tax on the dividend. Because the ex-date drop cancels the payout, the honest ranking key is breakeven recovery — how much of the drop a stock must claw back just to pay for the trade. Flags dividend-stripping traps and the real last buy date across NSE holidays; an optional AI read (via AI-ROUTER) classifies payout pattern but never predicts a percentage.",
+      "Finds NSE stocks with an upcoming dividend ex-date, works out whether Groww's MTF gives leverage on them, sizes a position against your capital, and costs the whole round trip: MTF interest, brokerage, STT, stamp duty, GST, DP charges and slab tax on the dividend. Because the ex-date drop cancels the payout, the honest ranking key is breakeven recovery — how much of the drop a stock must claw back just to pay for the trade. Flags dividend-stripping traps and the real last buy date across NSE holidays; an optional AI read (via AI Router) classifies payout pattern but never predicts a percentage.",
     highlights: [
       "Full round-trip cost model: interest, brokerage, STT, stamp, GST, DP, slab tax",
       "Ranks on breakeven recovery % — the honest screen",
@@ -463,7 +391,7 @@ export const curated: Record<string, CuratedQuest> = {
     language: "Python",
   },
   "geo-india": {
-    title: "geo-india",
+    title: "Geo India",
     summary:
       "Drill-down geospatial dashboard for India (country → state → district → ward) on PostGIS.",
     description:
@@ -479,24 +407,6 @@ export const curated: Record<string, CuratedQuest> = {
     status: "wip",
     synthesize: true,
     isPrivate: true,
-    language: "TypeScript",
-  },
-  "project-hub": {
-    title: "Project Hub",
-    summary:
-      "Local dashboard over ~90 workspace projects: live git state, triage rules, sub-second scan.",
-    description:
-      "A local, read-only dashboard for every project in a workspace. Each request reads live git and filesystem state and merges in hand-set status, priority and tags. \"Last activity\" uses the cheapest honest signal per project — last commit for clean repos, mtimes of the files git status reports for dirty ones, a bounded walk only when there is no repo — so build output never masquerades as work and a full scan of ~90 projects stays near 0.8 s. A deliberately short needs-attention list fires only on actionable rules (unpushed, abandoned-uncommitted, drifting, untriaged, undocumented). Runs under Docker Compose.",
-    highlights: [
-      "~90 projects scanned in ~0.8 s, strictly read-only",
-      "5 actionable triage rules instead of flagging everything",
-    ],
-    tags: ["TypeScript", "pnpm", "Git", "Docker Compose"],
-    category: ["tools"],
-    rank: "B",
-    year: 2026,
-    status: "active",
-    synthesize: true,
     language: "TypeScript",
   },
   "AI-TRADING-BRAIN": {
@@ -517,25 +427,6 @@ export const curated: Record<string, CuratedQuest> = {
     status: "wip",
     synthesize: true,
     language: "Python",
-  },
-  "Photo-AI": {
-    title: "Photo-AI",
-    summary:
-      "File sharing with on-device face recognition — find photos by who is in them, no cloud vision API.",
-    description:
-      "A file-sharing service with face recognition built in: upload photos into folders and the backend detects and matches faces locally so images can be found by the people in them. Detection runs on-device with TensorFlow.js and face-api (landmarks, expression, age/gender models bundled) — photos never leave the server. NestJS + TypeORM on PostgreSQL with JWT auth and Multer uploads, sharp for image processing, and a React + Chakra UI front end.",
-    highlights: [
-      "On-device face detection + matching (TensorFlow.js, face-api) — no third-party vision API",
-      "Folder hierarchy, JWT auth, PostgreSQL via TypeORM",
-    ],
-    tags: ["NestJS", "TensorFlow.js", "face-api", "PostgreSQL", "React", "Chakra UI", "Docker"],
-    category: ["ai", "tools"],
-    rank: "B",
-    year: 2025,
-    status: "archived",
-    synthesize: true,
-    isPrivate: true,
-    language: "TypeScript",
   },
   nova: {
     title: "Nova",
@@ -576,7 +467,7 @@ export const curated: Record<string, CuratedQuest> = {
     language: "Python",
   },
   "mediasoup-sfu-calling": {
-    title: "mediasoup SFU Calling",
+    title: "Mediasoup SFU Calling",
     summary:
       "Group video calling on a mediasoup SFU — NestJS Socket.IO signalling, React client.",
     description:
@@ -593,41 +484,6 @@ export const curated: Record<string, CuratedQuest> = {
     synthesize: true,
     isPrivate: true,
     language: "TypeScript",
-  },
-  "live-kit": {
-    title: "LiveKit Calling",
-    summary:
-      "Browser video calls for up to 10 participants on LiveKit — no accounts, no database.",
-    description:
-      "A video-calling app on LiveKit for 2\u201310 participants: enter a name and start a call in the browser, with mute, camera toggle and screen sharing. React 18 + Vite + Tailwind with LiveKit React components on the front, a NestJS token/room service on the LiveKit Server SDK behind it, all under Docker Compose — no registration and no database.",
-    highlights: ["2\u201310 participants per room, screen share, no sign-up", "LiveKit Server SDK token service in NestJS"],
-    tags: ["LiveKit", "React 18", "Vite", "NestJS", "WebRTC", "Docker Compose"],
-    category: ["realtime"],
-    rank: "B",
-    year: 2025,
-    status: "archived",
-    synthesize: true,
-    isPrivate: true,
-    language: "TypeScript",
-  },
-  shareit: {
-    title: "LAN Remote Control (Android)",
-    summary:
-      "Android-to-Android screen mirroring and remote touch over LAN with WebRTC — no servers, no internet.",
-    description:
-      "A private Android-to-Android remote control app: share one device's screen and control it (tap, swipe, gesture) from another on the same Wi-Fi. Zero-config discovery with Android NSD (mDNS), 6-digit PIN pairing over a local TCP signalling server, hardware-accelerated H.264 mirroring via MediaProjection + WebRTC, touch injection through an AccessibilityService, wake locks for persistent sessions, a floating host-side Stop widget and hard 15-minute session timeouts.",
-    highlights: [
-      "MediaProjection + WebRTC H.264 mirroring, AccessibilityService touch injection",
-      "mDNS discovery + PIN pairing — everything stays on the LAN",
-    ],
-    tags: ["Android", "Kotlin", "WebRTC", "MediaProjection", "AccessibilityService", "mDNS"],
-    category: ["realtime", "tools"],
-    rank: "B",
-    year: 2025,
-    status: "archived",
-    synthesize: true,
-    isPrivate: true,
-    language: "Kotlin",
   },
   "lacs-fleet": {
     title: "LACS Fleet",
@@ -692,31 +548,11 @@ export const curated: Record<string, CuratedQuest> = {
     isPrivate: true,
   },
   "All-In-One": {
-    title: "All-In-One",
+    title: "All In One",
     description:
       "An offline-first React Native life manager: an AES-encrypted secrets vault, expense and debt tracking, notes, and receipt capture with on-device ML Kit OCR. Hardware-backed key storage; shipped as native builds via EAS.",
     tags: ["React Native", "Expo", "SQLite", "ML Kit OCR", "AES"],
     category: ["tools"],
-    rank: "A",
-    year: 2026,
-    status: "active",
-  },
-  "ai-agent": {
-    title: "AgentSystem",
-    description:
-      "An autonomous developer-agent platform on a containerized monorepo — a Fastify gateway and a Node \"brain\" worker with BullMQ queues, Qdrant vector memory, and real-time Socket.io log streaming.",
-    tags: ["Next.js", "Fastify", "BullMQ", "Qdrant", "Socket.io"],
-    category: ["ai"],
-    rank: "A",
-    year: 2026,
-    status: "active",
-  },
-  "trading-agent": {
-    title: "Trading Agent",
-    description:
-      "An NSE trading AI agent: a from-scratch tool-calling loop where an LLM orchestrates custom Python tools to compute indicators, generate backtested trade setups, and scan the Nifty 50 — wrapped in a Streamlit dashboard.",
-    tags: ["Python", "OpenRouter", "Streamlit", "yfinance"],
-    category: ["fintech", "ai"],
     rank: "A",
     year: 2026,
     status: "active",
@@ -731,16 +567,6 @@ export const curated: Record<string, CuratedQuest> = {
     year: 2026,
     status: "active",
   },
-  "personal-cloud": {
-    title: "Personal Cloud",
-    description:
-      "A full-stack personal cloud storage app — React + Chakra UI front end, NestJS/PostgreSQL backend, AWS S3 storage and JWT auth, with offline-first uploads that queue in IndexedDB and background-sync.",
-    tags: ["React", "NestJS", "AWS S3", "JWT", "IndexedDB"],
-    category: ["tools"],
-    rank: "B",
-    year: 2024,
-    status: "archived",
-  },
   "tailwind-ui-kit": {
     title: "Tailwind UI Kit",
     description:
@@ -752,18 +578,8 @@ export const curated: Record<string, CuratedQuest> = {
     year: 2026,
     status: "live",
   },
-  "trading-bot": {
-    title: "Trading Bot",
-    description:
-      "A modular crypto swing-trading bot (BTC/USDT on Binance) emphasizing zero-lookahead backtesting, structural risk management and a Flask dashboard.",
-    tags: ["Python", "CCXT", "Flask", "SQLite"],
-    category: ["fintech"],
-    rank: "B",
-    year: 2026,
-    status: "archived",
-  },
   "investment-plan": {
-    title: "FinPilot",
+    title: "Fin Pilot",
     description:
       "A deployed personal-finance web app to kick-start your investment journey — plan goals, explore options and track a simple investment roadmap.",
     liveUrl: "https://finpilot.netlify.app",
@@ -804,6 +620,19 @@ export const EXCLUDED = new Set<string>([
   "ai-devops-engineer",
   // personal YouTube channels — not portfolio material
   "youtube-auto-stream",
+  // removed from the catalogue on request (2026-09-11)
+  "AI-observability-engine",
+  "gibp-project",
+  "outlook-dashboard",
+  "trading-agent",
+  "ai-agent",
+  "project-hub",
+  "trading-bot",
+  "copy-trading",
+  "shareit",
+  "live-kit",
+  "Photo-AI",
+  "personal-cloud",
   // unlicensed music source — private use only (see repo README)
   "musafir",
   "musafir-backend",

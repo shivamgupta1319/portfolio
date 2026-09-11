@@ -7,9 +7,10 @@ import ModeSwitch from "./ModeSwitch";
 import ResumeLink from "./ResumeLink";
 
 const LINKS = [
-  { href: "#projects", label: "Projects" },
+  { href: "#featured", label: "Projects" },
   { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "All projects" },
   { href: "#contact", label: "Contact" },
 ];
 

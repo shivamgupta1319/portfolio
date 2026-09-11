@@ -27,13 +27,13 @@ export const experience: ExperienceEntry[] = [
   },
   {
     role: "Shipped 3 live products solo",
-    org: "pSEO Engine · Resite · StockSafe Bundles",
+    org: "pSEO Engine · Resite · Stock Safe Bundles",
     location: "Remote",
     start: "2025",
     end: "2026",
     kind: "milestone",
     bullets: [
-      "pseo.cloud, resite.live and a Shopify App Store app — designed, built, deployed and billed end-to-end; plus AI-ROUTER serving them in production and two npm packages (StreamVerse, uace-mcp).",
+      "pseo.cloud, resite.live and a Shopify App Store app — designed, built, deployed and billed end-to-end; plus AI Router serving them in production and two npm packages (Stream Verse, uace-mcp).",
     ],
   },
   {
