@@ -19,6 +19,7 @@ Full strategy & month-by-month roadmap: `~/.claude/plans/as-its-my-portfolio-goo
 | 8 | [genai/](genai/INDEX.md) | **Gen AI Engineer track** — curriculum, RAG/agents/evals depth, AI system design & machine coding, deep-dives built from your real source code | If targeting GenAI roles |
 | 9 | [dhive/](dhive/README.md) | **D.Hive application kit** — JD-tailored resume (video/cloud positioning) + interview Q&A for the robot/drone cloud-platform role | Applying to D.Hive |
 | 10 | [caylent/](caylent/README.md) | **Caylent \| BOT Consulting kit** — company brief, AWS claim boundary, Python + AWS + Bedrock interview Q&A, 14 tested Python drills | Caylent SE rounds |
+| 11 | [ai-full-stack-engineer/](ai-full-stack-engineer/README.md) | **Senior Full-Stack AI Engineer (Agentic AI) track** — JD gap map, 14 basic→advanced modules (Python/FastAPI, React AI-UI, LLM SDKs, RAG, LangGraph, MCP, testing, evals, DevSecOps, solution design), a capstone in the JD stack, and plain-language walkthroughs of how your own projects' code works | Any "AI Engineer / Agentic AI" role, and long-term learning |
 
 ## The one-paragraph strategy
 Your DSA is the *entry gate*; your **shipped products + system design are your unfair

@@ -13,17 +13,22 @@
 
 ---
 
+> **Corrected 2026-10-26.** A code-verified re-read for the
+> [AI full-stack track](../ai-full-stack-engineer/projects/README.md) found several claims below had
+> gone stale. They're fixed inline and marked **(corrected)**. For `file:line` evidence, the
+> walkthroughs in `../ai-full-stack-engineer/projects/` are the source of truth.
+
 ## The portfolio ledger — read this first
 
 Before you cite anything, know which category it's in.
 
 | Project | Status | Cite it? |
 |---|---|---|
-| **repo-intelligence** | 13.8k LOC, 53 commits, most active | **Yes — lead with it.** Fix the README first |
+| **repo-intelligence** | Working · 405 tests · CI (lint/typecheck/build/test) | **Yes — lead with it.** README now says "working" |
 | **pSEO Engine** | Live at pseo.cloud | Yes — your best production LLM system |
 | **UACE** | Published on npm, in daily use | Yes — your best shipped-infrastructure story |
-| **AI-observability-engine** | 8.4k LOC, P1–P6a shipped | **Yes — underrated.** Your only real LLMOps artifact |
-| **AgentSystem** | Full monorepo, working | Yes — your deepest agent architecture |
+| **AI-observability-engine** | 8.4k LOC, P1–P6a shipped, 161 pytest tests, never deployed | **Yes — underrated.** Know its cost bug (corrected) |
+| **AgentSystem** | Full monorepo, working · no tests, no CI | Yes — your deepest agent architecture |
 | **Inbox Agent** | Working, tested | Yes — your best HITL story |
 | **trading-agent** | 2k LOC, working | Yes — the cleanest agent-loop explanation |
 | **Glacier Dev** | Working, no live URL | Yes, with the weaknesses volunteered |
@@ -40,9 +45,8 @@ Before you cite anything, know which category it's in.
 | `personal-bot` | Broken import, won't start | **No** |
 | `direwolf` | Third-party fork, not your code | **No** |
 
-**Two stale READMEs are actively costing you:** `repo-intelligence` says *"Status: Planning — no
-implementation yet"* with a complete pipeline in `packages/core/src`, and
-`AI-observability-engine` lists only *"P1 ✅"* when its git log shows P1 through P6a shipped.
+**One stale README is still costing you:** `AI-observability-engine` lists only *"P1 ✅"* when its
+git log shows P1 through P6a shipped. (`repo-intelligence`'s README was fixed and now says "working".)
 
 ---
 
@@ -60,12 +64,19 @@ pages, then ship them into the customer's own Next.js/Astro repo via a GitHub PR
    job per dataset row**.
 2. Worker builds the prompt from a DB-stored template plus a **STYLE-ONLY brand context block**
    that explicitly forbids introducing new facts.
-3. `routeGenerate()` walks a DB-ordered model chain until one succeeds.
+3. `routeGenerate()` makes one call to your **AI-ROUTER** gateway (`model: 'auto'`), which owns
+   failover. **(corrected)** Until commit `c0c02d1` (2026-09-01) it walked a DB-ordered chain in-repo.
 4. Sanitize → derive slug/title/description → build and validate JSON-LD → insert as a **draft**.
 5. Quality pass (thin content, near-duplicate, score, embedding) → on run completion, build the
    internal-link graph, which needs every page embedded first.
 
 ### The one hard decision — the model router
+> **(corrected) This table describes the router as it was before commit `c0c02d1` (2026-09-01).**
+> That logic now lives in `~/workspace/AI-ROUTER`. In this repo today, any router failure becomes
+> `ChainExhaustedError` and the job retries, `costCents` is hard-coded to 0, `noTrainOnly` is
+> ignored, and `model_registry` is emptied by the seed. Tell it as "I built failover in the app,
+> then extracted it into a shared gateway."
+
 `src/lib/model-router.ts`. **Zero LLM SDKs in the project** — every provider call is hand-rolled
 `fetch`, deliberately, because three providers with three response shapes is easier to own than
 three SDKs with three release cadences.
@@ -86,7 +97,8 @@ three SDKs with three release cadences.
   fence-guard so a wholly-fenced body isn't false-flagged; near-duplicate at **cosine ≥ 0.92**;
   a composite 0–100 score with graduated penalties. Flagged pages need an explicit override to
   approve.
-- **`sanitizeMdx`** on generate *and* publish — strips `script`/`style` blocks, dangerous tags,
+- **`sanitizeMdx`** on publish, GitHub export and public render **(corrected: not on generate, which only
+  strips a wrapping code fence)** — strips `script`/`style` blocks, dangerous tags,
   `on*=` handlers and `javascript:` URLs.
 - **SSRF guard** on the website analyzer — blocks IPv4 private/loopback/link-local/CGNAT/multicast
   and the IPv6 equivalents, resolves via `node:dns` and rejects if *any* record is private,
@@ -99,7 +111,7 @@ three SDKs with three release cadences.
 ### The limitation you volunteer
 > "There's **no vector index** — every similarity query is a sequential scan. That's correct at
 > hundreds of pages per project behind a `project_id` filter, and it's the first thing that breaks
-> at scale. There are also **no unit tests** — what I have is 15 hand-rolled verification scripts
+> at scale. There are also **no unit tests** — what I have is 14 hand-rolled verification scripts
 > run manually against live models and a live DB. Useful, and not CI-gated. And **no prompt
 > versioning and no LLM response caching**."
 
@@ -129,7 +141,7 @@ SDKs. That separation *is* the design: it's infrastructure the model consumes.
 
 ### The hard decisions
 **The vec0 over-fetch.** `vec0` KNN can't apply the project filter inside the index scan, so
-`searchSemantic` pulls `max(limit × 10, 50)` and post-filters — otherwise a multi-project database
+`semanticSearch` pulls `max(limit × 10, 50)` and post-filters — otherwise a multi-project database
 starves results for the project you asked about. Found by having it happen.
 
 **Vectors are an enhancement, never a dependency.** The heavy transformers import is *dynamic* so
@@ -185,8 +197,9 @@ Langfuse/Helicone — built, not just used.
 
 ### Architecture in five lines
 1. **Postgres** for config and metadata (teams, projects, API keys, users, **model pricing**),
-   **ClickHouse** for trace events with a rollup materialised view, **Redis** for buffer/cache/
-   sessions.
+   **ClickHouse** for trace events with a rollup materialised view, **Redis** for cache/sessions.
+   **(corrected)** A `RedisBuffer` exists but isn't wired: the default buffer is an in-process
+   `asyncio.Queue`. DB access is sync, run in threads.
 2. Ingestion API with key auth and a buffer → writer with **cost enrichment** at write time.
 3. **Python SDK** — an `@observe` decorator, context managers, and provider wrappers for
    **OpenAI and Anthropic**.
@@ -199,6 +212,12 @@ and mutable; traces are append-only, enormous, and queried by aggregation over t
 Postgres for the first, ClickHouse for the second, with a rollup MV so dashboard queries don't
 scan raw events. Cost is enriched **at ingestion** from a pricing table rather than computed at
 query time, so a later price change doesn't retroactively rewrite history.
+
+**(corrected) Know the bugs before you cite this.** The rollup MV is never queried (dashboards
+read `generations FINAL`) and would double-count. Cost enrichment **never fires for SDK-wrapped
+calls**, because tokens arrive on the update event, which carries no provider or model, so cost
+ends up `UNKNOWN`. Update events also carry no `start_time`, which would dead-letter whole
+ClickHouse batches. Present these as findings from tracing the event flow, with the fix.
 
 ### The limitation you volunteer
 > "It's built in phases and the dashboard is a scaffold — P6b/c aren't done. It's never taken
@@ -242,8 +261,9 @@ dumb retry into a guided one.
 schemas** — plan, execution decision, evaluation, code output, review (with severity levels),
 architecture, routing — and **no manual JSON parsing anywhere**.
 
-**Memory is genuinely two-tier**: Redis working memory (per-run hash, 24h TTL, pub/sub driving live
-UI updates, all writes wrapped to degrade silently) and Qdrant long-term (`size: 1536`, cosine,
+**Memory (corrected): Qdrant is the only memory that's read back.** The Redis working memory
+(per-run hash, 24h TTL) is written but nothing calls `getContext`/`getAllContext`; agents pass
+context through local variables. Redis pub/sub does drive the live UI. Long-term is Qdrant (`size: 1536`, cosine,
 payload-filtered by memory type with `score_threshold: 0.7`, failure returning `[]` rather than
 throwing).
 
@@ -255,6 +275,10 @@ throwing).
 > `run_command` has no allowlist at all. And **there's no cost tracking** — it makes about four
 > `gpt-4o-mini` calls per task and discards the AI SDK's usage object entirely. That's its biggest
 > operational blind spot.
+>
+> Also **(corrected)**: there are no tests or CI, `run_command` passes the full `process.env`
+> (including the OpenRouter key) to spawned commands, the Coder retry isn't re-reviewed, and
+> "tool calling" is tool choice via structured output rather than native `tools`.
 >
 > One design nit I'd fix too: the executor builds tool descriptions as a hardcoded if-chain per
 > tool name even though the tools already carry Zod schemas — duplicated, drift-prone metadata."
@@ -334,8 +358,12 @@ it to Claude over MCP for summarising, analysing and drafting.
 ### The one hard decision — the confirm-gated send
 `send_reply` without `confirm: true` calls `planReply()` and returns
 `{status: 'preview', willSend: {from, to, subject, body}, note: 'Nothing was sent…'}`. The model
-must make a **second explicit call** with `confirm: true` to send. **Two-phase commit for an
-irreversible action, enforced server-side — the model cannot bypass it.**
+must make a **second explicit call** with `confirm: true` to send.
+
+**(corrected) The model *can* bypass the preview:** a first call with `confirm: true` sends
+immediately, and nothing ties the confirm call to a prior preview. The real gate today is the
+server default plus the host's own tool-approval prompt. The fix is a server-issued preview token
+that only a human action can redeem.
 
 `planReply` is also careful RFC plumbing the model would get wrong: it picks the latest message
 *not from you*, prefixes `Re:` only if absent, and threads `In-Reply-To` and `References` from the
@@ -349,7 +377,7 @@ prior chain.
 
 ### Questions it uniquely answers
 **HITL approval gates** · MCP tool design · when *not* to use an LLM · privacy boundaries ·
-testing (the only project of yours with a real unit-test suite — 4 vitest files).
+testing (58 vitest tests in 4 files, covering `core` only; repo-intelligence and Resite also have suites).
 
 ---
 
