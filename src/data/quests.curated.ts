@@ -371,6 +371,50 @@ export const curated: Record<string, CuratedQuest> = {
   },
 
   // ── side quests ──────────────────────────────────────────────────
+  "delivery-os": {
+    title: "Forjenta",
+    summary:
+      "An AI software team in a desktop app: specialist agents build, a deterministic orchestrator runs the process.",
+    description:
+      "Forjenta runs software delivery the way a small company would — discovery, requirements, planning, architecture, development, QA and change requests — with specialist AI agents doing the work and a deterministic orchestrator owning state, task dependencies, quality gates, approvals and retries. Agents return schema-validated output; side effects (commits, merges, deploys) stay with platform code. Now a local-first Electron app that points at your own folders, with each agent attempt isolated in its own process.",
+    highlights: [
+      "Deterministic workflow, agentic work: a state machine and task DAG never ask an LLM what comes next",
+      "9 specialist agents, from business analyst to QA and change-impact analysis",
+      "Local-first Electron app; every agent attempt runs in an isolated process",
+    ],
+    liveUrl: "https://forjenta.pseo.cloud",
+    liveLabel: "forjenta.pseo.cloud",
+    tags: ["TypeScript", "Electron", "React + Vite", "zod", "Task DAG", "AI Router", "pnpm + Turbo"],
+    category: ["ai", "product"],
+    rank: "S",
+    year: 2026,
+    status: "active",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  invitation: {
+    title: "Invitation Platform",
+    summary:
+      "Wedding invitation sites, one per couple, from one multi-tenant app with per-guest RSVP.",
+    description:
+      "Wedding invitation websites served from one Next.js app at <slug>.pseo.cloud. The owner picks a theme, fills in the content, adds guests and publishes; every guest gets a personal link with per-event RSVP and headcount, music, share cards and add-to-calendar.",
+    highlights: [
+      "Multi-tenant by subdomain: one app, one site per couple",
+      "4 themes: Modern Minimal, Royal Rajasthani, Pastel Floral, South Indian Temple",
+      "Per-guest links with per-event RSVP and headcount",
+    ],
+    liveUrl: "https://demo.pseo.cloud",
+    liveLabel: "demo.pseo.cloud",
+    tags: ["Next.js 16", "PostgreSQL", "Motion", "zod", "Docker"],
+    category: ["product"],
+    rank: "A",
+    year: 2026,
+    status: "live",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
   dividend: {
     title: "Dividend Screener",
     summary:
@@ -591,6 +635,33 @@ export const curated: Record<string, CuratedQuest> = {
     status: "live",
   },
 };
+
+/**
+ * The profile page (`/`) shows only these, in this order. Everything else is
+ * still listed in Desktop mode. Ids are curated keys / repo names.
+ */
+export const SHOWCASE: string[] = [
+  "programmatic-SEO-engine",
+  "resite",
+  "repo-intelligence",
+  "UACE",
+  "AI-ROUTER",
+  "smart-trading",
+  "lacs-v2",
+  "stocksafe-bundles",
+  "typezap",
+  "delivery-os",
+];
+
+/** Compact "More work" list under the showcase. */
+export const MORE_WORK: string[] = [
+  "invitation",
+  "streamverse",
+  "market-news",
+  "indian-ipo",
+  "strategy-backtest",
+  "crypto-ai",
+];
 
 /** Repos never shown as quests (junk, boilerplate, superseded, off-theme). */
 export const EXCLUDED = new Set<string>([

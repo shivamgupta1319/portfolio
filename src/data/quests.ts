@@ -1,5 +1,5 @@
 import generatedJson from "./quests.generated.json";
-import { curated, EXCLUDED, SIDE_QUEST_CUTOFF } from "./quests.curated";
+import { curated, EXCLUDED, MORE_WORK, SHOWCASE, SIDE_QUEST_CUTOFF } from "./quests.curated";
 import { SHOTS } from "./shots";
 import { recordToQuest, humanize, XP_BY_RANK } from "./github";
 import {
@@ -152,6 +152,20 @@ export const allQuests = all;
 export const featuredQuests: Quest[] = mainQuests;
 /** Profile page hero grid. */
 export const featuredTop: Quest[] = featuredQuests.slice(0, FEATURED_TOP_N);
+
+function pick(ids: string[]): Quest[] {
+  const byId = new Map(all.map((q) => [q.id, q]));
+  return ids.map((id) => {
+    const q = byId.get(id);
+    if (!q) throw new Error(`profile list references unknown project "${id}"`);
+    return q;
+  });
+}
+
+/** Profile page showcase, in curated order. */
+export const showcase: Quest[] = pick(SHOWCASE);
+/** Profile page "More work" list. */
+export const moreWork: Quest[] = pick(MORE_WORK);
 
 /** Profile page "All projects": featured first (by order), then the rest. */
 export const catalogue: Quest[] = [...mainQuests, ...sideQuests];
