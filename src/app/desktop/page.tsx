@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DesktopShell from "@/os/DesktopShell";
+import Toasts from "@/hud/Toasts";
 
 export const metadata: Metadata = {
   title: "Desktop mode — Shivam Gupta",
@@ -11,5 +12,11 @@ export const metadata: Metadata = {
 
 /** `/desktop` — the interactive game-OS. Not indexed; the profile page is canonical. */
 export default function DesktopPage() {
-  return <DesktopShell />;
+  return (
+    <>
+      <DesktopShell />
+      {/* XP toasts belong to the game-OS only; the profile page stays quiet. */}
+      <Toasts />
+    </>
+  );
 }

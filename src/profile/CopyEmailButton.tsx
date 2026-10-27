@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { profile } from "@/data/profile";
 
+/** Copies the address; falls back to opening the mail client. */
 export default function CopyEmailButton() {
   const [copied, setCopied] = useState(false);
 
@@ -17,28 +18,19 @@ export default function CopyEmailButton() {
   };
 
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-      <a
-        href={`mailto:${profile.email}`}
-        className="inline-flex items-center gap-3 rounded-xl border border-accent/40 bg-accent/10 px-4 py-3 font-mono text-sm text-fg transition hover:bg-accent/20"
-      >
-        <span aria-hidden className="grid h-8 w-8 place-items-center rounded-lg border border-accent/40 bg-bg-2 text-accent-2">
-          @
-        </span>
-        {profile.email}
-      </a>
+    <>
       <button
         type="button"
         onClick={copyEmail}
-        className={`rounded-lg border px-3 py-2 font-mono text-xs transition ${
-          copied ? "border-green/50 text-green" : "border-border text-fg-dim hover:text-fg"
+        className={`inline-flex min-h-11 items-center rounded-full border px-5 text-base font-medium transition-colors ${
+          copied ? "border-green text-green" : "border-border-strong text-fg hover:bg-panel-2"
         }`}
       >
-        {copied ? "✓ copied" : "copy address"}
+        {copied ? "Copied" : "Copy email"}
       </button>
       <span aria-live="polite" className="sr-only">
         {copied ? "Email address copied" : ""}
       </span>
-    </div>
+    </>
   );
 }

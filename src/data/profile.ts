@@ -25,10 +25,3 @@ export const profile: Profile = {
   xpForNext: 9000,
 };
 
-/** Hero proof line. Order matters; the hero shows the first three. */
-export const proofPoints: string[] = [
-  "3 live SaaS products",
-  "2 published npm packages",
-  "4+ years shipping",
-  "80+ repositories",
-];
