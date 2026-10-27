@@ -5,10 +5,12 @@
 export const SHOTS = new Set<string>([
   "AI-ROUTER",
   "crypto-ai",
+  "delivery-os",
   "dividend",
   "indian-ipo",
   "investment",
   "investment-plan",
+  "invitation",
   "market-news",
   "programmatic-SEO-engine",
   "repo-intelligence",
