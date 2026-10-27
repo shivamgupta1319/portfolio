@@ -68,7 +68,7 @@ export const curated: Record<string, CuratedQuest> = {
       "Showcased at ATR Open House 2025, Kyoto",
     ],
     liveUrl: "https://dr.alwacs.com",
-    liveLabel: "live platform",
+    liveLabel: "dr.alwacs.com",
     credit: "Team · ATR / Wisflux",
     tags: ["Mediasoup / WebRTC", "FFmpeg Recording", "On-device ASR / TTS", "NestJS", "Edge↔Cloud Postgres Sync", "Expo", "GIS / GPS", "Ansible", "Docker / systemd"],
     category: ["realtime", "product"],
@@ -153,9 +153,9 @@ export const curated: Record<string, CuratedQuest> = {
     language: "TypeScript",
   },
   UACE: {
-    title: "UACE — Universal AI Context Engine",
+    title: "UACE",
     summary:
-      "Published MCP server giving every AI coding assistant one shared, local-first project brain.",
+      "Universal AI Context Engine: a published MCP server giving every AI coding assistant one shared project brain.",
     description:
       "A published npm MCP server that gives every AI coding assistant (Claude Code, Cursor, Copilot) one shared, local-first \"Project Brain\" — so a brand-new session continues without re-explaining the codebase. 18 MCP tools and 2 prompts, offline semantic search (sqlite-vec + local embeddings), git ingestion, live file-watch, and a companion VS Code extension.",
     highlights: [

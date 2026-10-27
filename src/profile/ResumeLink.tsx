@@ -1,7 +1,6 @@
 "use client";
 
 import { profile } from "@/data/profile";
-import { useXpStore, XP } from "@/hud/xpStore";
 import { track } from "@/analytics/track";
 
 export default function ResumeLink({
@@ -13,25 +12,24 @@ export default function ResumeLink({
   size?: "sm" | "md";
   className?: string;
 }) {
-  const award = useXpStore((s) => s.award);
-  const base = `inline-flex items-center justify-center gap-2 rounded-lg font-medium transition ${
-    size === "sm" ? "px-3 py-1.5 text-xs" : "px-4 py-2.5 text-sm"
+  const base = `inline-flex min-h-11 items-center justify-center gap-2 rounded-full font-medium transition-colors ${
+    size === "sm" ? "px-4 text-sm" : "px-6 text-base"
   }`;
   const look =
     variant === "primary"
-      ? "border border-accent bg-accent text-white hover:bg-accent-2"
-      : "border border-border bg-panel text-fg hover:border-border-strong";
+      ? "bg-accent-fill text-on-accent hover:brightness-110"
+      : "border border-border-strong text-fg hover:bg-panel-2";
   return (
     <a
       href={profile.resume}
       download
-      onClick={() => {
-        award("resume", XP.resume, "Downloaded résumé");
-        track("resume_download");
-      }}
+      onClick={() => track("resume_download")}
       className={`${base} ${look} ${className}`}
     >
-      <span aria-hidden>⬇</span> Download resume
+      <svg aria-hidden viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 3v10M5.5 8.5 10 13l4.5-4.5M4 16.5h12" />
+      </svg>
+      Download résumé
       <span className="sr-only">(PDF)</span>
     </a>
   );
