@@ -1,15 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import { SITE_URL, SITE_TITLE, SITE_DESC, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
 import Analytics from "@/analytics/Analytics";
 import { THEME_SCRIPT } from "@/theme/themeScript";
 import StoreHydrator from "@/lib/StoreHydrator";
-import Toasts from "@/hud/Toasts";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+/** Profile page face (display + body); Desktop mode keeps Inter / JetBrains Mono. */
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  axes: ["opsz", "wdth"],
 });
 
 const jbMono = JetBrains_Mono({
@@ -62,8 +68,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: "dark light",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f7f9" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0b" },
+    { media: "(prefers-color-scheme: light)", color: "#f2f4ef" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f191b" },
   ],
 };
 
@@ -78,7 +84,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${jbMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${bricolage.variable} ${jbMono.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
@@ -95,7 +101,6 @@ export default function RootLayout({
         </noscript>
         <StoreHydrator />
         {children}
-        <Toasts />
         <Analytics />
       </body>
     </html>

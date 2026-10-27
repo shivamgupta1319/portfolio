@@ -21,6 +21,8 @@
   --c-green: #34d399;
   --c-amber: #fbbf24;
   --c-rose: #fb7185;
+  --c-accent-fill: #6366f1;
+  --c-on-accent: #ffffff;
 }
 
 [data-theme="light"] {
@@ -42,6 +44,43 @@
   --c-rose: #be123c;
 }
 
+/* ── profile page (/) palette: night ink + marigold ─────────────────────────
+   Applied only while the profile page is mounted, so Desktop mode keeps its
+   own indigo look. `accent` is the text-safe tone (≥ 4.5:1); `accent-fill` is
+   for solid buttons and marks, with `on-accent` text on top. */
+:root:has(.profile) {
+  --c-bg: #0f191b;
+  --c-bg-2: #152226;
+  --c-panel: rgba(234, 239, 234, 0.035);
+  --c-panel-2: rgba(234, 239, 234, 0.065);
+  --c-border: rgba(234, 239, 234, 0.1);
+  --c-border-strong: rgba(234, 239, 234, 0.2);
+  --c-fg: #eaefea;
+  --c-fg-dim: #a6b4b0;
+  --c-fg-mute: #879793;
+  --c-accent: #f2b544;
+  --c-accent-2: #f7c969;
+  --c-accent-fill: #f2b544;
+  --c-on-accent: #13201f;
+  --c-green: #5bd69f;
+}
+:root[data-theme="light"]:has(.profile) {
+  --c-bg: #f2f4ef;
+  --c-bg-2: #ffffff;
+  --c-panel: rgba(19, 32, 31, 0.03);
+  --c-panel-2: rgba(19, 32, 31, 0.06);
+  --c-border: rgba(19, 32, 31, 0.12);
+  --c-border-strong: rgba(19, 32, 31, 0.24);
+  --c-fg: #13201f;
+  --c-fg-dim: #3e4f4b;
+  --c-fg-mute: #56655f;
+  --c-accent: #8a5800;
+  --c-accent-2: #6f4700;
+  --c-accent-fill: #eba92c;
+  --c-on-accent: #13201f;
+  --c-green: #0b7a4b;
+}
+
 @theme inline {
   --color-bg: var(--c-bg);
   --color-bg-2: var(--c-bg-2);
@@ -58,9 +97,12 @@
   --color-green: var(--c-green);
   --color-amber: var(--c-amber);
   --color-rose: var(--c-rose);
+  --color-accent-fill: var(--c-accent-fill);
+  --color-on-accent: var(--c-on-accent);
 
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jbmono);
+  --font-display: var(--font-bricolage);
 
   /* type floor: the smallest utility is 13px */
   --text-xs: 0.8125rem;
@@ -117,15 +159,6 @@ body {
   top: 1rem;
 }
 
-/* game-flavoured secondary label under a plain heading */
-.game-sub {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-fg-mute);
-}
-
 /* faint vignette so the desktop reads as a "screen" (dark theme only) */
 .crt-vignette::after {
   content: "";
@@ -140,20 +173,6 @@ body {
   z-index: 30;
 }
 [data-theme="light"] .crt-vignette::after {
-  display: none;
-}
-
-/* subtle scanlines for the profile page background */
-.scanlines {
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.035) 0px,
-    rgba(255, 255, 255, 0.035) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-}
-[data-theme="light"] .scanlines {
   display: none;
 }
 
@@ -221,15 +240,59 @@ body {
   animation: window-in 0.18s ease-out;
 }
 
+/* ── profile page ───────────────────────────────────────────────────────── */
+.profile {
+  font-family: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+.profile ::selection {
+  background: var(--color-accent-fill);
+  color: var(--color-on-accent);
+}
+
+/* stack ticker under the hero: two identical runs, shifted by one run width */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* live-status dot: a ring that expands and fades */
+@keyframes live-ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  80%, 100% { transform: scale(2.6); opacity: 0; }
+}
+.live-ping {
+  animation: live-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* horizontal carousels scroll inside themselves, never the page */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+  .live-ping {
+    display: none;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
-  }
-  .scanlines {
-    display: none;
   }
 }
