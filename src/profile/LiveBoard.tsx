@@ -42,7 +42,7 @@ export default function LiveBoard({ quests }: { quests: Quest[] }) {
               target="_blank"
               rel="noreferrer noopener"
               onClick={() => track("project_click", { id: q.id, target: "live-board" })}
-              className="group flex min-h-12 items-center gap-3 py-2.5"
+              className="group flex min-h-11 items-center gap-3 py-2"
             >
               <span aria-hidden className="relative flex h-2 w-2 shrink-0">
                 <span

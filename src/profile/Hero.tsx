@@ -14,7 +14,7 @@ const NAME_WORDS = profile.name.split(" ");
 export default function Hero({ live }: { live: Quest[] }) {
   return (
     <section id="top" aria-labelledby="hero-title" className="relative">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:items-end lg:gap-14 lg:pb-24 lg:pt-24">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-14 pt-6 sm:px-6 sm:pt-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:items-start lg:gap-14 lg:pb-20 lg:pt-12">
         <div className="min-w-0">
           <motion.div
             data-reveal
@@ -47,7 +47,7 @@ export default function Hero({ live }: { live: Quest[] }) {
 
           <h1
             id="hero-title"
-            className="mt-8 text-[clamp(4rem,15vw,9.5rem)] font-semibold leading-[0.86] tracking-[-0.045em] text-fg [font-stretch:88%]"
+            className="mt-6 text-[clamp(4rem,15vw,9.5rem)] font-semibold leading-[0.86] tracking-[-0.045em] text-fg [font-stretch:88%]"
           >
             {NAME_WORDS.map((w, i) => (
               <span key={w} className="block overflow-hidden pb-[0.06em]">
