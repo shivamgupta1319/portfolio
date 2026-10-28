@@ -1,0 +1,347 @@
+#!/usr/bin/env node
+// Renders a public, self-contained landing page for each private *.pseo.cloud app.
+//   node scripts/landing/build.mjs            → scripts/landing/dist/<id>/{index.html,cover.jpg}
+// The output is copied into each app repo (see the deploy notes in that repo). One template keeps
+// the four pages visually consistent with the portfolio (ink + marigold, Bricolage Grotesque).
+// No JavaScript: the AI Router page is served under a CSP without script-src, and the pages must
+// read fully with nothing but HTML and CSS.
+import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const here = dirname(fileURLToPath(import.meta.url));
+const root = join(here, "..", "..");
+const { projects } = JSON.parse(readFileSync(join(here, "projects.json"), "utf8"));
+
+const PORTFOLIO = "https://shivamgupta.live";
+const GITHUB = "https://github.com/shivamgupta1319";
+const LINKEDIN = "https://linkedin.com/in/myselfshivam";
+
+const esc = (s) =>
+  String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+const arrow =
+  '<svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5M6 5h5v5"/></svg>';
+const lock =
+  '<svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>';
+const chevron =
+  '<svg aria-hidden="true" class="chev" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>';
+
+const NAV = [
+  ["#problem", "Why"],
+  ["#how", "How it works"],
+  ["#inside", "Under the hood"],
+  ["#faq", "FAQ"],
+];
+
+function section(id, title, intro, body) {
+  return `
+    <section id="${id}" aria-labelledby="${id}-h">
+      <div class="sec-head">
+        <h2 id="${id}-h">${esc(title)}</h2>
+        ${intro ? `<p>${esc(intro)}</p>` : ""}
+      </div>
+      ${body}
+    </section>`;
+}
+
+function page(p) {
+  const title = `${p.name}: ${p.headline}`;
+  const visual = p.code
+    ? `<figure class="visual code" aria-label="Example: calling ${esc(p.name)} with the openai SDK"><figcaption>Using it from any project</figcaption><pre><code>${esc(p.code)}</code></pre></figure>`
+    : `<figure class="visual"><img src="/_landing/cover.jpg" width="1280" height="800" alt="${esc(p.name)} screenshot" loading="eager" decoding="async"></figure>`;
+
+  const numbers = `
+      <ul class="numbers" aria-label="${esc(p.name)} in numbers">
+${p.numbers.map(([v, l]) => `        <li><strong>${esc(v)}</strong><span>${esc(l)}</span></li>`).join("\n")}
+      </ul>`;
+
+  const problem = section(
+    "problem",
+    "Why it exists",
+    "",
+    `<div class="prose">${p.problem.map((t) => `<p>${esc(t)}</p>`).join("")}</div>`,
+  );
+
+  const how = section(
+    "how",
+    "How it works",
+    "What happens between the first click and the result.",
+    `<ol class="steps">
+${p.steps.map(([t, d], i) => `        <li><span class="n" aria-hidden="true">${i + 1}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join("\n")}
+      </ol>`,
+  );
+
+  const what = section(
+    "what",
+    "What it does",
+    `The parts that make ${p.name} different.`,
+    `<ul class="caps">
+${p.capabilities.map(([t, d]) => `        <li><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join("\n")}
+      </ul>`,
+  );
+
+  const inside = section(
+    "inside",
+    "Under the hood",
+    "How the pieces connect, and the engineering calls behind them.",
+    `<ol class="flow" aria-label="Data flow">
+${p.flow.map((n) => `        <li>${esc(n)}</li>`).join("\n")}
+      </ol>
+      <h3 class="sub">Design decisions</h3>
+      <ul class="decisions">
+${p.decisions.map(([t, d]) => `        <li><h4>${esc(t)}</h4><p>${esc(d)}</p></li>`).join("\n")}
+      </ul>
+      <h3 class="sub">Built with</h3>
+      <ul class="stack">
+${p.stack.map((s) => `        <li>${esc(s)}</li>`).join("\n")}
+      </ul>`,
+  );
+
+  const limits = section(
+    "limits",
+    "Honest limits",
+    "Where it stands today, without the polish.",
+    `<ul class="limits">
+${p.limits.map((t) => `        <li>${esc(t)}</li>`).join("\n")}
+      </ul>`,
+  );
+
+  const faq = section(
+    "faq",
+    "Questions",
+    "",
+    `<div class="faq">
+${p.faq.map(([q, a]) => `        <details><summary>${esc(q)}${chevron}</summary><p>${esc(a)}</p></details>`).join("\n")}
+      </div>`,
+  );
+
+  const source = p.repoUrl
+    ? `<a class="btn btn-ghost" href="${p.repoUrl}">Source on GitHub ${arrow}</a>`
+    : "";
+
+  return `<!doctype html>
+<!-- Generated by shivamgupta1319/portfolio scripts/landing/build.mjs. Edit projects.json there, not this file. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(p.lede)}">
+<meta name="author" content="Shivam Gupta">
+<link rel="canonical" href="https://${p.domain}/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${esc(p.name)}">
+<meta property="og:description" content="${esc(p.headline)}">
+<meta property="og:url" content="https://${p.domain}/">
+${p.cover ? `<meta property="og:image" content="https://${p.domain}/_landing/cover.jpg">\n` : ""}<meta name="twitter:card" content="${p.cover ? "summary_large_image" : "summary"}">
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&display=swap">
+<style>
+:root{
+  --bg:#0f191b;--surface:#152226;--raised:#1b2b30;--fg:#eaefea;--dim:#a6b4b0;--mute:#879793;
+  --border:rgba(234,239,234,.1);--border-strong:rgba(234,239,234,.2);
+  --accent:${p.accent};--on-accent:#13201f;
+}
+@media (prefers-color-scheme:light){:root{
+  --bg:#f2f4ef;--surface:#fff;--raised:#e8ece6;--fg:#13201f;--dim:#3e4f4b;--mute:#56655f;
+  --border:rgba(19,32,31,.12);--border-strong:rgba(19,32,31,.24);
+  --accent:${p.accentLight};--on-accent:#fff;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:4.5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 "Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:72rem;margin:0 auto;padding:0 1rem}
+@media (min-width:640px){.wrap{padding:0 1.5rem}}
+
+/* header: sticky and compact so the hero starts right under it */
+.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.top .wrap{display:flex;align-items:center;gap:.5rem;min-height:3.5rem}
+.brand{font-weight:650;font-size:1.0625rem;letter-spacing:-.01em;text-decoration:none;margin-right:auto;display:inline-flex;align-items:center;gap:.5rem;min-height:44px}
+.brand i{width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
+.top nav{display:none;gap:.25rem}
+.top nav a{color:var(--dim);text-decoration:none;font-size:.9375rem;padding:0 .625rem;min-height:44px;display:inline-flex;align-items:center}
+.top nav a:hover{color:var(--fg)}
+@media (min-width:900px){.top nav{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;padding:0 1.125rem;border-radius:999px;font-weight:550;text-decoration:none;transition:filter .2s,background-color .2s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border:1px solid var(--border-strong)}
+.btn-ghost:hover{background:var(--surface)}
+.top .btn{padding:0 .875rem;font-size:.9375rem}
+
+/* hero */
+.hero{display:grid;gap:2rem;padding:1.75rem 0 2.5rem}
+@media (min-width:1024px){.hero{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:3.5rem;padding:2.5rem 0 3rem}}
+.domain{display:inline-flex;align-items:center;gap:.5rem;margin:0;color:var(--dim);font-size:.9375rem}
+.domain i{width:.5rem;height:.5rem;border-radius:50%;background:var(--accent)}
+h1{margin:.75rem 0 0;font-size:clamp(2.375rem,6.5vw,4.25rem);line-height:.96;letter-spacing:-.04em;font-weight:650;font-stretch:90%;text-wrap:balance}
+.lede{margin:1.25rem 0 0;max-width:36rem;font-size:1.125rem;color:var(--dim)}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.note{display:flex;gap:.5rem;align-items:flex-start;margin:1rem 0 0;color:var(--mute);font-size:.9375rem}
+.note svg{flex:none;margin-top:.3rem}
+.visual{margin:0;min-width:0;border:1px solid var(--border);border-radius:1.25rem;overflow:hidden;background:var(--surface);box-shadow:0 30px 80px -40px rgba(0,0,0,.6)}
+.visual img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.code figcaption{padding:.875rem 1.25rem;border-bottom:1px solid var(--border);color:var(--mute);font-size:.875rem}
+.code pre{margin:0;padding:1.25rem;overflow-x:auto;font:400 .875rem/1.7 ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* numbers strip */
+.numbers{list-style:none;margin:0 0 1rem;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+@media (min-width:900px){.numbers{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.numbers li{padding:1.25rem 1rem 1.25rem 0;display:flex;flex-direction:column;gap:.25rem}
+.numbers li+li{padding-left:1rem;border-left:1px solid var(--border)}
+.numbers li:nth-child(3){border-left:0;padding-left:0}
+@media (max-width:899px){.numbers li:nth-child(n+3){border-top:1px solid var(--border)}}
+@media (min-width:900px){.numbers li:nth-child(3){border-left:1px solid var(--border);padding-left:1rem}}
+.numbers strong{font-size:clamp(1.75rem,4vw,2.5rem);line-height:1;letter-spacing:-.03em;font-weight:650;color:var(--accent)}
+.numbers span{color:var(--dim);font-size:.9375rem;line-height:1.4}
+
+/* sections */
+section{padding:3rem 0;border-top:1px solid var(--border)}
+#problem{border-top:0}
+@media (min-width:768px){section{padding:4.5rem 0}}
+.sec-head{display:grid;gap:.75rem;margin-bottom:2rem}
+@media (min-width:1024px){.sec-head{grid-template-columns:1fr 1fr;align-items:end}}
+h2{margin:0;font-size:clamp(2rem,5vw,3rem);line-height:1;letter-spacing:-.035em;font-weight:650;font-stretch:92%}
+.sec-head p{margin:0;color:var(--dim);max-width:30rem}
+.prose{max-width:46rem}
+.prose p{margin:0 0 1rem;font-size:1.1875rem;line-height:1.6;color:var(--fg)}
+.prose p+p{color:var(--dim);font-size:1.0625rem}
+
+/* how it works: a real sequence, so the steps are numbered */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+@media (min-width:768px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1100px){.steps{grid-template-columns:repeat(5,minmax(0,1fr));gap:0}}
+.steps li{position:relative;padding:1.25rem;border:1px solid var(--border);border-radius:1rem;background:var(--surface)}
+@media (min-width:1100px){
+  .steps li{border-radius:0;border-right-width:0;padding:1.5rem 1.25rem}
+  .steps li:first-child{border-radius:1rem 0 0 1rem}
+  .steps li:last-child{border-radius:0 1rem 1rem 0;border-right-width:1px}
+}
+.steps .n{display:inline-grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:650;font-size:.9375rem}
+.steps h3{margin:.875rem 0 0;font-size:1.125rem;letter-spacing:-.01em;font-weight:600;line-height:1.25}
+.steps p{margin:.5rem 0 0;color:var(--dim);font-size:.9375rem}
+
+.caps{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--border)}
+@media (min-width:768px){.caps{grid-template-columns:1fr 1fr;column-gap:3rem}}
+.caps li{padding:1.5rem 0;border-bottom:1px solid var(--border)}
+.caps h3{margin:0;font-size:1.25rem;letter-spacing:-.015em;font-weight:600}
+.caps p{margin:.5rem 0 0;color:var(--dim)}
+
+/* data flow: chips joined by arrows, wrapping on small screens */
+.flow{list-style:none;margin:0;padding:1.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .25rem;border:1px solid var(--border);border-radius:1rem;background:var(--surface)}
+.flow li{display:inline-flex;align-items:center;font-size:.9375rem;font-weight:500;line-height:1.3}
+.flow li:not(:last-child)::after{content:"→";color:var(--mute);margin:0 .375rem}
+.sub{margin:2.5rem 0 1rem;font-size:1.25rem;letter-spacing:-.015em;font-weight:600}
+.decisions{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+@media (min-width:768px){.decisions{grid-template-columns:1fr 1fr}}
+.decisions li{padding:1.25rem;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 .75rem .75rem 0}
+.decisions h4{margin:0;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em}
+.decisions p{margin:.375rem 0 0;color:var(--dim);font-size:.9375rem}
+.stack{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.stack li{border:1px solid var(--border-strong);border-radius:999px;padding:.375rem .875rem;color:var(--dim)}
+
+.limits{list-style:none;margin:0;padding:0;display:grid;gap:.75rem;max-width:46rem}
+.limits li{position:relative;padding-left:1.5rem;color:var(--dim);font-size:1.0625rem}
+.limits li::before{content:"";position:absolute;left:0;top:.65em;width:.5rem;height:.5rem;border-radius:2px;background:var(--mute)}
+
+.faq{max-width:46rem;border-top:1px solid var(--border)}
+.faq details{border-bottom:1px solid var(--border)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.5rem;padding:.75rem 0;font-size:1.125rem;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq .chev{flex:none;transition:transform .2s;color:var(--mute)}
+.faq details[open] .chev{transform:rotate(180deg)}
+.faq details p{margin:0 0 1.25rem;color:var(--dim)}
+
+.builder{display:grid;gap:1.5rem}
+@media (min-width:768px){.builder{grid-template-columns:1fr auto;align-items:center}}
+.builder p{margin:.75rem 0 0;color:var(--dim);max-width:36rem}
+footer{padding:2rem 0 2.5rem;border-top:1px solid var(--border);color:var(--mute);font-size:.9375rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:center}
+footer nav{display:flex;flex-wrap:wrap;gap:0 1.25rem}
+footer a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer a:hover{color:var(--fg)}
+
+/* motion: one entrance for the hero; sections fade in as they scroll into view where supported */
+@media (prefers-reduced-motion:no-preference){
+  .rise{animation:rise .8s cubic-bezier(.22,1,.36,1) both}
+  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @supports (animation-timeline:view()){
+    section>*{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+    @keyframes reveal{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><i aria-hidden="true"></i>${esc(p.name)}</a>
+    <nav aria-label="On this page">
+${NAV.map(([h, l]) => `      <a href="${h}">${l}</a>`).join("\n")}
+    </nav>
+    <a class="btn btn-ghost" href="${p.appHref}" rel="nofollow">${lock}<span>${esc(p.appLabel)}</span></a>
+  </div>
+</header>
+
+<div class="wrap">
+  <main>
+    <div class="hero">
+      <div>
+        <p class="domain rise"><i aria-hidden="true"></i>${esc(p.domain)}</p>
+        <h1 class="rise d1">${esc(p.headline)}</h1>
+        <p class="lede rise d2">${esc(p.lede)}</p>
+        <div class="cta rise d3">
+          <a class="btn btn-primary" href="#how">See how it works</a>
+          ${source}
+          <a class="btn btn-ghost" href="${PORTFOLIO}">Built by Shivam Gupta ${arrow}</a>
+        </div>
+        <p class="note rise d3">${lock}<span>${esc(p.status)} The app needs a sign-in; this page is the public overview.</span></p>
+      </div>
+      <div class="rise d2">${visual}</div>
+    </div>
+${numbers}
+${problem}
+${how}
+${what}
+${inside}
+${limits}
+${faq}
+
+    <section aria-labelledby="builder" class="builder">
+      <div>
+        <h2 id="builder">Built by Shivam Gupta</h2>
+        <p>Full-stack engineer building AI and fintech systems and shipping them to production. ${esc(p.name)} was designed, built and is run end to end by me. Hiring for a full-stack or AI role? I'd like to hear from you.</p>
+      </div>
+      <a class="btn btn-primary" href="${PORTFOLIO}">Visit shivamgupta.live ${arrow}</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>© ${new Date().getFullYear()} Shivam Gupta</span>
+    <nav aria-label="Elsewhere">
+      <a href="${PORTFOLIO}">Portfolio</a>
+      <a href="${GITHUB}">GitHub</a>
+      <a href="${LINKEDIN}">LinkedIn</a>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>
+`;
+}
+
+const out = join(here, "dist");
+rmSync(out, { recursive: true, force: true });
+for (const p of projects) {
+  const dir = join(out, p.id);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "index.html"), page(p));
+  if (p.cover) copyFileSync(join(root, "public", "shots", p.cover), join(dir, "cover.jpg"));
+  console.log(`[landing] ${p.id} → ${join("scripts/landing/dist", p.id)}`);
+}

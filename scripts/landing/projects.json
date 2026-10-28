@@ -1,0 +1,223 @@
+{
+  "_comment": "Public landing pages for the private *.pseo.cloud apps. Copy only claims each project's README/docs/code support (verified 2026-10-27). Build: node scripts/landing/build.mjs → scripts/landing/dist/<id>/",
+  "projects": [
+    {
+      "id": "repo-intelligence",
+      "name": "Repo Intelligence",
+      "domain": "ri.pseo.cloud",
+      "accent": "#7cc4f2",
+      "accentLight": "#0b5f8f",
+      "headline": "Ask a codebase how it works. Every claim cites the line it came from.",
+      "lede": "Point Repo Intelligence at a TypeScript or JavaScript repository and ask something like “explain authentication”. It answers with the files involved, the request flow, the tables and the config, and every claim carries a path:line citation that is re-read from disk before you see it.",
+      "appHref": "/app",
+      "appLabel": "Open the app",
+      "status": "Private beta, running on my own server.",
+      "cover": "repo-intelligence.jpg",
+      "numbers": [
+        ["0.393", "retrieval F1, against 0.274 for grep"],
+        ["30%", "dropped claims and the whole answer is refused"],
+        ["~12 s", "to clone and parse 2,000 files"],
+        ["405", "automated test cases"]
+      ],
+      "problem": [
+        "Chatting with an LLM about a repository works for questions about one file and fails for questions about a concern. Authentication, for example, is spread across middleware, routes, models, config and utilities, and a chat window only ever sees part of it.",
+        "When you're new to a codebase, an answer you have to fact-check yourself is worth less than no answer. So the feature is verifiability, not fluency: every statement points at the exact lines that support it, and the system checks those lines before you read them."
+      ],
+      "steps": [
+        ["Add a repository", "Paste a public git URL. It is shallow-cloned and parsed, about 12 seconds for 2,000 files."],
+        ["Build the code graph", "tree-sitter extracts symbols, imports, calls, routes and ORM models (TypeORM, Drizzle, Sequelize, Prisma) without any LLM calls."],
+        ["Index it", "Code is chunked on symbol boundaries and indexed with BM25, plus optional local embeddings."],
+        ["Retrieve", "Hybrid search finds seed files, then expands along the graph and ranks by role, direction and centrality."],
+        ["Answer and verify", "An LLM writes claims with path:line citations. A validator re-reads every cited span, drops claims that fail, and refuses the answer if more than 30% fail."]
+      ],
+      "capabilities": [
+        ["Citations that are checked", "A citation must resolve and the claim's identifiers must actually appear in the cited span, because a line can exist and still not support the claim."],
+        ["Structure from the code, not the model", "Routes, ORM models, request flow and Mermaid diagrams come from resolved graph edges."],
+        ["Docs are first-class", "Markdown and docs are indexed and citable alongside the code."],
+        ["Measured, not assumed", "An eval harness scores retrieval against hand-labelled questions across 4 repos. No ranking change lands without a before-and-after score."]
+      ],
+      "flow": ["Ingest", "Code graph (tree-sitter)", "Index (BM25 + embeddings)", "Retrieval + graph expansion", "Synthesis via AI Router", "Citation validator", "Web UI"],
+      "decisions": [
+        ["WASM tree-sitter over native bindings", "Native parses 1.7× faster, but parsing isn't the bottleneck and WASM needs no native build toolchain."],
+        ["Free providers for synthesis", "A quality gate that costs money to run doesn't get run, so synthesis goes through my own AI Router over free tiers."],
+        ["Local embeddings, not hosted", "A hosted free tier was measured slower than the local CPU, and it would have sent source code off the machine."],
+        ["Every ranking change is scored", "Changes must move the eval score in the same direction on both labelled strata before they land."]
+      ],
+      "limits": [
+        "TypeScript and JavaScript only for now.",
+        "The evaluation set is small (13 hand-labelled questions), so the graph's extra value is real but not yet stable.",
+        "The hosted copy accepts public repositories only."
+      ],
+      "faq": [
+        ["Can I try it?", "The app is in private beta behind a sign-in. If you'd like a walkthrough, get in touch through my portfolio."],
+        ["Is the code open source?", "Not yet. The repository is private."],
+        ["Does it need an API key?", "Retrieval works without one. Writing the answer needs an LLM, which it reaches through AI Router."]
+      ],
+      "stack": ["TypeScript", "tree-sitter (WASM)", "BM25 + local embeddings", "AI Router", "Node 24", "pnpm + Turborepo", "Docker"]
+    },
+    {
+      "id": "smart-trading",
+      "name": "Smart Trader",
+      "domain": "trading.pseo.cloud",
+      "accent": "#5bd69f",
+      "accentLight": "#0b7a4b",
+      "headline": "An NSE trading desk that backtests first and trades carefully.",
+      "lede": "A full-stack platform for Indian equities: 31 strategies backtested on NSE history, a live scanner that manages entries, trailing stops and square-off, Telegram alerts, and a tightly guarded executor that places real orders through Dhan.",
+      "appHref": "/dashboard",
+      "appLabel": "Open the app",
+      "repoUrl": "https://github.com/shivamgupta1319/smart-trading",
+      "status": "Private app; live execution is supervised and runs on a small account.",
+      "cover": "smart-trading.jpg",
+      "numbers": [
+        ["31", "strategies: 14 intraday, 17 swing"],
+        ["347", "paper trades in one month, profit factor 1.30"],
+        ["2%", "risk per real trade, with a daily kill switch"],
+        ["15:10", "square-off for every intraday position"]
+      ],
+      "problem": [
+        "Retail algo trading usually goes one of two ways: backtests that never meet a real market, or live bots that trade before anyone has checked the numbers. Smart Trader is a zero-cost platform that does the boring part first: it backtests every strategy, picks the best one per stock, and watches the live market for setups.",
+        "The newer work closes the loop. A heavily guarded adapter places real orders on Dhan for a short whitelist, so real fills can be compared with what the simulator predicted."
+      ],
+      "steps": [
+        ["Backtest", "The Python engine runs strategies over NSE price history and saves a report for each stock."],
+        ["Activate", "A stock, strategy and timeframe that earned it goes on the active list; that list is all the scanner watches."],
+        ["Scan the market", "During market hours the scanner manages open positions and trailing stops, then looks for new setups between 09:30 and the 15:10 square-off."],
+        ["Signal", "Each signal is saved with a simulated trade and pushed to the dashboard over WebSocket and to Telegram."],
+        ["Execute, carefully", "For a whitelisted pair, a market order goes to Dhan and a broker-side protective stop is placed immediately."]
+      ],
+      "capabilities": [
+        ["Strategy library with a backtester", "31 strategies, intraday and swing, each backtested before it ever sees live data."],
+        ["Live scanner and alerts", "Entries, trailing stops and exits handled in market hours, with WebSocket and Telegram alerts."],
+        ["Charts, portfolio and risk", "Candlestick charting with portfolio and risk tracking in a React dashboard."],
+        ["Guarded real-money execution", "Fixed 2% risk per trade, a ₹600 daily-loss kill switch, 20 orders a day, and stops that live at the broker."]
+      ],
+      "flow": ["NSE price history", "Python engine + backtester", "Live scanner", "NestJS API + Postgres", "WebSocket + Telegram", "React dashboard", "Dhan (guarded)"],
+      "decisions": [
+        ["Risk is fixed, size flexes", "Real position size is the smaller of a risk-based, a notional and a hard quantity cap, so risk stays at 2% whatever the stop distance."],
+        ["Stops live at the broker", "A protective stop-limit rests at Dhan from the first second, so a crash on my side can't leave a position unprotected."],
+        ["State survives restarts", "Positions and the kill switch are stored and reconciled with the broker on boot, after an in-memory map once lost a live position."],
+        ["Fails safe", "If the static-IP proxy that SEBI rules require goes down, orders fail; they never bypass it."]
+      ],
+      "limits": [
+        "Real-money trading is at an early validation stage on a small account. It is not a proven autonomous system.",
+        "Real execution is cash-equity intraday only, and exits can lag the market by up to about 100 seconds.",
+        "Paper results are before real costs, so live net returns will trail the simulation."
+      ],
+      "faq": [
+        ["Can I use it?", "The app is private. The source is public on GitHub if you'd like to read how it works."],
+        ["Does it trade real money?", "Yes, narrowly: two whitelisted intraday pairs on a small, supervised account. Everything else is simulated."],
+        ["Is this investment advice?", "No. It's an engineering project, and its own docs say not to treat it as a proven system."]
+      ],
+      "stack": ["React + Vite", "NestJS", "Prisma + PostgreSQL 16", "Socket.io", "Python FastAPI", "pandas", "Nx monorepo", "Docker"]
+    },
+    {
+      "id": "crypto-ai",
+      "name": "Crypto AI",
+      "domain": "crypto.pseo.cloud",
+      "accent": "#f2b544",
+      "accentLight": "#8a5800",
+      "headline": "A crypto futures lab that paper-trades before risking a rupee.",
+      "lede": "Crypto AI analyses BTC, ETH and SOL perpetuals on Binance, generates signals from 12 strategies and paper-trades them with 1,00,000 of virtual capital, so every strategy is tested on the live market before real money is involved.",
+      "appHref": "/dashboard",
+      "appLabel": "Open the app",
+      "repoUrl": "https://github.com/shivamgupta1319/crypto-ai",
+      "status": "Paper trading only. Live trading is a deliberately gated final phase.",
+      "cover": "crypto-ai.jpg",
+      "numbers": [
+        ["12", "strategies, long and short"],
+        ["3 × 5", "symbols across timeframes from 5m to 1d"],
+        ["5%", "daily-loss kill switch on the paper account"],
+        ["~130", "automated tests"]
+      ],
+      "problem": [
+        "Leveraged crypto futures punish untested ideas quickly. Crypto AI exists to test first: it runs strategies against the live market with virtual capital for about a month before any real money is risked.",
+        "Everything uses free data sources (Binance public data, CoinGecko, Fear & Greed, RSS news), so the whole experiment costs nothing to run."
+      ],
+      "steps": [
+        ["Backtest", "Run a strategy with slippage and funding costs, compare Sharpe, Sortino and Calmar with buy-and-hold, then promote it to live."],
+        ["Scan", "Every 60 seconds the scanner runs promoted strategies and emits entry, stop, target, reward-to-risk and confidence."],
+        ["Filter", "An optional meta-label model only lets through signals with a predicted win probability of at least 55%."],
+        ["Paper trade", "A paper broker opens positions under risk limits and manages trailing stops and the kill switch."],
+        ["Learn, with approval", "The agent proposes bounded changes from regime and performance analysis; I approve, reject or revert each one."]
+      ],
+      "capabilities": [
+        ["One strategy code path", "The same functions drive backtests and live signals, so a backtested edge behaves the same live."],
+        ["Backtests that try to break", "Slippage and funding, parameter sweeps, out-of-sample and walk-forward tests, and Monte Carlo."],
+        ["A paper broker with real rules", "Up to 30× leverage, 1% risk per trade, 5 open positions at most, and a daily-loss kill switch."],
+        ["Market intelligence", "Funding rate, open interest, long/short ratio, BTC dominance and a correlation matrix on the dashboard."]
+      ],
+      "flow": ["Binance + free market data", "Candle cache", "Indicators", "Strategy library", "Regime + meta-label filter", "Scanner", "Paper broker", "Dashboard + alerts"],
+      "decisions": [
+        ["Hand-rolled indicators", "pandas-ta breaks on NumPy 2, so indicators are written by hand and tested."],
+        ["The broker is an interface", "A future live broker plugs in without touching the portfolio's risk logic."],
+        ["Propose, then approve", "The adaptive layer changes nothing on its own, and flags results that look too good (win rate above 80%, profit factor above 4) as likely overfitting."],
+        ["Rules before models for regimes", "Regimes come from ADX, EMA slope and ATR rules: transparent, and they need no training data."]
+      ],
+      "limits": [
+        "Paper trading only. The live broker phase is not built.",
+        "Live results are expected to trail backtests, and the meta-label model needs about 100 trades before it can train.",
+        "The AI commentary needs free-tier API keys and switches off without them."
+      ],
+      "faq": [
+        ["Can I use it?", "The hosted app is private, but the source is public on GitHub and runs locally with one command."],
+        ["Does it trade real money?", "No. It is paper only, and the agent never trades on its own."],
+        ["What does the AI do?", "It writes market commentary, explains backtests and answers portfolio questions. It never sizes or places a trade."]
+      ],
+      "stack": ["Python 3.12", "FastAPI", "SQLAlchemy + SQLite", "pandas / NumPy", "scikit-learn", "React + Vite", "Tailwind CSS", "lightweight-charts"]
+    },
+    {
+      "id": "ai-router",
+      "name": "AI Router",
+      "domain": "ai.pseo.cloud",
+      "accent": "#b9a4f5",
+      "accentLight": "#5a3fb8",
+      "headline": "One OpenAI-compatible endpoint in front of many AI providers.",
+      "lede": "A self-hosted gateway that routes chat, embeddings, images, speech and more across mostly free-tier providers. Point the standard openai SDK at it, ask for model \"auto\", and it picks a healthy, well-scoring model and fails over before you notice. It serves 5 of my live projects.",
+      "appHref": "/dashboard",
+      "appLabel": "Admin dashboard",
+      "status": "Live. API keys are issued per project; there is no public sign-up.",
+      "code": "import OpenAI from \"openai\";\n\nconst ai = new OpenAI({\n  baseURL: \"https://ai.pseo.cloud/v1\",\n  apiKey: process.env.AI_ROUTER_KEY,\n});\n\nconst res = await ai.chat.completions.create({\n  model: \"auto\",\n  messages: [{ role: \"user\", content: \"Summarise this filing\" }],\n});",
+      "numbers": [
+        ["5", "live projects routed through it"],
+        ["342", "automated tests"],
+        ["90 s", "hard budget across every hop"],
+        ["5%", "exploration so new models get a chance"]
+      ],
+      "problem": [
+        "Across my projects the same free API keys were wired in by hand, and the fallback loop had been written nine times, in two languages, with three contradicting failover policies.",
+        "Worse, model IDs rot silently. Twelve models in one provider's catalogue returned 410 Gone, and ten of fourteen IDs at another no longer existed. Published metadata about free AI is unreliable; only probing tells the truth. AI Router does that work once, for every project."
+      ],
+      "steps": [
+        ["Call it like OpenAI", "Any project sends a standard request with the stock SDK. The model field is a routing hint: auto, a task, or a pinned model."],
+        ["Resolve a chain", "The router builds the candidate list for that task, ordered by live health and measured quality."],
+        ["Try within one budget", "Each hop gets what's left of a single wall-clock budget, so retries can never stack up past the deadline."],
+        ["Validate the output", "Structured output is checked against the JSON schema, repaired once, and escalated to the next model if it still fails."],
+        ["Learn from the outcome", "Every result updates the health table and the per-task scorecard, and models that keep failing a task are demoted."]
+      ],
+      "capabilities": [
+        ["Drop-in compatible", "Chat, structured JSON, streaming, tools, vision, embeddings, rerank, images, speech and transcription through one API."],
+        ["Health known before requests", "A background prober checks one stale model per tick, so health is known without burning free quota."],
+        ["Routing on measured quality", "Models are scored on first-try schema validity, success rate and latency, with a minimum sample before a score counts."],
+        ["Failures with names", "Empty replies, schema failures and retired models are typed outcomes, so they can be counted and fixed."]
+      ],
+      "flow": ["openai SDK in any project", "Cloudflare tunnel", "NestJS API + project keys", "Resolver + chains", "Runners (chat, stream, embed, media)", "Upstream providers", "Health + scorecard (Postgres)"],
+      "decisions": [
+        ["Probes can't promote", "A probe can only lift a model to 'unknown'; only real traffic earns 'ready'."],
+        ["Never cross embedding dimensions", "A 768-wide vector where 1024 was promised would silently poison a search index, so fallback stays within one dimension."],
+        ["Streams fail over before the first token only", "Once bytes are on the wire it's a pipe; switching models mid-answer would corrupt it."],
+        ["The paid fallback is fenced in code", "The one metered provider is last-hop only, never probed, allow-listed and capped per day."]
+      ],
+      "limits": [
+        "It runs on a single home server, which is a single point of failure.",
+        "Free tiers churn constantly, so some providers answer only part of the time.",
+        "It's for my own projects: keys are minted per project and there's no public access."
+      ],
+      "faq": [
+        ["Can I get a key?", "Not at the moment. It serves my own projects, and keys are issued per project."],
+        ["Is it really free?", "Mostly. One metered provider is kept as a capped, last-resort fallback."],
+        ["Why a service and not a library?", "My projects are split between TypeScript and Python, and routing lives in the model string, so any stock OpenAI SDK can drive it."]
+      ],
+      "stack": ["NestJS", "TypeScript", "PostgreSQL 16 + Kysely", "ajv", "Docker", "Cloudflare Tunnel"]
+    }
+  ]
+}
