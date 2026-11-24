@@ -66,10 +66,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: "dark light",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#eef1f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#141a23" },
-  ],
+  // The site pages are one light theme (sage); the browser chrome matches it.
+  themeColor: "#e6ece5",
 };
 
 export default function RootLayout({
