@@ -1,6 +1,7 @@
 import landing from "../../scripts/landing/projects.json";
 import { allQuests } from "./quests";
 import type { Quest } from "./types";
+import type { AppAccess, AppGroup, AppListItem } from "./appMeta";
 
 /**
  * The site's app catalogue (`/apps`, `/apps/<slug>`, the home board).
@@ -11,35 +12,8 @@ import type { Quest } from "./types";
  * the project's code or README.
  */
 
-export type AppGroup = "live" | "system" | "project";
-
-/**
- * How a visitor meets the app at its URL:
- * - public:   usable or browsable without signing in
- * - overview: a public overview page; the app itself needs a sign-in
- * - login:    opens straight to a sign-in
- * - none:     no URL of its own (package, internal system, local tool)
- */
-export type AppAccess = "public" | "overview" | "login" | "none";
-
-export const GROUP_LABELS: Record<AppGroup, string> = {
-  live: "Live on my domains",
-  system: "Systems",
-  project: "Projects",
-};
-
-export const GROUP_BLURBS: Record<AppGroup, string> = {
-  live: "Products I built and run myself, served from my own server through Cloudflare.",
-  system: "Platforms, infrastructure and engines: some for teams I've worked with, some that power my own apps.",
-  project: "Shipped earlier, built for a team, or still in the lab.",
-};
-
-export const ACCESS_LABELS: Record<AppAccess, string> = {
-  public: "Public",
-  overview: "Overview + sign-in",
-  login: "Sign-in only",
-  none: "",
-};
+export { ACCESS_LABELS, GROUP_BLURBS, GROUP_LABELS } from "./appMeta";
+export type { AppAccess, AppGroup, AppListItem } from "./appMeta";
 
 /** Ordered ids per group. Ids are curated keys / repo names. */
 const GROUPS: Record<AppGroup, string[]> = {
@@ -276,4 +250,29 @@ export function appBySlug(slug: string): App | undefined {
 export function neighbours(slug: string): { prev?: App; next?: App } {
   const i = apps.findIndex((a) => a.slug === slug);
   return { prev: i > 0 ? apps[i - 1] : undefined, next: i >= 0 ? apps[i + 1] : undefined };
+}
+
+/** One-liner for lists: curated summary, else the first sentence of the description. */
+export function oneLiner(app: Pick<App, "summary" | "description">): string {
+  if (app.summary) return app.summary;
+  const first = app.description.split(/(?<=[.!?])\s/)[0] ?? app.description;
+  return first.length > 140 ? `${first.slice(0, 137).trimEnd()}…` : first;
+}
+
+/** The small, serialisable shape the board rows and the client-side filter need. */
+export function toListItem(app: App): AppListItem {
+  return {
+    id: app.id,
+    slug: app.slug,
+    title: app.title,
+    line: oneLiner(app),
+    group: app.group,
+    access: app.access,
+    category: app.category,
+    host: app.host,
+    liveUrl: app.liveUrl,
+    npmUrl: app.npmUrl,
+    credit: app.credit,
+    probe: app.probe,
+  };
 }
