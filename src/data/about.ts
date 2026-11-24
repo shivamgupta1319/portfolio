@@ -1,6 +1,6 @@
 import { liveApps } from "./apps";
 export const bio: string[] = [
-  `Full-stack software engineer with 4+ years shipping products end to end. ${liveApps.length} of my apps are live on my own domains, served from a server I run myself (pSEO.cloud, Resite.live, Trade Master, Repo Intelligence and AI Router among them), plus 2 published npm packages (Stream Verse, uace-mcp). At work I'm a core engineer on a deployed disaster-response platform running WebRTC and on-device speech recognition on field hardware with zero internet dependency.`,
+  `Software engineer with 4+ years shipping products end to end. ${liveApps.length} of my apps are live on my own domains, served from a server I run myself (pSEO.cloud, Resite.live, Trade Master, Repo Intelligence and AI Router among them), plus 2 published npm packages (Stream Verse, uace-mcp). At work I'm a core engineer on a deployed disaster-response platform running WebRTC and on-device speech recognition on field hardware with zero internet dependency.`,
   "The work I choose keeps landing where AI meets money: a code-intelligence engine measured against labelled ground truth, an OpenAI-compatible gateway serving my own products, and NSE research tools that cost trades to the paisa and publish their negative results. I build the measurement before the feature, and I ship the product around the model, not just the notebook.",
 ];
 

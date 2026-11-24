@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, Inter, JetBrains_Mono } from "next/font/google";
 import { SITE_URL, SITE_TITLE, SITE_DESC, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
 import Analytics from "@/analytics/Analytics";
 import { THEME_SCRIPT } from "@/theme/themeScript";
@@ -11,11 +11,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-/** Site pages (v5): Archivo with its width axis for the expanded headline cut. */
-const archivo = Archivo({
-  variable: "--font-archivo",
+/** Site pages (v6). */
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  axes: ["wdth"],
 });
 
 const jbMono = JetBrains_Mono({
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   keywords: [
     "Shivam Gupta",
-    "full-stack engineer",
+    "software engineer",
     "software engineer portfolio",
     "AI engineer",
     "RAG",
@@ -84,7 +83,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${archivo.variable} ${jbMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${geist.variable} ${jbMono.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />

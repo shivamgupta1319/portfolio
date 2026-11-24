@@ -8,7 +8,7 @@ import ResumeButton from "@/site/ResumeButton";
 export const metadata: Metadata = {
   title: "Experience — Shivam Gupta",
   description:
-    "Four years as a full-stack engineer at Wisflux Tech Labs: real-time, AI and fintech systems, plus the stack I ship with.",
+    "Four years as a software engineer at Wisflux Tech Labs: real-time, AI and fintech systems, plus the stack I ship with.",
   alternates: { canonical: "/experience/" },
 };
 

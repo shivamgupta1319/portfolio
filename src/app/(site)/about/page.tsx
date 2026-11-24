@@ -8,7 +8,7 @@ import { buttonClass } from "@/site/button";
 
 export const metadata: Metadata = {
   title: "About — Shivam Gupta",
-  description: `Shivam Gupta is a full-stack engineer in ${profile.location} who builds products and runs them himself: ${liveApps.length} apps live on his own domains.`,
+  description: `Shivam Gupta is a software engineer in ${profile.location} who builds products and runs them himself: ${liveApps.length} apps live on his own domains.`,
   alternates: { canonical: "/about/" },
 };
 

@@ -84,7 +84,7 @@ export const COMMANDS: Record<string, Command> = {
     desc: "print a profile summary",
     run: () => [
       line("shivam gupta", "accent"),
-      line("full-stack software engineer · jaipur, india", "dim"),
+      line("software engineer · jaipur, india", "dim"),
       line("builds: trading systems, AI agents, real-time apps, shipped SaaS", "dim"),
       line("run `about` for the full character sheet.", "cyan"),
     ],

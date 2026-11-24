@@ -25,7 +25,7 @@ export default function OgImage() {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 30, color: "#a9b3c4" }}>Shivam Gupta, full-stack engineer</div>
+          <div style={{ fontSize: 30, color: "#a9b3c4" }}>Shivam Gupta, Software Engineer</div>
           <div style={{ fontSize: 68, fontWeight: 800, letterSpacing: -2, lineHeight: 1.04, marginTop: 12, maxWidth: 860 }}>
             I build products and run them myself.
           </div>

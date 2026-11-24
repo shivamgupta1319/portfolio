@@ -21,7 +21,7 @@ export default function ContactPage() {
     <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:pt-12">
       <h1 className="wide text-4xl font-bold leading-[1.05] text-fg sm:text-5xl">Contact</h1>
       <p className="mt-3 max-w-2xl text-lg text-fg-dim">
-        Hiring for a full-stack or AI engineering role, or want something built and run? Email is the fastest way to
+        Hiring for a software or AI engineering role, or want something built and run? Email is the fastest way to
         reach me.
       </p>
 
