@@ -72,7 +72,7 @@ const ACCESS: Record<string, AppAccess> = {
   notes: "overview",
   "linkedin-ai": "overview",
   trip: "overview",
-  "personal-drive": "login",
+  "personal-drive": "overview",
 };
 
 /**
