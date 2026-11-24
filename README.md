@@ -46,7 +46,7 @@ const shivam = {
 | **[UACE](https://www.npmjs.com/package/uace-mcp)** · npm | MCP server giving every AI coding assistant one local-first project brain — 18 tools + 2 prompts. | TypeScript, MCP, sqlite-vec |
 | **[LACS / X-FACE](https://dr.alwacs.com)** · team | Deployed disaster-response comms: WebRTC/Mediasoup, on-device ASR/TTS, offline-first edge↔cloud sync on field mini-PCs. | NestJS, Postgres, Expo, Mediasoup |
 | **[Stream Verse](https://npmjs.com/package/streamverse)** · npm | WebRTC SDK for calls, streaming and screen share with automatic P2P→SFU scaling. | TypeScript, Mediasoup, Socket.io |
-| **[Smart Trader](https://github.com/shivamgupta1319/smart-trading)** | NSE algo platform: 28 backtested strategies, live scanner, Telegram alerts. | React, NestJS, Python FastAPI, Postgres |
+| **[Smart Trader](https://github.com/shivamgupta1319/smart-trading)** | NSE paper-trading lab: 28 strategies, every trade booked after real costs, real money switched off. | React, NestJS, Python FastAPI, Postgres |
 
 ---
 

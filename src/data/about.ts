@@ -27,7 +27,7 @@ export const traits: Trait[] = [
     icon: "₿",
     title: "FinTech & Markets",
     detail:
-      "31 backtested strategies, event studies, IPO and dividend screeners, real-time market news.",
+      "A 28-strategy paper-trading lab, event studies, IPO and dividend screeners, real-time market news.",
   },
   {
     icon: "◈",

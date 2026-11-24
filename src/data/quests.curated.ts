@@ -176,16 +176,17 @@ export const curated: Record<string, CuratedQuest> = {
   "smart-trading": {
     title: "Smart Trader",
     summary:
-      "Polyglot NSE trading platform: 31 backtested strategies, a live scanner and guarded real-money execution.",
+      "Paper-trading lab for NSE: 28 strategies, every trade booked after real costs, real money switched off.",
     description:
-      "A polyglot NSE trading platform on an Nx monorepo: backtests 31 strategies (14 intraday, 17 swing), runs a live scanner that manages entries, trailing stops and the 15:10 square-off, and pushes alerts over WebSockets and Telegram. A guarded Dhan adapter places real orders for a short whitelist with a fixed 2% risk per trade, broker-side stops and a daily kill switch. React + Vite UI, NestJS + Prisma API, and a Python FastAPI quant engine.",
+      "A paper-trading lab for Indian stocks on an Nx monorepo. It runs 28 strategies (11 intraday, 17 swing) with pretend money, books every trade after brokerage, taxes and slippage, measures it in R against the rupees it risked, and gives each stock-and-strategy pair a status from its own paper trades: Testing, Proven or Paused. It was rebuilt after an audit of two earlier versions showed backtests did not predict live results, costs were never booked and fills were too kind. A Dhan real-money layer is built in behind six locks and switched off. React + Vite UI, NestJS + Prisma API, and a Python FastAPI engine.",
     highlights: [
-      "31 backtested strategies; 347 paper trades in a month at profit factor 1.30",
-      "Guarded live execution: 2% risk per trade, broker-side stops, daily kill switch",
+      "Audit-driven rebuild: 58 pairs picked for strong backtests won 55% in backtest, 17% live",
+      "Every trade after real costs; results corrected for luck across 28 strategies",
+      "Real money behind six locks, switched off until pairs prove themselves in paper",
     ],
     liveUrl: "https://trading.pseo.cloud",
     liveLabel: "trading.pseo.cloud",
-    tags: ["Nx Monorepo", "NestJS", "React", "Python FastAPI", "PostgreSQL", "Socket.io", "Docker"],
+    tags: ["Nx Monorepo", "NestJS + Prisma", "Python FastAPI", "React + Vite", "PostgreSQL", "Socket.io", "Telegram", "Docker"],
     category: ["fintech", "realtime"],
     rank: "S",
     featured: true,

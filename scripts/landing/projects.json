@@ -61,54 +61,54 @@
       "domain": "trading.pseo.cloud",
       "accent": "#5bd69f",
       "accentLight": "#0b7a4b",
-      "headline": "An NSE trading desk that backtests first and trades carefully.",
-      "lede": "A full-stack platform for Indian equities: 31 strategies backtested on NSE history, a live scanner that manages entries, trailing stops and square-off, Telegram alerts, and a tightly guarded executor that places real orders through Dhan.",
+      "headline": "A paper-trading lab for NSE that books every trade after real costs.",
+      "lede": "Smart Trader runs 28 trading strategies on Indian stocks with pretend money. It books each trade with brokerage, taxes and slippage, measures it in R against the rupees it risked, and keeps score of which stock-and-strategy pairs actually earn. Real-money trading is built in, behind six locks, and switched off.",
       "appHref": "/dashboard",
       "appLabel": "Open the app",
       "repoUrl": "https://github.com/shivamgupta1319/smart-trading",
-      "status": "Private app; live execution is supervised and runs on a small account.",
+      "status": "Paper trading only; the real-money layer is switched off.",
       "cover": "smart-trading.jpg",
       "numbers": [
-        ["31", "strategies: 14 intraday, 17 swing"],
-        ["347", "paper trades in one month, profit factor 1.30"],
-        ["2%", "risk per real trade, with a daily kill switch"],
-        ["15:10", "square-off for every intraday position"]
+        ["28", "strategies: 11 intraday, 17 swing"],
+        ["359", "stock-and-strategy pairs on the paper roster"],
+        ["17%", "live wins, against 55% in backtest, for 58 pairs picked on their backtests"],
+        ["6", "locks that must all be open before a real order"]
       ],
       "problem": [
-        "Retail algo trading usually goes one of two ways: backtests that never meet a real market, or live bots that trade before anyone has checked the numbers. Smart Trader is a zero-cost platform that does the boring part first: it backtests every strategy, picks the best one per stock, and watches the live market for setups.",
-        "The newer work closes the loop. A heavily guarded adapter places real orders on Dhan for a short whitelist, so real fills can be compared with what the simulator predicted."
+        "Two earlier versions ran in paper for months, with 4,066 and 337 closed trades. Queried line by line, they showed that a good backtest did not mean a good live result: across 53 pairs, backtest return and live result were not correlated (−0.06), and 58 pairs picked for strong backtests went from 55% wins to 17% live.",
+        "They also booked no costs (about ₹174 per intraday trade), filled at prices the market never offered, allowed unlimited re-entry and never switched a losing pair off. The product was rebuilt around fixing exactly those things, so its numbers can be trusted before any real money is."
       ],
       "steps": [
-        ["Backtest", "The Python engine runs strategies over NSE price history and saves a report for each stock."],
-        ["Activate", "A stock, strategy and timeframe that earned it goes on the active list; that list is all the scanner watches."],
-        ["Scan the market", "During market hours the scanner manages open positions and trailing stops, then looks for new setups between 09:30 and the 15:10 square-off."],
-        ["Signal", "Each signal is saved with a simulated trade and pushed to the dashboard over WebSocket and to Telegram."],
-        ["Execute, carefully", "For a whitelisted pair, a market order goes to Dhan and a broker-side protective stop is placed immediately."]
+        ["Backtest the way it trades", "Strategies are backtested with the same entry rules, cooldowns and costs the live scanner uses, read from one shared settings file."],
+        ["Admit a pair", "A stock-and-strategy pair joins the roster only if its backtest meets one rule, including a luck test for swing."],
+        ["Paper-trade it", "In market hours the scanner opens a paper trade when a strategy signals, at the live price, and closes it at the stop, the target or 15:15."],
+        ["Book it honestly", "Every result is after brokerage, taxes and slippage, measured in R; a trade whose costs exceed a quarter of its risk is skipped."],
+        ["Let it earn its status", "Each pair is Testing, Proven (40+ trades, profitable after costs, positive in both halves) or Paused (half its fund gone), from its own trades."]
       ],
       "capabilities": [
-        ["Strategy library with a backtester", "31 strategies, intraday and swing, each backtested before it ever sees live data."],
-        ["Live scanner and alerts", "Entries, trailing stops and exits handled in market hours, with WebSocket and Telegram alerts."],
-        ["Charts, portfolio and risk", "Candlestick charting with portfolio and risk tracking in a React dashboard."],
-        ["Guarded real-money execution", "Fixed 2% risk per trade, a ₹600 daily-loss kill switch, 20 orders a day, and stops that live at the broker."]
+        ["Truthful fills", "Entries at the live price, stops at the worse of the stop and the market, and a gap through a stop fills at the open."],
+        ["Luck-corrected results", "With 28 strategies tested at once, results are corrected for luck; today none passes the strict test, and the page says so."],
+        ["Status from live results", "A backtest only gets a pair in the door. Pairs pause themselves when they lose half their fund."],
+        ["Telegram, not screen-watching", "Trade alerts and a Friday summary arrive on Telegram."]
       ],
-      "flow": ["NSE price history", "Python engine + backtester", "Live scanner", "NestJS API + Postgres", "WebSocket + Telegram", "React dashboard", "Dhan (guarded)"],
+      "flow": ["NSE candles", "Python engine + backtester", "Live scanner (paper)", "NestJS API + Postgres", "Scorecard + Telegram", "Dhan layer (off)"],
       "decisions": [
-        ["Risk is fixed, size flexes", "Real position size is the smaller of a risk-based, a notional and a hard quantity cap, so risk stays at 2% whatever the stop distance."],
-        ["Stops live at the broker", "A protective stop-limit rests at Dhan from the first second, so a crash on my side can't leave a position unprotected."],
-        ["State survives restarts", "Positions and the kill switch are stored and reconciled with the broker on boot, after an in-memory map once lost a live position."],
-        ["Fails safe", "If the static-IP proxy that SEBI rules require goes down, orders fail; they never bypass it."]
+        ["One settings file for both worlds", "Fund size, leverage, risk cap and costs live in one file that the engine and the API both read, so backtest and paper trading can't drift apart."],
+        ["Risk is fixed, size flexes", "No trade may risk more than 2% of what it may hold: ₹200 for a swing trade, ₹1,000 intraday."],
+        ["Real money needs every lock", "Live mode on, the pair Proven, switched on by hand, a broker id saved, an intraday signal, and today's limits not used up."],
+        ["Exits are never blocked", "Anything that stops new real trades still lets open real positions exit; a stop order rests at the broker from the start."]
       ],
       "limits": [
-        "Real-money trading is at an early validation stage on a small account. It is not a proven autonomous system.",
-        "Real execution is cash-equity intraday only, and exits can lag the market by up to about 100 seconds.",
-        "Paper results are before real costs, so live net returns will trail the simulation."
+        "No intraday strategy shows an edge after costs, and no swing strategy has passed the strict luck test yet.",
+        "Paper fills are still not real fills, and the stock lists are chosen from today's liquid names, which flatters the backtest.",
+        "The real-money layer ran briefly in July 2026 on a small account and is switched off; in this product it is covered by tests with the broker faked."
       ],
       "faq": [
         ["Can I use it?", "The app is private. The source is public on GitHub if you'd like to read how it works."],
-        ["Does it trade real money?", "Yes, narrowly: two whitelisted intraday pairs on a small, supervised account. Everything else is simulated."],
-        ["Is this investment advice?", "No. It's an engineering project, and its own docs say not to treat it as a proven system."]
+        ["Does it trade real money?", "Not now. The layer is built and switched off until pairs prove themselves over months of paper trading."],
+        ["Is this investment advice?", "No. It's an engineering project."]
       ],
-      "stack": ["React + Vite", "NestJS", "Prisma + PostgreSQL 16", "Socket.io", "Python FastAPI", "pandas", "Nx monorepo", "Docker"]
+      "stack": ["Nx monorepo", "NestJS + Prisma", "PostgreSQL", "Python FastAPI", "pandas", "React + Vite", "Socket.io", "Telegram", "Docker"]
     },
     {
       "id": "crypto-ai",
