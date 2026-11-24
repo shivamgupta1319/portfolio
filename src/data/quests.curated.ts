@@ -130,30 +130,6 @@ export const curated: Record<string, CuratedQuest> = {
     isPrivate: true,
     language: "TypeScript",
   },
-  "stocksafe-bundles": {
-    title: "Stock Safe Bundles",
-    summary:
-      "Shopify App Store app that keeps fixed-bundle inventory truthful across locations.",
-    description:
-      "A Shopify app — live on the Shopify App Store — that keeps fixed-bundle inventory trustworthy across locations. A reconcile → diagnose → audit engine computes true per-location sellable quantity, names the bottleneck component when a bundle reads zero, and keeps an append-only audit trail no incumbent has.",
-    highlights: [
-      "Live on the Shopify App Store — shipped through app review",
-      "Reconcile → diagnose → audit: names the bottleneck component when a bundle reads zero",
-      "Idempotent, out-of-order-safe webhook handling",
-    ],
-    liveUrl: "https://apps.shopify.com/stocksafe-bundles",
-    liveLabel: "Shopify App Store",
-    tags: ["Shopify App", "React Router", "Prisma", "Postgres (Neon)", "pg-boss", "Render"],
-    category: ["product"],
-    rank: "S",
-    featured: true,
-    order: 7,
-    year: 2026,
-    status: "live",
-    synthesize: true,
-    isPrivate: true,
-    language: "TypeScript",
-  },
   UACE: {
     title: "UACE",
     summary:
@@ -228,6 +204,8 @@ export const curated: Record<string, CuratedQuest> = {
       "Costs to the paisa: Dhan intraday + delivery rate cards, golden-tested",
       "318 tests · two reconciling engines · ~2,000-name NSE universe",
     ],
+    liveUrl: "https://paper.pseo.cloud",
+    liveLabel: "paper.pseo.cloud",
     tags: ["Python", "uv", "pandas / Parquet", "Backtesting", "Cost Modelling", "Pre-registration"],
     category: ["fintech"],
     rank: "A",
@@ -613,17 +591,115 @@ export const curated: Record<string, CuratedQuest> = {
     status: "live",
   },
   trip: {
-    title: "Trip Splitter",
+    title: "TripSplit",
+    summary:
+      "Trip expense splitter PWA: shared ledger, fewest-payments settle-up, AI receipt scanning.",
     description:
-      "A Splitwise-style trip expense splitter — groups track shared spends and instantly see per-person balances (who paid, who owes, the per-head split). Intentionally lightweight with PIN login and a JSON data layer.",
-    liveUrl: "https://trip-eight-omega.vercel.app",
-    liveLabel: "live",
-    tags: ["Next.js", "TypeScript", "JSON store"],
+      "An installable PWA for groups who travel together. Log an expense, pick who paid and who shares it, and a debt-minimisation algorithm works out the fewest payments that make everyone even, with partial payments, undo and a WhatsApp share. Balances per currency, searchable expenses with CSV export, and AI receipt scanning through my own AI Router. Each deploy takes an automatic database backup first.",
+    highlights: [
+      "Fewest-payments settle-up with partial payments and undo",
+      "AI receipt scanning and structured extraction via AI Router",
+      "Better Auth accounts, Postgres 17, light and dark themes",
+    ],
+    liveUrl: "https://trip.pseo.cloud",
+    liveLabel: "trip.pseo.cloud",
+    tags: ["Next.js 16", "React 19", "Postgres 17", "Better Auth", "PWA", "AI Router"],
+    category: ["product", "tools"],
+    rank: "A",
+    year: 2026,
+    status: "live",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  "catch-trades": {
+    title: "Trade Master",
+    summary:
+      "Event-driven NSE trade finder: only patterns that survive a walk-forward backtest become signals.",
+    description:
+      "An evidence-first trade finder for NSE stocks. It collects scheduled corporate events (results, dividends, buybacks, bonus issues, splits) and same-day news and deals, measures how stocks actually moved around ten years of such events against Nifty 500, and turns only the patterns that survive a walk-forward backtest into dated, sized trade signals. 2016–2022 chooses, 2023 onward confirms. Most families lose or break even after costs, and that is reported; three narrow ones pass every gate and are live. Every signal is scored on real prices after its sell day, next to its backtest. It never places orders.",
+    highlights: [
+      "Event study over 15 families and 10 years of NSE data, out-of-sample from 2023",
+      "3 rules live; e.g. bonus-issue meetings: 161 trades, +1.63% per trade, walk-forward t 4.3",
+      "Nightly 18:45 IST signal run with entry zone, stop, target and size",
+    ],
+    liveUrl: "https://trades.pseo.cloud",
+    liveLabel: "trades.pseo.cloud",
+    tags: ["Python", "FastAPI", "SQLAlchemy + Postgres", "pandas", "APScheduler", "Next.js 16", "Event Study"],
+    category: ["fintech"],
+    rank: "S",
+    year: 2026,
+    status: "live",
+    synthesize: true,
+    isPrivate: true,
+    language: "Python",
+  },
+  "linkedin-ai": {
+    title: "Post Desk",
+    summary:
+      "Plans, writes and publishes my LinkedIn posts — nothing goes out without my approval.",
+    description:
+      "A one-owner dashboard that keeps a LinkedIn posting schedule: at least two posts a week, on fixed or random days, from fresh tech news and my own projects and lessons. Drafts are written ahead of each slot through AI Router in seven rotating formats (news take, tip, opinion, X vs Y, checklist, which-to-use, how-it-breaks), get an expert review and fact-check pass, and come with an image the app draws itself. Approve, then publish: only an approved slot is ever posted.",
+    highlights: [
+      "Approve-then-publish: nothing reaches LinkedIn without a human yes",
+      "7 rotating post formats, each with an app-drawn image",
+      "Writer chain with failover through AI Router; fact-check pass on every draft",
+    ],
+    liveUrl: "https://linkedin.pseo.cloud",
+    liveLabel: "linkedin.pseo.cloud",
+    tags: ["Next.js 16", "React 19", "PostgreSQL", "zod", "LinkedIn API", "AI Router"],
+    category: ["ai", "product"],
+    rank: "A",
+    year: 2026,
+    status: "live",
+    synthesize: true,
+    isPrivate: true,
+    language: "TypeScript",
+  },
+  "personal-drive": {
+    title: "Personal Drive",
+    summary:
+      "Self-hosted Google-Drive-style storage on my own disk: chunked uploads, streaming, previews.",
+    description:
+      "Self-hosted, Google-Drive-like file storage that keeps everything as plain files on an external disk at home. Chunked uploads in 45 MB slices (Cloudflare caps a request at 100 MB), Range streaming, thumbnails and previews, trash, search and a storage dashboard. The drive can be unplugged: the app detects it live, shows an offline banner and blocks writes, so nothing ever lands on the internal disk by mistake.",
+    highlights: [
+      "Chunked uploads under Cloudflare's 100 MB request cap",
+      "Hot-plug aware: detects the disk going offline and blocks writes",
+      "Range streaming, thumbnails, trash and search",
+    ],
+    liveUrl: "https://drive.pseo.cloud",
+    liveLabel: "drive.pseo.cloud",
+    tags: ["Express + TypeScript", "React 19 + Vite", "Tailwind v4", "JWT Auth", "Docker"],
     category: ["tools"],
     rank: "A",
     year: 2026,
     status: "live",
+    synthesize: true,
     isPrivate: true,
+    language: "TypeScript",
+  },
+  zeev: {
+    title: "Zeev for Men",
+    summary:
+      "Storefront redesign preview for a men's silver-jewellery brand, built from its live catalogue.",
+    description:
+      "A redesign preview for zeevformen.com, a brand of hallmarked 925 silver jewellery for men. A static site built from a snapshot of the store's public product and collection data, with a dark \"Wolf noir\" theme and a light theme, motion that respects reduced-motion settings, and a bag that lives in the browser and hands checkout to the live Shopify store. Unit, build and end-to-end browser checks run before each deploy.",
+    highlights: [
+      "Built from the store's real catalogue via a paced, rate-limit-aware snapshot",
+      "Dark and light themes; motion skipped for reduced-motion visitors",
+      "Checkout hands over to the live store",
+    ],
+    liveUrl: "https://zeev.pseo.cloud",
+    liveLabel: "zeev.pseo.cloud",
+    credit: "Client work",
+    tags: ["Eleventy", "Liquid", "CSS Tokens", "Vanilla JS", "nginx"],
+    category: ["product"],
+    rank: "A",
+    year: 2026,
+    status: "live",
+    synthesize: true,
+    isPrivate: true,
+    language: "JavaScript",
   },
   "All-In-One": {
     title: "All In One",
@@ -682,7 +758,6 @@ export const SHOWCASE: string[] = [
   "AI-ROUTER",
   "smart-trading",
   "lacs-v2",
-  "stocksafe-bundles",
   "typezap",
   "delivery-os",
 ];
@@ -743,6 +818,8 @@ export const EXCLUDED = new Set<string>([
   // unlicensed music source — private use only (see repo README)
   "musafir",
   "musafir-backend",
+  // Shopify app — removed from the site on request (2026-11-24)
+  "stocksafe-bundles",
 ]);
 
 /** Side quests must be at least this fresh (drops old college/lab repos). */

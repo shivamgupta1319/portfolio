@@ -16,7 +16,6 @@ export const SHOTS = new Set<string>([
   "repo-intelligence",
   "resite",
   "smart-trading",
-  "stocksafe-bundles",
   "strategy-backtest",
   "streamverse",
   "typezap",
