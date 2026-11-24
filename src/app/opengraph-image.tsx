@@ -1,11 +1,14 @@
 import { ImageResponse } from "next/og";
+import { liveApps } from "@/data/apps";
 
 export const dynamic = "force-static";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Shivam Gupta — Full-Stack Engineer · AI & FinTech systems";
+export const alt = "Shivam Gupta: I build products and run them myself.";
 
+/** Share card in the site's operator-board look (docs/design.md). */
 export default function OgImage() {
+  const rows = liveApps.slice(0, 3);
   return new ImageResponse(
     (
       <div
@@ -14,41 +17,42 @@ export default function OgImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          background:
-            "radial-gradient(1000px 600px at 20% 10%, #1a1b3a 0%, #0a0a0b 55%)",
-          color: "#f5f5f7",
-          fontFamily: "monospace",
+          justifyContent: "space-between",
+          padding: "64px 72px",
+          background: "#141a23",
+          color: "#e9edf4",
+          fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 14, color: "#818cf8", fontSize: 30 }}>
-          [ shivamgupta.live ]
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 30, color: "#a9b3c4" }}>Shivam Gupta, full-stack engineer</div>
+          <div style={{ fontSize: 68, fontWeight: 800, letterSpacing: -2, lineHeight: 1.04, marginTop: 12, maxWidth: 860 }}>
+            I build products and run them myself.
+          </div>
         </div>
-        <div style={{ fontSize: 84, fontWeight: 800, marginTop: 24, letterSpacing: -2 }}>
-          Shivam Gupta
-        </div>
-        <div style={{ fontSize: 40, color: "#a1a1a8", marginTop: 8 }}>
-          Full-Stack Engineer · AI &amp; FinTech systems
-        </div>
-        <div style={{ display: "flex", gap: 16, marginTop: 40, flexWrap: "wrap" }}>
-          {["3 live SaaS products", "2 npm packages", "AI · FinTech · Real-time"].map((t) => (
+        <div style={{ display: "flex", flexDirection: "column", borderTop: "2px solid rgba(214,224,240,0.22)" }}>
+          {rows.map((a) => (
             <div
-              key={t}
+              key={a.id}
               style={{
-                border: "1px solid rgba(255,255,255,0.14)",
-                borderRadius: 12,
-                padding: "10px 20px",
-                fontSize: 26,
-                color: "#22d3ee",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "12px 0",
+                borderBottom: "1px solid rgba(214,224,240,0.11)",
+                fontSize: 28,
               }}
             >
-              {t}
+              <div style={{ display: "flex", fontWeight: 700 }}>{a.title}</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 14, color: "#a3b4ff", fontFamily: "monospace" }}>
+                {a.host}
+                <div style={{ width: 14, height: 14, borderRadius: 7, background: "#45d394" }} />
+              </div>
             </div>
           ))}
-        </div>
-        <div style={{ marginTop: 56, fontSize: 26, color: "#34d399" }}>
-          guest@shivamos:~$ open projects --featured _
+          <div style={{ display: "flex", marginTop: 14, fontSize: 24, color: "#8d98ab" }}>
+            {`${liveApps.length} apps live on my own domains · shivamgupta.live`}
+          </div>
         </div>
       </div>
     ),

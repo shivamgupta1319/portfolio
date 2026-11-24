@@ -1,4 +1,5 @@
 import type { ExperienceEntry } from "./types";
+import { liveApps } from "./apps";
 
 export const experience: ExperienceEntry[] = [
   {
@@ -26,14 +27,14 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
-    role: "Shipped 3 live products solo",
-    org: "pSEO Engine · Resite · Stock Safe Bundles",
+    role: "Building and running my own products",
+    org: "pSEO Engine, Resite, Trade Master and more",
     location: "Remote",
     start: "2025",
     end: "2026",
     kind: "milestone",
     bullets: [
-      "pseo.cloud, resite.live and a Shopify App Store app — designed, built, deployed and billed end-to-end; plus AI Router serving them in production and two npm packages (Stream Verse, uace-mcp).",
+      `${liveApps.length} apps live on my own domains, designed, built, deployed and operated end to end on a server I run myself, with AI Router serving them in production and two npm packages (Stream Verse, uace-mcp).`,
     ],
   },
   {

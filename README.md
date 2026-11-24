@@ -41,8 +41,7 @@ const shivam = {
 | --- | --- | --- |
 | **[pSEO Engine](https://pseo.cloud)** · live | Programmatic-SEO SaaS: quality-gated pages (pgvector dedup) shipped as PRs into your repo; multi-LLM router with typed failover and per-call cost. | Next.js 15, Drizzle, Postgres/pgvector, pg-boss, Polar |
 | **[Resite](https://resite.live)** · live | AI résumé builder, ATS scoring, subdomain portfolio publishing. | Next.js 15, NestJS, BullMQ, Puppeteer |
-| **[Stock Safe Bundles](https://apps.shopify.com/stocksafe-bundles)** · Shopify App Store | Reconcile → diagnose → audit engine for fixed-bundle inventory across locations. | Shopify App, React Router, Prisma, pg-boss |
-| **[AI Router](https://ai.pseo.cloud)** · live | OpenAI-compatible gateway over 8 free-tier providers; health-first routing, 185 tests, serving 5 projects. | TypeScript, Docker |
+| **[AI Router](https://ai.pseo.cloud)** · live | OpenAI-compatible gateway over many free-tier providers; health-first routing, serving 5 projects. | TypeScript, Docker |
 | **Repo Intelligence** | Cited `path:line` answers to "explain authentication" over any TS/JS repo; hybrid BM25 + embeddings, citation validator, labelled eval harness. | TypeScript, tree-sitter, transformers.js |
 | **[UACE](https://www.npmjs.com/package/uace-mcp)** · npm | MCP server giving every AI coding assistant one local-first project brain — 18 tools + 2 prompts. | TypeScript, MCP, sqlite-vec |
 | **[LACS / X-FACE](https://dr.alwacs.com)** · team | Deployed disaster-response comms: WebRTC/Mediasoup, on-device ASR/TTS, offline-first edge↔cloud sync on field mini-PCs. | NestJS, Postgres, Expo, Mediasoup |

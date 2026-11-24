@@ -4,9 +4,9 @@ export const profile: Profile = {
   name: "Shivam Gupta",
   handle: "shivamgupta1319",
   role: "Full-Stack Software Engineer",
-  headline: "Full-Stack Engineer · AI & FinTech systems",
+  headline: "Full-stack engineer who builds products and runs them himself",
   tagline:
-    "I build systems that think, trade and communicate — and ship them to production.",
+    "I build products, put them on my own domains and keep them running.",
   location: "Jaipur, India",
   email: "profile.shivam@gmail.com",
   github: "https://github.com/shivamgupta1319",

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
+import { Archivo, Inter, JetBrains_Mono } from "next/font/google";
 import { SITE_URL, SITE_TITLE, SITE_DESC, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
 import Analytics from "@/analytics/Analytics";
 import { THEME_SCRIPT } from "@/theme/themeScript";
@@ -11,11 +11,11 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-/** Profile page face (display + body); Desktop mode keeps Inter / JetBrains Mono. */
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+/** Site pages (v5): Archivo with its width axis for the expanded headline cut. */
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  axes: ["opsz", "wdth"],
+  axes: ["wdth"],
 });
 
 const jbMono = JetBrains_Mono({
@@ -68,8 +68,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: "dark light",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f2f4ef" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f191b" },
+    { media: "(prefers-color-scheme: light)", color: "#eef1f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#141a23" },
   ],
 };
 
@@ -84,7 +84,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${bricolage.variable} ${jbMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${archivo.variable} ${jbMono.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />

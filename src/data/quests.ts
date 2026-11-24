@@ -1,12 +1,10 @@
 import generatedJson from "./quests.generated.json";
-import { curated, EXCLUDED, MORE_WORK, SHOWCASE, SIDE_QUEST_CUTOFF } from "./quests.curated";
+import { curated, EXCLUDED, SIDE_QUEST_CUTOFF } from "./quests.curated";
 import { SHOTS } from "./shots";
 import { recordToQuest, humanize, XP_BY_RANK } from "./github";
 import {
-  PROJECT_CATEGORIES,
   PROJECT_CATEGORY_LABELS,
   type CuratedQuest,
-  type ProjectCategory,
   type Quest,
   type Rank,
   type RepoRecord,
@@ -145,43 +143,5 @@ export const sideQuests: Quest[] = all
 
 export const allQuests = all;
 
-/** Profile page: every featured quest in `order` sequence. */
+/** Every featured quest in `order` sequence (JSON-LD works list). */
 export const featuredQuests: Quest[] = mainQuests;
-
-function pick(ids: string[]): Quest[] {
-  const byId = new Map(all.map((q) => [q.id, q]));
-  return ids.map((id) => {
-    const q = byId.get(id);
-    if (!q) throw new Error(`profile list references unknown project "${id}"`);
-    return q;
-  });
-}
-
-/** Profile page showcase, in curated order. */
-export const showcase: Quest[] = pick(SHOWCASE);
-/** Profile page "More work" list. */
-export const moreWork: Quest[] = pick(MORE_WORK);
-
-/** Profile page "All projects": featured first (by order), then the rest. */
-export const catalogue: Quest[] = [...mainQuests, ...sideQuests];
-
-export const byCategory: Record<ProjectCategory, Quest[]> = Object.fromEntries(
-  PROJECT_CATEGORIES.map((c) => [
-    c,
-    catalogue.filter((q) => q.category.includes(c)),
-  ]),
-) as Record<ProjectCategory, Quest[]>;
-
-export function filterQuests(opts: {
-  category?: ProjectCategory | "all";
-  query?: string;
-}): Quest[] {
-  const base =
-    !opts.category || opts.category === "all"
-      ? catalogue
-      : byCategory[opts.category];
-  const q = opts.query?.trim().toLowerCase();
-  if (!q) return base;
-  const terms = q.split(/\s+/);
-  return base.filter((x) => terms.every((t) => x.searchIndex.includes(t)));
-}

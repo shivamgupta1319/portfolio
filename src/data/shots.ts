@@ -4,6 +4,7 @@
  */
 export const SHOTS = new Set<string>([
   "AI-ROUTER",
+  "catch-trades",
   "crypto-ai",
   "delivery-os",
   "dividend",
@@ -16,8 +17,8 @@ export const SHOTS = new Set<string>([
   "repo-intelligence",
   "resite",
   "smart-trading",
-  "stocksafe-bundles",
   "strategy-backtest",
   "streamverse",
   "typezap",
+  "zeev",
 ]);
