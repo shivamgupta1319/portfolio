@@ -661,7 +661,7 @@ export const curated: Record<string, CuratedQuest> = {
     summary:
       "Self-hosted Google-Drive-style storage on my own disk: chunked uploads, streaming, previews.",
     description:
-      "Self-hosted, Google-Drive-like file storage that keeps everything as plain files on an external disk at home. Chunked uploads in 45 MB slices (Cloudflare caps a request at 100 MB), Range streaming, thumbnails and previews, trash, search and a storage dashboard. The drive can be unplugged: the app detects it live, shows an offline banner and blocks writes, so nothing ever lands on the internal disk by mistake.",
+      "Self-hosted, Google-Drive-like file storage that keeps everything as plain files on an external disk attached to my server. Chunked uploads in 45 MB slices (Cloudflare caps a request at 100 MB), Range streaming, thumbnails and previews, trash, search and a storage dashboard. The drive can be unplugged: the app detects it live, shows an offline banner and blocks writes, so nothing ever lands on the internal disk by mistake.",
     highlights: [
       "Chunked uploads under Cloudflare's 100 MB request cap",
       "Hot-plug aware: detects the disk going offline and blocks writes",
@@ -745,34 +745,6 @@ export const curated: Record<string, CuratedQuest> = {
     status: "live",
   },
 };
-
-/**
- * The profile page (`/`) shows only these, in this order. Everything else is
- * still listed in Desktop mode. Ids are curated keys / repo names.
- */
-export const SHOWCASE: string[] = [
-  "programmatic-SEO-engine",
-  "resite",
-  "repo-intelligence",
-  "UACE",
-  "AI-ROUTER",
-  "smart-trading",
-  "lacs-v2",
-  "typezap",
-  "delivery-os",
-];
-
-/** Compact "More work" list under the showcase. */
-export const MORE_WORK: string[] = [
-  "invitation",
-  "dividend",
-  "notes",
-  "streamverse",
-  "market-news",
-  "indian-ipo",
-  "strategy-backtest",
-  "crypto-ai",
-];
 
 /** Repos never shown as quests (junk, boilerplate, superseded, off-theme). */
 export const EXCLUDED = new Set<string>([
