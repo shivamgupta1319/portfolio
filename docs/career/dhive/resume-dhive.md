@@ -22,7 +22,7 @@
 | LACS split into four bullets covering video, FFmpeg, AWS, GIS/GPS + device provisioning | Was one dense bullet. Each JD responsibility now maps to a line an interviewer can point at. |
 | **Home Guard** added as the lead project | Closest thing you have to their product: camera feed → detect → recognise → record → retrieve. |
 | **StreamVerse** promoted to a full project entry | It was buried as an experience bullet; it's direct evidence of SFU-level streaming work. |
-| Projects reordered: Home Guard, StreamVerse, Echo, then the rest | Video-first ordering. Glacier Dev and StockSafe dropped for space (StockSafe stays in Achievements). |
+| Projects reordered: Home Guard, StreamVerse, Echo, then the rest | Video-first ordering. Glacier Dev and StockSafe dropped for space; StockSafe was later removed from the site and the résumés entirely (2026-11-24). |
 | Kept **4+ years**, added "progressive growth inside a single team" | The JD twice states a preference for 2–4+ years of expanding responsibility at one company. Four years at Wisflux *is* the thing they're asking for. |
 
 ### Deliberately NOT on this resume
@@ -102,10 +102,10 @@ infrastructure and edge deployment. Represented the company at ATR Open House 20
 **SmartTrader — Algorithmic Trading Platform**
 *Nx monorepo · NestJS · React + Vite · Python FastAPI · PostgreSQL · Socket.IO · Docker*
 
-- Polyglot platform for the Indian stock market backtesting 28 strategies, with a live market scanner and real-time WebSocket and Telegram alerts — a Node.js and Python service split orchestrated with Docker Compose behind a React dashboard.
+- Polyglot platform for the Indian stock market backtesting 31 strategies, with a live market scanner and real-time WebSocket and Telegram alerts — a Node.js and Python service split orchestrated with Docker Compose behind a React dashboard.
 
 **pSEO Engine — Programmatic-SEO SaaS** · Live: pseo.cloud
-*Next.js · Drizzle · PostgreSQL / pgvector · pg-boss · multi-LLM router · Lemon Squeezy*
+*Next.js · Drizzle · PostgreSQL / pgvector · pg-boss · AI Router · Polar*
 
 - Generates and quality-gates penalty-resistant SEO landing pages (semantic deduplication via pgvector, thin-content guardrails) and publishes them into a customer repository; resilient multi-provider LLM router with automatic failover.
 
@@ -123,7 +123,7 @@ Anand International College of Engineering, Jaipur • CGPA: 8.5 / 10.0
 
 - Represented Wisflux Tech Labs at **ATR Open House 2025, Kyoto, Japan** — an international technology showcase and collaboration event.
 - Published npm packages: **StreamVerse** (WebRTC SDK over Mediasoup SFU) and **UACE** (uace-mcp, MCP server).
-- Shipped three live products: pSEO Engine (pseo.cloud), Resite (resite.live) and StockSafe Bundles (Shopify App Store).
+- Shipped live products: pSEO Engine (pseo.cloud), Resite (resite.live) and AI Router (ai.pseo.cloud).
 - Maintain 65+ repositories spanning real-time media, full-stack web, AI agents and algorithmic trading.
 
 ---
