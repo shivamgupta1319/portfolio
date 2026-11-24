@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
 import { liveApps } from "@/data/apps";
-import { NAV_LINKS } from "./navLinks";
+import { MORE_LINKS, NAV_LINKS } from "./navLinks";
 
 const EXTERNAL = [
   { href: profile.github, label: "GitHub" },
@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
         <nav aria-label="Site">
           <ul className="grid gap-1">
-            {NAV_LINKS.map((l) => (
+            {[...NAV_LINKS, ...MORE_LINKS].map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="inline-flex min-h-11 items-center text-fg-dim hover:text-fg">
                   {l.label}

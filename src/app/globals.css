@@ -44,43 +44,27 @@
   --c-rose: #be123c;
 }
 
-/* ── site pages (v5): blue-graphite operator board ──────────────────────────
-   Applied while a `.site` page is mounted (see docs/design.md). `accent` is
-   the text-safe tone; `accent-fill` + `on-accent` are for solid buttons;
-   `up` / `warn` are status colours, kept apart from the brand accent. */
+/* ── site pages (v6): one light theme, sage ground and plum accent ──────────
+   Applied while a `.site` page is mounted; /desktop keeps its own themes. */
 :root:has(.site) {
-  --c-bg: #141a23;
-  --c-bg-2: #1b2230;
-  --c-panel: rgba(214, 224, 240, 0.035);
-  --c-panel-2: rgba(214, 224, 240, 0.07);
-  --c-border: rgba(214, 224, 240, 0.11);
-  --c-border-strong: rgba(214, 224, 240, 0.22);
-  --c-fg: #e9edf4;
-  --c-fg-dim: #a9b3c4;
-  --c-fg-mute: #8d98ab;
-  --c-accent: #a3b4ff;
-  --c-accent-2: #c2ceff;
-  --c-accent-fill: #5b7cfa;
-  --c-on-accent: #0b1020;
-  --c-green: #45d394;
-  --c-amber: #f0a43a;
-}
-:root[data-theme="light"]:has(.site) {
-  --c-bg: #eef1f6;
-  --c-bg-2: #ffffff;
-  --c-panel: rgba(18, 24, 38, 0.03);
-  --c-panel-2: rgba(18, 24, 38, 0.06);
-  --c-border: rgba(18, 24, 38, 0.12);
-  --c-border-strong: rgba(18, 24, 38, 0.24);
-  --c-fg: #121826;
-  --c-fg-dim: #46516a;
-  --c-fg-mute: #5b6680;
-  --c-accent: #2b3fd1;
-  --c-accent-2: #1f2fa8;
-  --c-accent-fill: #2b3fd1;
+  color-scheme: light;
+  --c-bg: #e6ece5;
+  --c-bg-2: #f4f7f3;
+  --c-panel: rgba(28, 38, 31, 0.035);
+  --c-panel-2: rgba(28, 38, 31, 0.07);
+  --c-border: rgba(28, 38, 31, 0.12);
+  --c-border-strong: rgba(28, 38, 31, 0.24);
+  --c-fg: #1c261f;
+  --c-fg-dim: #46534a;
+  --c-fg-mute: #57635a;
+  --c-accent: #7b3770;
+  --c-accent-2: #5e2754;
+  --c-accent-fill: #7b3770;
+  --c-accent-soft: #eddde9;
   --c-on-accent: #ffffff;
-  --c-green: #0d7a4a;
-  --c-amber: #9a5b00;
+  --c-green: #1d7a4b;
+  --c-amber: #8a5300;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -100,6 +84,7 @@
   --color-amber: var(--c-amber);
   --color-rose: var(--c-rose);
   --color-accent-fill: var(--c-accent-fill);
+  --color-accent-soft: var(--c-accent-soft);
   --color-on-accent: var(--c-on-accent);
 
   --font-sans: var(--font-inter);
@@ -241,23 +226,106 @@ body {
   animation: window-in 0.18s ease-out;
 }
 
-/* ── site pages (v5) ────────────────────────────────────────────────────── */
+/* ── site pages (v6) ────────────────────────────────────────────────────── */
 .site {
-  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  font-variation-settings: "wdth" 100;
+  font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  background: var(--color-bg);
 }
 .site ::selection {
   background: var(--color-accent-fill);
   color: var(--color-on-accent);
 }
-/* expanded headline cut: the board / signage voice */
+/* headline voices (Geist has no width axis; tight tracking does the work) */
 .wide {
-  font-variation-settings: "wdth" 116;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.045em;
 }
 .wide-sm {
-  font-variation-settings: "wdth" 108;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
+}
+
+/* motion: everything below turns off under prefers-reduced-motion (end of file) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+/* words rise out of a mask, one after another */
+.rise {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.rise > span {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: rise-in 0.9s var(--ease-out) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes rise-in {
+  to { transform: none; }
+}
+.fade-up {
+  opacity: 0;
+  animation: fade-up 0.8s var(--ease-out) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.float {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes float {
+  50% { transform: translateY(-8px); }
+}
+.pulse-dot {
+  position: relative;
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: currentColor;
+  animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(2.6); opacity: 0; }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee-wrap:hover .marquee {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+/* each page arrives with a short fade-up (app/(site)/template.tsx) */
+.page-in {
+  animation: fade-up 0.6s var(--ease-out) both;
+}
+/* a link arrow that slides on hover */
+.nudge {
+  transition: transform 0.3s var(--ease-out);
+}
+.group:hover .nudge,
+a:hover > .nudge {
+  transform: translateX(4px);
 }
 .tnum {
   font-variant-numeric: tabular-nums;
@@ -273,5 +341,19 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+  .reveal,
+  .fade-up,
+  .page-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .rise > span {
+    transform: none !important;
+  }
+  .marquee {
+    animation: none !important;
+    flex-wrap: wrap;
+    width: auto;
   }
 }

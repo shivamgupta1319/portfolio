@@ -3,10 +3,10 @@ import type { Profile } from "./types";
 export const profile: Profile = {
   name: "Shivam Gupta",
   handle: "shivamgupta1319",
-  role: "Full-Stack Software Engineer",
-  headline: "Full-stack engineer who builds products and runs them himself",
+  role: "Software Engineer",
+  headline: "Software Engineer who designs and ships software products",
   tagline:
-    "I build products, put them on my own domains and keep them running.",
+    "My products are live on my own domains, on a server I run.",
   location: "Jaipur, India",
   email: "profile.shivam@gmail.com",
   github: "https://github.com/shivamgupta1319",

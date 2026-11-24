@@ -3,7 +3,7 @@ import { liveApps } from "./apps";
 
 export const experience: ExperienceEntry[] = [
   {
-    role: "Full-Stack Software Engineer",
+    role: "Software Engineer",
     org: "Wisflux Tech Labs",
     location: "Jaipur, India",
     start: "Jun 2022",
