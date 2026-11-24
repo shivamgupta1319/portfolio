@@ -69,9 +69,9 @@ const ACCESS: Record<string, AppAccess> = {
   "smart-trading": "overview",
   "crypto-ai": "overview",
   "catch-trades": "overview",
-  notes: "login",
-  "linkedin-ai": "login",
-  trip: "login",
+  notes: "overview",
+  "linkedin-ai": "overview",
+  trip: "overview",
   "personal-drive": "login",
 };
 
