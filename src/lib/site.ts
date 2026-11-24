@@ -4,10 +4,10 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivamgupta.live"
 ).replace(/\/+$/, "");
 
-export const SITE_TITLE = "Shivam Gupta — Full-Stack Engineer · AI & FinTech systems";
+export const SITE_TITLE = "Shivam Gupta — Full-stack engineer who builds and runs his own products";
 
 export const SITE_DESC =
-  "Shivam Gupta — full-stack engineer building AI systems (RAG, LLM gateways, MCP), FinTech research tools and real-time WebRTC platforms. 3 live SaaS products, 2 npm packages. Explore the portfolio, or boot it as a game-OS.";
+  "Shivam Gupta is a full-stack engineer who builds products and runs them himself: AI systems, FinTech research tools and real-time platforms, live on his own domains. Explore the apps, or open the portfolio as a game-style desktop.";
 
 /** Google Search Console verification token. Paste the value from GSC's
  *  "HTML tag" method into NEXT_PUBLIC_GOOGLE_VERIFICATION (Netlify env var);
