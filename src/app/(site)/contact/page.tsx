@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const CHANNELS = [
   { label: "LinkedIn", value: "in/myselfshivam", href: profile.linkedin },
   { label: "GitHub", value: profile.githubUser, href: profile.github },
+  ...(profile.devto ? [{ label: "dev.to", value: profile.devto.replace(/^https?:\/\//, ""), href: profile.devto }] : []),
 ];
 
 export default function ContactPage() {
