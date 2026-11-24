@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { GROUP_BLURBS, GROUP_LABELS, type AppGroup, type AppListItem } from "@/data/appMeta";
 import { PROJECT_CATEGORIES, PROJECT_CATEGORY_LABELS, type ProjectCategory } from "@/data/types";
 import AppRow from "./AppRow";
@@ -30,7 +30,7 @@ export default function AppsCatalogue({ items }: { items: AppListItem[] }) {
 
   return (
     <>
-      <div role="group" aria-label="Filter by category" className="mt-8 flex flex-wrap gap-2">
+      <div role="group" aria-label="Filter by category" className="fade-up mt-10 flex flex-wrap gap-2" style={{ "--d": "0.45s" } as CSSProperties}>
         {chips.map((c) => {
           const on = c.key === cat;
           return (
@@ -39,14 +39,14 @@ export default function AppsCatalogue({ items }: { items: AppListItem[] }) {
               type="button"
               aria-pressed={on}
               onClick={() => setCat(c.key)}
-              className={`inline-flex min-h-11 items-center gap-2 rounded-md border px-3.5 text-[0.9375rem] transition-colors ${
+              className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-[0.9375rem] font-medium transition-[background-color,color,border-color,transform] duration-300 active:scale-95 ${
                 on
-                  ? "border-accent-fill bg-accent-fill text-on-accent"
-                  : "border-border text-fg-dim hover:border-border-strong hover:text-fg"
+                  ? "border-fg bg-fg text-bg-2"
+                  : "border-border bg-bg-2/60 text-fg-dim hover:border-border-strong hover:text-fg"
               }`}
             >
               {c.label}
-              <span className={`font-mono text-[0.8125rem] tnum ${on ? "" : "text-fg-mute"}`}>{c.n}</span>
+              <span className={`font-mono text-[0.8125rem] tnum ${on ? "text-bg-2/70" : "text-fg-mute"}`}>{c.n}</span>
             </button>
           );
         })}
@@ -59,16 +59,16 @@ export default function AppsCatalogue({ items }: { items: AppListItem[] }) {
         const rows = shown.filter((it) => it.group === g);
         if (!rows.length) return null;
         return (
-          <section key={g} aria-labelledby={`group-${g}`} className="mt-12">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-border-strong pb-3">
-              <h2 id={`group-${g}`} className="wide-sm text-2xl font-bold text-fg">
-                {GROUP_LABELS[g]} <span className="font-mono text-base font-normal text-fg-mute tnum">{rows.length}</span>
+          <section key={`${g}-${cat}`} aria-labelledby={`group-${g}`} className="mt-14">
+            <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-1">
+              <h2 id={`group-${g}`} className="wide text-3xl font-semibold text-fg sm:text-4xl">
+                {GROUP_LABELS[g]} <span className="font-mono text-base font-normal tracking-normal text-fg-mute tnum">{rows.length}</span>
               </h2>
               <p className="max-w-prose text-[0.9375rem] text-fg-mute">{GROUP_BLURBS[g]}</p>
             </div>
-            <ul>
-              {rows.map((it) => (
-                <AppRow key={it.id} app={it} />
+            <ul className="mt-5 overflow-hidden rounded-[28px] border border-border bg-bg-2">
+              {rows.map((it, i) => (
+                <AppRow key={it.id} app={it} index={i} />
               ))}
             </ul>
           </section>

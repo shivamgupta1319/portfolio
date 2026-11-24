@@ -6,6 +6,7 @@ import ResumeButton from "@/site/ResumeButton";
 import AppCover from "@/site/AppCover";
 import { CountUp, Reveal, RiseText, Tilt } from "@/site/motion";
 import { buttonClass } from "@/site/button";
+import Arrow from "@/site/Arrow";
 import { apps, flagshipApps, liveApps, type App } from "@/data/apps";
 import { experience } from "@/data/experience";
 import { profile } from "@/data/profile";
@@ -30,19 +31,6 @@ const containers = Number(INFRA_FACTS.find((f) => f.label === "Containers")?.val
 const STACK = skills.filter((s) => s.tier <= 1).map((s) => s.label);
 
 const d = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
-
-function ArrowCircle() {
-  return (
-    <span
-      aria-hidden
-      className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border-strong text-fg transition-[background-color,color,transform] duration-300 group-hover:-rotate-45 group-hover:bg-fg group-hover:text-bg-2"
-    >
-      <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 10h12M11 5l5 5-5 5" />
-      </svg>
-    </span>
-  );
-}
 
 function WorkCard({ app, large = false }: { app: App; large?: boolean }) {
   return (
@@ -79,7 +67,7 @@ function WorkCard({ app, large = false }: { app: App; large?: boolean }) {
           </ul>
         )}
         <span className="mt-1 flex items-center gap-3 text-[0.9375rem] font-semibold text-fg">
-          <ArrowCircle />
+          <Arrow />
           How it works
         </span>
       </div>
@@ -149,7 +137,7 @@ export default function Home() {
               </p>
             </div>
             {work && (
-              <div className="float absolute -right-2 bottom-8 max-w-[15rem] sm:-right-6" style={d(1.5)}>
+              <div className="float absolute -right-2 bottom-8 max-w-[15rem] xl:-right-6" style={d(1.5)}>
                 <div className="rounded-2xl border border-border bg-bg-2 px-4 py-3 shadow-[0_12px_30px_-16px_rgba(28,38,31,0.5)]">
                   <p className="text-[0.8125rem] text-fg-mute">Since {work.start}</p>
                   <p className="font-semibold leading-snug text-fg">{work.org}</p>
@@ -212,7 +200,7 @@ export default function Home() {
           </div>
           <Link href="/apps/" className="group inline-flex min-h-11 items-center gap-3 font-semibold text-fg">
             All {apps.length} apps
-            <ArrowCircle />
+            <Arrow />
           </Link>
         </Reveal>
         <div className="mt-10 grid gap-5">
@@ -242,7 +230,7 @@ export default function Home() {
             and publish what didn&apos;t work.
           </p>
           <Link href="/about/" className="group mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-fg">
-            <ArrowCircle />
+            <Arrow />
             More about me
           </Link>
         </Reveal>
@@ -259,14 +247,7 @@ export default function Home() {
               with no internet.
             </p>
             <Link href="/experience/" className="group mt-auto inline-flex min-h-11 items-center gap-3 pt-6 font-semibold">
-              <span
-                aria-hidden
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/30 transition-[background-color,color,transform] duration-300 group-hover:-rotate-45 group-hover:bg-bg-2 group-hover:text-fg"
-              >
-                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 10h12M11 5l5 5-5 5" />
-                </svg>
-              </span>
+              <Arrow dark />
               Experience and skills
             </Link>
           </Reveal>

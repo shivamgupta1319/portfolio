@@ -1,17 +1,22 @@
 import Link from "next/link";
 import { ACCESS_LABELS, type AppListItem } from "@/data/appMeta";
+import type { CSSProperties } from "react";
 import Status from "./Status";
+import Arrow from "./Arrow";
 
 /**
  * A row on the board. The whole row links to the app's page on this site;
  * the external "open" links live on that page.
  */
-export default function AppRow({ app }: { app: AppListItem }) {
+export default function AppRow({ app, index = 0 }: { app: AppListItem; index?: number }) {
   const access = ACCESS_LABELS[app.access];
   return (
-    <li className="group relative grid gap-x-6 gap-y-1.5 border-b border-border py-4 md:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_10.5rem] md:items-baseline">
+    <li
+      className="fade-up group relative grid gap-x-6 gap-y-1.5 border-b border-border px-5 py-5 transition-colors duration-300 last:border-0 hover:bg-panel-2 sm:px-6 md:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_10.5rem_2.75rem] md:items-center"
+      style={{ "--d": `${Math.min(index, 12) * 0.035}s` } as CSSProperties}
+    >
       <div className="min-w-0">
-        <h3 className="wide-sm text-lg font-bold leading-snug text-fg">
+        <h3 className="wide-sm text-lg font-semibold leading-snug text-fg transition-transform duration-300 group-hover:translate-x-1">
           <Link
             href={`/apps/${app.slug}/`}
             className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
@@ -31,10 +36,13 @@ export default function AppRow({ app }: { app: AppListItem }) {
         {access && <span className="text-[0.8125rem] text-fg-mute">{access}</span>}
         {!app.liveUrl && app.credit && <span className="text-[0.8125rem] text-fg-mute">{app.credit}</span>}
       </div>
+      <span className="hidden md:block">
+        <Arrow />
+      </span>
       {/* the row's link is stretched over it, so draw its keyboard focus on the row */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -inset-x-2 inset-y-1 rounded-md ring-accent-2 group-has-[:focus-visible]:ring-2"
+        className="pointer-events-none absolute inset-1 rounded-[22px] ring-accent-2 group-has-[:focus-visible]:ring-2"
       />
     </li>
   );

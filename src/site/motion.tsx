@@ -129,3 +129,51 @@ export function RiseText({ text, start = 0, step = 0.08 }: { text: string; start
     </>
   );
 }
+
+/**
+ * A vertical rail beside its children that fills with the accent as the reader
+ * scrolls through them. Reduced motion: shown full.
+ */
+export function ScrollRail({ children, className = "" }: { children: ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const fill = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    const bar = fill.current;
+    if (!el || !bar) return;
+    if (reduced()) {
+      bar.style.transform = "scaleY(1)";
+      return;
+    }
+    let raf = 0;
+    const update = () => {
+      const r = el.getBoundingClientRect();
+      const k = Math.min(1, Math.max(0, (window.innerHeight * 0.6 - r.top) / r.height));
+      bar.style.transform = `scaleY(${k})`;
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+  return (
+    <div ref={ref} className={`relative ${className}`}>
+      <span aria-hidden className="absolute bottom-0 left-[11px] top-0 w-0.5 rounded-full bg-border md:left-[15px]" />
+      <span
+        ref={fill}
+        aria-hidden
+        className="absolute bottom-0 left-[11px] top-0 w-0.5 origin-top rounded-full bg-accent md:left-[15px]"
+        style={{ transform: "scaleY(0)" }}
+      />
+      {children}
+    </div>
+  );
+}

@@ -315,6 +315,10 @@ body {
 @keyframes marquee {
   to { transform: translateX(-50%); }
 }
+/* each page arrives with a short fade-up (app/(site)/template.tsx) */
+.page-in {
+  animation: fade-up 0.6s var(--ease-out) both;
+}
 /* a link arrow that slides on hover */
 .nudge {
   transition: transform 0.3s var(--ease-out);
@@ -339,7 +343,8 @@ a:hover > .nudge {
     transition-duration: 0.001ms !important;
   }
   .reveal,
-  .fade-up {
+  .fade-up,
+  .page-in {
     opacity: 1 !important;
     transform: none !important;
   }
