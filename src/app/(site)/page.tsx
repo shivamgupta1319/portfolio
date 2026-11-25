@@ -7,6 +7,9 @@ import AppCover from "@/site/AppCover";
 import { CountUp, Reveal, RiseText, Tilt } from "@/site/motion";
 import { buttonClass } from "@/site/button";
 import Arrow from "@/site/Arrow";
+import Photo from "@/site/Photo";
+import { preload } from "react-dom";
+import { photoSrcSet } from "@/site/images";
 import { apps, flagshipApps, liveApps, type App } from "@/data/apps";
 import { experience } from "@/data/experience";
 import { profile } from "@/data/profile";
@@ -41,7 +44,7 @@ function WorkCard({ app, large = false }: { app: App; large?: boolean }) {
     >
       <div className="overflow-hidden rounded-[20px] border border-border bg-bg">
         <div className="transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.035]">
-          <AppCover app={app} eager={large} />
+          <AppCover app={app} eager={large} sizes={large ? "(min-width: 1024px) 640px, 92vw" : "(min-width: 768px) 560px, 92vw"} />
         </div>
       </div>
       <div className="flex min-w-0 flex-col gap-3 px-2 pb-2 pt-5 lg:py-4">
@@ -76,8 +79,18 @@ function WorkCard({ app, large = false }: { app: App; large?: boolean }) {
 }
 
 /** `/`: who I am first, then the work, then how to reach me. */
+const HERO_SIZES = "(min-width: 1024px) 470px, (min-width: 640px) 416px, 92vw";
+
 export default function Home() {
   const [first, ...rest] = flagshipApps;
+  // The portrait is the largest element on first paint: ask for it before the CSS is parsed.
+  preload("/img/shivam-gupta-800.avif", {
+    as: "image",
+    type: "image/avif",
+    imageSrcSet: photoSrcSet("avif"),
+    imageSizes: HERO_SIZES,
+    fetchPriority: "high",
+  });
   return (
     <>
       <JsonLd />
@@ -116,16 +129,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="fade-up relative mx-auto w-full max-w-[26rem] lg:max-w-none" style={d(0.3)}>
+          <div className="slide-up relative mx-auto w-full max-w-[26rem] lg:max-w-none" style={d(0.1)}>
             <Tilt>
               <div className="relative overflow-hidden rounded-[32px] border border-border bg-bg-2 p-2.5 shadow-[0_30px_70px_-35px_rgba(28,38,31,0.55)]">
-                {/* eslint-disable-next-line @next/next/no-img-element -- static export, unoptimized */}
-                <img
-                  src={profile.photo}
-                  alt={`${profile.name}, portrait`}
-                  width={1159}
-                  height={1358}
-                  fetchPriority="high"
+                <Photo
+                  priority
+                  sizes={HERO_SIZES}
                   className="aspect-[4/4.6] h-auto w-full rounded-[24px] object-cover object-[50%_30%]"
                 />
               </div>

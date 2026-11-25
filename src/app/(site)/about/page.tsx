@@ -8,6 +8,7 @@ import ResumeButton from "@/site/ResumeButton";
 import { buttonClass } from "@/site/button";
 import PageHeader from "@/site/PageHeader";
 import Arrow from "@/site/Arrow";
+import Photo from "@/site/Photo";
 import { Reveal, Tilt } from "@/site/motion";
 
 export const metadata: Metadata = {
@@ -49,12 +50,9 @@ export default function AboutPage() {
           <figure className="fade-up mx-auto w-full max-w-sm self-start lg:max-w-none" style={{ "--d": "0.2s" } as CSSProperties}>
             <Tilt>
               <div className="rounded-[32px] border border-border bg-bg-2 p-2.5 shadow-[0_30px_70px_-35px_rgba(28,38,31,0.55)]">
-                {/* eslint-disable-next-line @next/next/no-img-element -- static export, unoptimized */}
-                <img
-                  src={profile.photo}
-                  alt={`${profile.name}, portrait`}
-                  width={1159}
-                  height={1358}
+                <Photo
+                  priority
+                  sizes="(min-width: 1024px) 384px, (min-width: 640px) 384px, 92vw"
                   className="aspect-[1159/1358] h-auto w-full rounded-[24px] object-cover"
                 />
               </div>

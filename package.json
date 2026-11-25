@@ -10,7 +10,8 @@
     "lint": "eslint",
     "lint:text": "! grep -rnE 'text-\\[(8|9|10|11)px\\]' src",
     "fetch:github": "node scripts/fetch-github.mjs",
-    "shots": "node scripts/capture-shots.mjs"
+    "shots": "node scripts/capture-shots.mjs",
+    "images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

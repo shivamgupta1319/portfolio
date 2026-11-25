@@ -139,7 +139,7 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
       {app.screenshot && (
         <div className="fade-up mt-12 rounded-[32px] border border-border bg-bg-2 p-2.5 shadow-[0_30px_70px_-40px_rgba(28,38,31,0.5)] sm:p-3" style={{ "--d": "0.45s" } as CSSProperties}>
           <div className="overflow-hidden rounded-[24px] border border-border">
-            <AppCover app={app} eager />
+            <AppCover app={app} eager sizes="(min-width: 1152px) 1120px, 96vw" />
           </div>
         </div>
       )}
