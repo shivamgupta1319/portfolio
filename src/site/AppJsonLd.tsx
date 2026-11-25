@@ -1,5 +1,5 @@
+import { appCategory, appOperatingSystem } from "@/seo/appSchema";
 import { oneLiner, type App } from "@/data/apps";
-import { PROJECT_CATEGORY_LABELS } from "@/data/types";
 import { SITE_URL } from "@/lib/site";
 
 /** schema.org SoftwareApplication for an app page, authored by the site's Person entity. */
@@ -12,7 +12,8 @@ export default function AppJsonLd({ app }: { app: App }) {
     description: app.story?.headline ?? oneLiner(app),
     url: app.liveUrl ?? app.npmUrl ?? `${SITE_URL}/apps/${app.slug}/`,
     mainEntityOfPage: `${SITE_URL}/apps/${app.slug}/`,
-    applicationCategory: app.category.map((c) => PROJECT_CATEGORY_LABELS[c]).join(", ") || undefined,
+    applicationCategory: appCategory(app.category),
+    operatingSystem: appOperatingSystem(app),
     ...(app.screenshot && { screenshot: `${SITE_URL}${app.screenshot}` }),
     author: { "@id": `${SITE_URL}/#person` },
   };

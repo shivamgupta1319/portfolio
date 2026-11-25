@@ -1,8 +1,8 @@
+import { appCategory, appOperatingSystem } from "./appSchema";
 import { profile } from "@/data/profile";
 import { stats, skills } from "@/data/skills";
 import { experience } from "@/data/experience";
 import { featuredQuests } from "@/data/quests";
-import { PROJECT_CATEGORY_LABELS } from "@/data/types";
 import { SITE_URL } from "@/lib/site";
 
 /**
@@ -92,7 +92,8 @@ export default function JsonLd() {
       name: q.title,
       description: q.summary ?? q.description,
       url: q.liveUrl ?? q.npmUrl,
-      applicationCategory: q.category.map((c) => PROJECT_CATEGORY_LABELS[c]).join(", "),
+      applicationCategory: appCategory(q.category),
+      operatingSystem: appOperatingSystem(q),
       author: { "@id": personId },
     }));
 
@@ -118,6 +119,7 @@ export default function JsonLd() {
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": personId },
       mainEntity: { "@id": personId },
+      dateCreated: "2026-06-03", // the site's first commit
       dateModified: new Date().toISOString().slice(0, 10),
     },
   ];
