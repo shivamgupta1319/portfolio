@@ -7,6 +7,7 @@ import { track } from "@/analytics/track";
 import { profile } from "@/data/profile";
 import ResumeButton from "./ResumeButton";
 import { NAV_LINKS } from "./navLinks";
+import { AVATAR } from "./images";
 
 function isActive(pathname: string, href: string): boolean {
   const p = pathname.endsWith("/") ? pathname : `${pathname}/`;
@@ -73,11 +74,11 @@ export default function Nav() {
           <Link href="/" className="mr-auto inline-flex min-h-11 min-w-0 items-center gap-2.5 rounded-full pr-2">
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, unoptimized */}
             <img
-              src={profile.photo}
+              src={AVATAR}
               alt=""
               width={36}
               height={36}
-              className="h-9 w-9 shrink-0 rounded-full object-cover object-[50%_22%] ring-2 ring-bg-2"
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-bg-2"
             />
             <span className="truncate text-[1.05rem] font-semibold tracking-tight text-fg">{profile.name}</span>
           </Link>

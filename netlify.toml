@@ -22,3 +22,14 @@
   for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Responsive image copies from `npm run images` (rebuilt when an image changes).
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/shivam-gupta.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

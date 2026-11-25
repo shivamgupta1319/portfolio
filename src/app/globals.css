@@ -282,6 +282,15 @@ body {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: none; }
 }
+/* like fade-up but always visible, for the largest image (an opacity-0 start delays LCP) */
+.slide-up {
+  animation: slide-up 0.8s var(--ease-out) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes slide-up {
+  from { transform: translateY(16px); }
+  to { transform: none; }
+}
 .float {
   animation: float 6s ease-in-out infinite;
   animation-delay: var(--d, 0s);
@@ -344,6 +353,7 @@ a:hover > .nudge {
   }
   .reveal,
   .fade-up,
+  .slide-up,
   .page-in {
     opacity: 1 !important;
     transform: none !important;
