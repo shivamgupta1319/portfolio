@@ -16,12 +16,14 @@ export default function AppRow({ app, index = 0 }: { app: AppListItem; index?: n
       style={{ "--d": `${Math.min(index, 12) * 0.035}s` } as CSSProperties}
     >
       <div className="min-w-0">
-        <h3 className="wide-sm text-lg font-semibold leading-snug text-fg transition-transform duration-300 group-hover:translate-x-1">
+        <h3 className="wide-sm text-lg font-semibold leading-snug text-fg">
+          {/* The link's ::after covers the whole row. The hover nudge sits on an inner span:
+              a transform on any ancestor of that ::after would shrink it to the title. */}
           <Link
             href={`/apps/${app.slug}/`}
             className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
           >
-            {app.title}
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">{app.title}</span>
           </Link>
         </h3>
         {app.host ? (
