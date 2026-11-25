@@ -1,5 +1,13 @@
 # SEO Action Plan — ranking for "Shivam Gupta"
 
+> **Status (checked 2026-11-25):** §1 domain ✅ · §2 Search Console ✅ (verified, sitemap
+> submitted in July; resubmit after the v6 redesign, now 45 pages) · Bing Webmaster ⬜ ·
+> §3 validation: re-run after v6 · §4 consistency: LinkedIn/GitHub link the site ✅, but the
+> site title is now **Software Engineer**, so align the LinkedIn headline ⬜ · §5 links from other
+> sites ⬜ (the biggest gap; your own *.pseo.cloud apps count as one domain).
+> A spot check on 2026-11-25 (non-Google index) did not show the site for the bare name, the
+> domain or `shivamgupta1319`. Check real positions in Search Console › Performance.
+
 The portfolio's **on-page/technical SEO is done in code** (rich metadata, OG image,
 sitemap, robots, a crawlable hidden-content block, and now JSON-LD `Person`/`WebSite`
 structured data + Search Console verification hook). Everything below is the **off-page
@@ -12,7 +20,7 @@ work only you can do**, ordered by impact.
 
 ---
 
-## 1. Custom domain (highest impact) — mostly done ✅
+## 1. Custom domain (highest impact) — done ✅
 
 The `.netlify.app` subdomain can't meaningfully rank for a name; a domain with your name in
 it is the single biggest lever. You've bought the domain and wired it into Netlify.
@@ -34,7 +42,7 @@ it is the single biggest lever. You've bought the domain and wired it into Netli
 
 ---
 
-## 2. Google Search Console (do this next)
+## 2. Google Search Console — done ✅ (Bing ⬜)
 
 1. Go to [search.google.com/search-console](https://search.google.com/search-console) →
    **Add property**.
@@ -67,7 +75,7 @@ Google merges your web presence into one "Shivam Gupta" entity only when the sig
 Make the **name, headline, and website link identical** everywhere:
 
 - **LinkedIn** → Contact info → set Website = the new domain. Keep the headline aligned with
-  "Full-Stack Software Engineer".
+  "Software Engineer" (the site's title since 2026-11-24).
 - **GitHub** → profile + profile README → add the domain as your website/blog link.
 - **Email signature** and the **resume PDF** → use the new domain.
 - ✅ **LinkedIn URL — RESOLVED (2026-07-13):** `linkedin.com/in/myselfshivam` is the correct,

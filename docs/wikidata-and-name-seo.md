@@ -1,5 +1,20 @@
 # Wikidata & Name-Search SEO — Runbook
 
+> **Status (checked 2026-11-25)**
+>
+> | Step | Status |
+> |---|---|
+> | ORCID | ✅ Created 2026-07-13: `0009-0009-1609-3946`. Live; lists shivamgupta.live, GitHub, LinkedIn, X, dev.to. On the site (`39d37af`). |
+> | Crunchbase | ✅ Created 2026-07-13: `crunchbase.com/person/shivam-gupta-d1cb`, plus Resite and pSEO Engine as organisations with you as founder. On the site (`b0ef8dd`). Crunchbase blocks automated checks, so confirm it in a browser. |
+> | Wikidata item | ❌ Created 2026-07-13 as **Q140528915** (on the site, `be3d3e3`). **Deleted 2026-07-24** by a Wikidata administrator: "Does not meet the notability policy". |
+> | Photo on Wikimedia Commons (`File:Shivam-gupta.jpg`, for the Wikidata image) | ❌ Uploaded 2026-07-13, **deleted 2026-07-27**: personal file from a non-contributor (Commons CSD F10). |
+> | Hashnode | ⬜ Not created (optional). |
+> | Site still links the deleted Wikidata item in its `sameAs` | ⚠️ Open: remove `wikidata` from `src/data/profile.ts`. |
+>
+> **Don't recreate the Wikidata item yet.** Both deletions have the same cause: no independent
+> sources yet. Recreating it now would likely be deleted again. Revisit after §5 has two or three
+> independent mentions (talk listing, podcast, Product Hunt feature, press).
+
 **You execute this yourself.** It needs your own accounts and your factual review — I
 don't create the Wikidata item or the external profiles for you. This is the step-by-step
 so you don't have to re-derive it.
@@ -36,9 +51,9 @@ empty placeholders in `profile.ts` (`wikidata`, `orcid`, `crunchbase`).
 | **npm** — `shivamgupta1319` | 2 published packages = real output | (via official website / sameAs) | ✅ have |
 | **dev.to** — `shivamgupta1319` | Authored technical content | (sameAs) | ✅ have |
 | **X/Twitter** — `sg247938` | Social identity | P2002 (Twitter username) | ✅ have |
-| **ORCID** | Free, instant, a strong scholarly identifier | P496 (ORCID iD) | ⬜ create |
-| **Crunchbase** | Founder of pseo.cloud + resite.live → legitimizes "founder" | P2088 (Crunchbase person) | ⬜ create |
-| **Hashnode** (optional) | More authored content, another sameAs | (sameAs) | ⬜ optional |
+| **ORCID** | Free, instant, a strong scholarly identifier | P496 (ORCID iD) | ✅ `0009-0009-1609-3946` (2026-07-13) |
+| **Crunchbase** | Founder of pseo.cloud + resite.live → legitimizes "founder" | P2088 (Crunchbase person) | ✅ `shivam-gupta-d1cb` (2026-07-13) |
+| **Hashnode** (optional) | More authored content, another sameAs | (sameAs) | ⬜ not created |
 
 **ORCID** — https://orcid.org/register. Free, ~2 minutes, issues an iD immediately. This is
 the single highest-leverage prerequisite: it's a globally recognized person identifier that
@@ -50,6 +65,9 @@ Wikidata accepts as a first-class statement.
 ---
 
 ## 3. Create the Wikidata item
+
+> **Done 2026-07-13, then deleted 2026-07-24** (Q140528915: human, software engineer, India,
+> official website, ORCID, GitHub, X, image). Kept below for when it is worth retrying.
 
 Once ORCID (at minimum) exists:
 
@@ -104,6 +122,6 @@ Collect them over the 6-month window; revisit Wikipedia only once two or three e
 
 ## After you finish
 
-Send me: your **ORCID iD**, **Crunchbase person URL**, and **Wikidata Q-ID**. I'll drop them
-into `profile.ts` (the `orcid`, `crunchbase`, `wikidata` fields are already stubbed as empty
-strings and filtered out of `sameAs` until then) so the site emits them the moment they exist.
+✅ Done 2026-07-13: ORCID, Crunchbase and the Wikidata Q-ID were wired into `profile.ts` and the
+site's `sameAs`. Since the Wikidata deletion, its entry there points at a deleted page and should
+be removed.

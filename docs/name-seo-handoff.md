@@ -1,7 +1,11 @@
 # Name-Search SEO — Handoff (resume here tomorrow)
 
-**Status:** Planned + inputs gathered. **No code written yet.** Next session = execute.
-**Date paused:** 2026-07-12. **Approved plan file:** `~/.claude/plans/glowing-coalescing-crayon.md`
+**Status: COMPLETED 2026-07-13** (this was the plan; everything below was done the next day).
+Current status and what happened since (Wikidata and Commons deletions): see the status table at
+the top of [`wikidata-and-name-seo.md`](wikidata-and-name-seo.md).
+
+Commits: `e84cbe6` Person entity (sameAs, headshot, worksFor/alumniOf) · `39d37af` ORCID ·
+`b0ef8dd` Crunchbase · `8976b24` 1046×1226 headshot · `be3d3e3` Wikidata Q140528915.
 
 ---
 
@@ -101,11 +105,10 @@ Files + exact edits. All small, one commit each is fine.
 
 ## Resume-tomorrow checklist
 
-- [ ] Verify npm profile loads in a browser (curl was 403-blocked).
-- [ ] Track A: write `docs/career/wikidata-and-name-seo.md`.
-- [ ] Track B #1–6 above (code).
-- [ ] Move/clean photo → `public/shivam-gupta.jpg` (ffmpeg).
-- [ ] Build + validate structured data.
-- [ ] Commit (Conventional Commits, likely `feat(seo): expand Person entity — sameAs,
-      photo, worksFor/alumniOf`).
-- [ ] Remove `Pi7_Passport_Photo (3).jpeg` from repo root once moved.
+- [x] Verify npm profile loads in a browser (curl was 403-blocked).
+- [x] Track A: write the runbook (it lives at `docs/wikidata-and-name-seo.md`).
+- [x] Track B #1–6 above (code), `e84cbe6`.
+- [x] Move/clean photo → `public/shivam-gupta.jpg` (later replaced by a 1046×1226 photo, `8976b24`).
+- [x] Build + validate structured data.
+- [x] Commit (`e84cbe6 feat(seo): expand Person entity — sameAs, headshot, worksFor/alumniOf`).
+- [x] Remove `Pi7_Passport_Photo (3).jpeg` from repo root once moved.
