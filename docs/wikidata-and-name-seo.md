@@ -9,7 +9,7 @@
 > | Wikidata item | ❌ Created 2026-07-13 as **Q140528915** (on the site, `be3d3e3`). **Deleted 2026-07-24** by a Wikidata administrator: "Does not meet the notability policy". |
 > | Photo on Wikimedia Commons (`File:Shivam-gupta.jpg`, for the Wikidata image) | ❌ Uploaded 2026-07-13, **deleted 2026-07-27**: personal file from a non-contributor (Commons CSD F10). |
 > | Hashnode | ⬜ Not created (optional). |
-> | Site still links the deleted Wikidata item in its `sameAs` | ⚠️ Open: remove `wikidata` from `src/data/profile.ts`. |
+> | Site still links the deleted Wikidata item in its `sameAs` | ✅ Removed 2026-11-25 (`wikidata: ""` in `src/data/profile.ts`). |
 >
 > **Don't recreate the Wikidata item yet.** Both deletions have the same cause: no independent
 > sources yet. Recreating it now would likely be deleted again. Revisit after §5 has two or three
