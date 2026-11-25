@@ -119,8 +119,9 @@ export default function JsonLd() {
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": personId },
       mainEntity: { "@id": personId },
-      dateCreated: "2026-06-03", // the site's first commit
-      dateModified: new Date().toISOString().slice(0, 10),
+      // Full ISO 8601 date-times with a zone: Google rejects bare dates here.
+      dateCreated: "2026-06-03T00:00:00+05:30", // the site's first commit
+      dateModified: new Date().toISOString(), // build time
     },
   ];
 
