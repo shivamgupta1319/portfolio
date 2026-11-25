@@ -17,7 +17,9 @@ export const profile: Profile = {
   devto: "https://dev.to/shivamgupta1319",
   twitter: "sg247938",
   photo: "/shivam-gupta.jpg",
-  wikidata: "https://www.wikidata.org/wiki/Q140528915",
+  // Wikidata item Q140528915 was deleted on 2026-07-24 (notability); recreate only once independent
+  // sources exist (docs/wikidata-and-name-seo.md). An empty value is left out of the schema sameAs.
+  wikidata: "",
   orcid: "https://orcid.org/0009-0009-1609-3946",
   crunchbase: "https://www.crunchbase.com/person/shivam-gupta-d1cb",
   level: 24,
